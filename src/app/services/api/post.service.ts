@@ -19,7 +19,6 @@ export class PostService {
       url = this.constants.API_ENDPOINT + '/posts';
     }
     const response = await lastValueFrom(this.http.get(url));
-    console.log(url);
     return response as any[];
   }
 }

@@ -19,7 +19,6 @@ export class UserService {
       url = this.constants.API_ENDPOINT + '/user';
     }
     const response = await lastValueFrom(this.http.get(url));
-    console.log(url);
     return response as any[];
   }
 }
