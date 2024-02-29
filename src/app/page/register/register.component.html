@@ -1,0 +1,16 @@
+<body>
+    <div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+    <div class="form">
+        <h3>Register</h3>
+        <label>Username</label>
+        <input type="text" placeholder="Username" #username>
+        <label>Email</label>
+        <input type="email" placeholder="Email" #email>
+        <label>Password</label>
+        <input type="password" placeholder="Password" #password>
+        <button (click)="register(username,email,password)">Register</button>
+    </div>
+</body>
