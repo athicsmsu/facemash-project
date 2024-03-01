@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { PostService } from '../../services/api/post.service';
 import { CommonModule } from '@angular/common';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-main',
@@ -14,11 +14,19 @@ export class MainComponent {
   image : any[] = [];
   image1 : any;
   image2 : any;
-  constructor(private postService : PostService){}
+  constructor(private postService : PostService,private router: Router){}
 
   ngOnInit(): void {
+    if (localStorage.getItem('user')) {
+      this.router.navigate(['/user'], {
+        queryParams: { user: localStorage.getItem('user') },
+      });
+    } else {
+      this.router.navigateByUrl('');
+    }
     this.loadDataAsync();
   }
+
   async loadDataAsync (){
     this.image = await this.postService.getPosts();
     // console.log(this.image);
