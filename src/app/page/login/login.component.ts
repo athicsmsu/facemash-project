@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
 import { HttpClient } from '@angular/common/http';
 import { Constants } from '../../config/constants';
@@ -11,9 +11,19 @@ import { Router } from '@angular/router';
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
-export class LoginComponent { 
+export class LoginComponent implements OnInit{ 
 
   constructor(private http:HttpClient,private constants : Constants, private router: Router){}
+
+  ngOnInit(): void {
+    if (localStorage.getItem('user')) {
+      this.router.navigate(['/user'], {
+        queryParams: { user: localStorage.getItem('user') },
+      });
+    } else {
+      this.router.navigateByUrl('/login');
+    }
+  }
 
   login(email: HTMLInputElement,password: HTMLInputElement) {
     const url = this.constants.API_ENDPOINT + `/user`;
@@ -29,6 +39,7 @@ export class LoginComponent {
           if(data[0].Password == password.value){
             if(data[0].Type.includes("user")){
               // console.log(data[0].Type);
+              localStorage.setItem('user', data[0].UserID);
               this.router.navigate(['/user'],{
                 queryParams: { user : data[0].UserID }
               });
@@ -49,13 +60,22 @@ export class LoginComponent {
   register(username: HTMLInputElement,email: HTMLInputElement,password: HTMLInputElement) {
     const url = this.constants.API_ENDPOINT + `/user`;
     if(username.value && email.value && password.value){
-      this.http.post(url, {
-          Username: username.value,
+      this.http.get(url, {
+        params : {
           Email: email.value,
-          Password: password.value
+        }
       }).subscribe((data:any)=>{
-        console.log(data);
-        // this.router.navigate(['/login']);
+        if(data == null || (Array.isArray(data) && data.length === 0)){
+          this.http.post(url, {
+              Username: username.value,
+              Email: email.value,
+              Password: password.value
+          }).subscribe((data:any)=>{
+            console.log(data);
+          })
+        } else {
+          console.log("Email have");
+        }
       })
     }else{
       console.log("Please Input");
