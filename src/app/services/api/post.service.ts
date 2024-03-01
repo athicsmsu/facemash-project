@@ -6,17 +6,17 @@ import { lastValueFrom } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+export class PostService {
 
   constructor(private constants : Constants,private http:HttpClient) { }
 
-  public async getUser(options?:any){
+  public async getPosts(options?:any){
     let url = '';
     if(options){
       const id = options;
-      url = this.constants.API_ENDPOINT + '/user/' + id;
+      url = this.constants.API_ENDPOINT + '/posts/' + id;
     }else{
-      url = this.constants.API_ENDPOINT + '/user';
+      url = this.constants.API_ENDPOINT + '/posts';
     }
     const response = await lastValueFrom(this.http.get(url));
     return response as any[];

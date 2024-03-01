@@ -8,7 +8,29 @@
         <label>Email</label>
         <input type="text" placeholder="Email" required #email>
         <label>Password</label>
-        <input type="password" placeholder="Password" #password>
-        <button (click)="login(email,password)">Log In</button>
+        <input type="password" placeholder="Password" (keyup.enter)="login(email,password)" #password>
+        <div style="display: flex;flex-direction: row;justify-content: space-between;align-items: flex-end;">
+            <button class="login" (click)="login(email,password)">LOG IN</button>
+            <div  id="mainButton" #mainButton>
+                <div class="btn-text" (click)="openForm()">Sign Up</div>
+                <div class="modal">
+                    <div class="close-button" (click)="closeForm()">x</div>
+                    <div class="form-title">Sign Up</div>
+                    <div class="input-group">
+                        <input type="text" id="name" (blur)="checkInput(usernameInput)" #usernameInput />
+                        <label for="name">Username</label>
+                    </div>
+                    <div class="input-group">
+                        <input type="email" id="email" (blur)="checkInput(emailInput)" #emailInput />
+                        <label for="email">Email</label>
+                    </div>
+                    <div class="input-group">
+                        <input type="password" id="password" (blur)="checkInput(passwordInput)" (keyup.enter)="register(usernameInput,emailInput,passwordInput)"  (keyup.enter)="closeForm()"  #passwordInput />
+                        <label for="password">Password</label>
+                    </div>
+                    <div class="form-button" (click)="closeForm()" (click)="register(usernameInput,emailInput,passwordInput)">Go</div>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
