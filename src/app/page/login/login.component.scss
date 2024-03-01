@@ -245,12 +245,12 @@ input{
 .form-button {
   width: 100%;
   padding: 10px;
-  color: #00a7ee;
+  color: #ffffff;
   margin-top: 10px;
   max-width: 400px;
   text-align: center;
   border: solid 1px white;
-  background-color: white;
+  background-color: transparent;
   -webkit-transition: color 0.2s ease-in, background-color 0.2s ease-in;
   -moz-transition: color 0.2s ease-in, background-color 0.2s ease-in;
   -ms-transition: color 0.2s ease-in, background-color 0.2s ease-in;
@@ -260,7 +260,7 @@ input{
 .form-button:hover {
   color: white;
   cursor: pointer;
-  background-color: transparent;
+  background-color: #0c5dce;
 }
 
 .input-group {
