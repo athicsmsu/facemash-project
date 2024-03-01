@@ -1,26 +1,74 @@
-// @import url('../node_modules/bootstrap/dist/css/bootstrap.css');
-/*
-*
-* ==========================================
-* CUSTOM UTIL CLASSES
-* ==========================================
-*
-*/
-.profile-header {
-    transform: translateY(5rem);
+@import url('../../../../node_modules/bootstrap/dist/css/bootstrap-grid.css');
+
+.profile{
+    display: flex;
+    flex-direction: row;
+    background-color: aqua;
+    width: 1000px;
+    height: 250px;
+    border-radius: 20px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
 }
 
+.image-bg{
+    display: flex;
+    flex-direction: row;
+    //justify-content: center;
+    background-color: yellow;
+    width: 1000px;
+    height: fit-content;
+    border-radius: 20px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    flex-wrap: wrap;
+}
 
-/*
-*
-* ==========================================
-* FOR DEMO PURPOSE
-* ==========================================
-*
-*/
-body {
-    background: #654ea3;
-    background: -webkit-linear-gradient(to right, #654ea3, #eaafc8);
-    background: linear-gradient(to right, #654ea3, #eaafc8);
-    min-height: 100vh;
+.img-profile {
+  border-radius: 50%;
+  background-color: azure; 
+  width: 200px;
+  height: 200px;
+}
+
+.user-profile {
+    border-radius: 20px;
+    background-color: azure; 
+    width: 500px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+.email-profile {
+border-radius: 20px;
+background-color: azure; 
+width: 300px;
+height: 50px;
+display: flex;
+align-items: center;
+justify-content: center;
+
+}
+
+.img-upload{
+    
+    border-radius: 20px;
+    background-color: azure; 
+    width: 200px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 60px;
+}
+
+.svg-upload{
+    
+    border-radius: 20px;
+    width: 150px;
+    height: 150px;
+    display: flex;
+    margin-top:90px;
 }
