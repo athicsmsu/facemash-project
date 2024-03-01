@@ -2,6 +2,7 @@
     &nbsp;&nbsp;<button (click)="goBack()"> Back </button>
     <ng-container *ngIf="isLoggedIn(); else loginButton">
         <button (click)="logout()">Logout</button>
+        <button (click)="logout()">Logout</button>
     </ng-container>
     <ng-template #loginButton>
     <button routerLink="login">Login</button>
