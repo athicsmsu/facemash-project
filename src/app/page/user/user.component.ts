@@ -22,6 +22,6 @@ export class UserComponent {
   }
   async loadDataAsync (){
     this.user = await this.userService.getUser(this.id);
-    console.log(this.user);
+    // console.log(this.user);
   }
 }
