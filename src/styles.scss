@@ -4,8 +4,57 @@ html, body { height: 100%; }
 body { 
     margin: 0; 
     font-family: Roboto, "Helvetica Neue", sans-serif; 
-    // background-image: (url("assets/bg.jpg"));
-    background-color: #080710;
-    background-size: cover;
-}
+    background: #000000;
+  --gap: 5em;
+  --line: 1px;
+  --color: rgba(255, 255, 255, 0.2);
 
+  background-image: linear-gradient(
+      -90deg,
+      transparent calc(var(--gap) - var(--line)),
+      var(--color) calc(var(--gap) - var(--line) + 1px),
+      var(--color) var(--gap)
+    ),
+    linear-gradient(
+      0deg,
+      transparent calc(var(--gap) - var(--line)),
+      var(--color) calc(var(--gap) - var(--line) + 1px),
+      var(--color) var(--gap)
+    );
+  background-size: var(--gap) var(--gap);
+  
+//   /******/
+//   background: #121212;
+//   background: linear-gradient(
+//     135deg,
+//     #121212 25%,
+//     #1a1a1a 25%,
+//     #1a1a1a 50%,
+//     #121212 50%,
+//     #121212 75%,
+//     #1a1a1a 75%,
+//     #1a1a1a
+//   );
+//   background-size: 40px 40px;
+
+//   /* Animation */
+//   animation: move 4s linear infinite;
+
+//   /* Dark mode colors and gradient */
+//   background-color: #111111;
+//   background-image: linear-gradient(
+//     32deg,
+//     rgba(8, 8, 8, 0.74) 30px,
+//     transparent
+//   );
+//   background-size: 60px 60px;
+//   background-position: -5px -5px;
+}
+@keyframes move {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 40px 40px;
+    }
+  }
