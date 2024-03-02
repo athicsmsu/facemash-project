@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { lastValueFrom } from 'rxjs';
 import { HttpClient, HttpClientModule } from '@angular/common/http';  
 import { Constants } from '../../config/constants';
+import { PostService } from '../../services/api/post.service';
 
 @Component({
   selector: 'app-user',
@@ -14,11 +15,12 @@ import { Constants } from '../../config/constants';
   styleUrl: './user.component.scss'
 })
 export class UserComponent {
+  image : any[]=[];
   id:any;
   user : any;
   Avatar : any;
   file? : File;
-  constructor(private route: ActivatedRoute,private userService : UserService,private http : HttpClient,private constants: Constants){
+  constructor(private route: ActivatedRoute,private userService : UserService,private http : HttpClient,private constants: Constants,private postService : PostService){
 		this.route.queryParams.subscribe(params =>{
 			this.id = params['user'];
 		});
@@ -30,8 +32,10 @@ export class UserComponent {
 
   async loadDataAsync (){
     this.user = await this.userService.getUser(this.id);
+    this.image =  await this.postService.getPosts(this.id);
+    console.log(this.image);
     this.Avatar = this.user[0].Avatar;
-    console.log(this.user);
+    // console.log(this.user);
   }
 
   async onFileSelected(event: any): Promise<void> {
