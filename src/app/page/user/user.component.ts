@@ -14,7 +14,6 @@ import { Constants } from '../../config/constants';
   styleUrl: './user.component.scss'
 })
 export class UserComponent {
-
   id:any;
   user : any;
   Avatar : any;
@@ -45,7 +44,6 @@ export class UserComponent {
       console.log(formData);
       const url = this.constants.API_ENDPOINT + "/posts/"+this.id;
       const response = await lastValueFrom(this.http.post(url, formData));
-      console.log(response);
     }
   }
 }
