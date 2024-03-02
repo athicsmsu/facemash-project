@@ -31,6 +31,7 @@ export class UserComponent {
   }
 
   async loadDataAsync (){
+
     this.user = await this.userService.getUser(this.id);
     this.image =  await this.postService.getPosts(this.id);
     console.log(this.image);
@@ -49,5 +50,11 @@ export class UserComponent {
       const url = this.constants.API_ENDPOINT + "/posts/"+this.id;
       const response = await lastValueFrom(this.http.post(url, formData));
     }
+    await this.delay(3000);
+    this.loadDataAsync();
+
+  }
+  async delay(ms: number) {
+    return await new Promise((resolve) => setTimeout(resolve, ms));
   }
 }
