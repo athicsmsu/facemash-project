@@ -21,14 +21,4 @@ export class UserService {
     const response = await lastValueFrom(this.http.get(url));
     return response as any[];
   }
-
-  // public async postFile(options?:any){
-  //   let url = '';
-  //   if(options){
-  //     const id = options;
-  //     url = this.constants.API_ENDPOINT + '/user/' + id;
-  //   }
-  //   const response = await lastValueFrom(this.http.post(url));
-  //   return response as any[];
-  // }
 }
