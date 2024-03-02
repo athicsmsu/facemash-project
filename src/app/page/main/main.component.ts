@@ -70,10 +70,6 @@ export class MainComponent {
     }
   }
 
-<<<<<<< HEAD
-  Vote(WinPid: Number, LosePid: Number, check: Number) {
-    
-=======
   async Vote(WinPid: Number, LosePid: Number, check: Number) {
     if (!this.canVote) {
       return; // ไม่สามารถกด Vote ได้อีก
@@ -88,7 +84,6 @@ export class MainComponent {
     console.log('Check : ' + check);
     const EA = 1 / (1 + 10 ** ((this.score2 - this.score1) / 400));
     const EB = 1 / (1 + 10 ** ((this.score1 - this.score2) / 400));
->>>>>>> ee33166ecce091857be630a379e8cba396c1d4b1
 
     if(!this.canVote){
       return;
@@ -147,8 +142,6 @@ export class MainComponent {
       }
     }
 
-<<<<<<< HEAD
-=======
     // รอเวลา 5 วินาที
   await this.delay(5000);
 
@@ -162,7 +155,6 @@ export class MainComponent {
 
   async delay(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms));
->>>>>>> ee33166ecce091857be630a379e8cba396c1d4b1
   }
 }
 function getRandomIndex(array: any[]): number {
