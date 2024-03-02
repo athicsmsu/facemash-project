@@ -25,6 +25,7 @@ export class MainComponent {
   image2: any;
   score1: any;
   score2: any;
+  canVote = true;
 
   constructor(
     private postService: PostService,
@@ -69,7 +70,13 @@ export class MainComponent {
     }
   }
 
-  Vote(WinPid: Number, LosePid: Number, check: Number) {
+  async Vote(WinPid: Number, LosePid: Number, check: Number) {
+    if (!this.canVote) {
+      return; // ไม่สามารถกด Vote ได้อีก
+    }
+
+    this.canVote = false;
+
     const url = this.constants.API_ENDPOINT + `/vote`;
     const K = 32;
     console.log('WinPid : ' + WinPid);
@@ -121,6 +128,20 @@ export class MainComponent {
           console.log(data);
         });
     }
+
+    // รอเวลา 5 วินาที
+  await this.delay(5000);
+
+  // เปิดให้สามารถกด Vote ได้อีก
+  this.canVote = true;
+
+  // โหลดข้อมูลใหม่หลังจาก Vote
+  this.loadDataAsync();
+
+  }
+
+  async delay(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
   }
 }
 function getRandomIndex(array: any[]): number {
