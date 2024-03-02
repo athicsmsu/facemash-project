@@ -21,7 +21,10 @@
                 </div>
             </div>
             <div class="image-bg">
-                <div tabindex="0" class="plusButton btn-upload" *ngIf="this.image.length == 5">
+                <div *ngFor="let item of image">
+                    <img class="in-image-bg" src="{{item.ImageURL}}" alt="">
+                </div>
+                <div tabindex="0" class="plusButton btn-upload" *ngIf="this.image.length < 5">
                     <input type="file" #fileInput style="display: none" (change)="onFileSelected($event)">
                     <svg (click)="fileInput.click()" class="plusIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
                       <g mask="url(#mask0_21_345)">
