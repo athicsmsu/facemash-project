@@ -2,67 +2,17 @@
     <div style="display: flex; flex-direction: row; margin-top: 2%;">
         <div style="display: flex; flex-direction: column; width: 100%;">
             <div class="bg">
-                <h1>TOP-10</h1>
-                <div class="data-bg">
-                    <div>#1</div>
-                    <div>score</div>
-                    <div>rank</div>
-                    <div>image</div>
+                <button class="btn">TOP-10</button>
+                <div class="for-bg" *ngFor="let item of image;let i=index">
+                    <div class="data-bg">
+                        <div><h1>#{{i+1}}</h1></div>
+                        <div><button id="bottone1"><strong>{{item.total_score}}</strong></button></div>
+                        <div>rank</div>
+                        <div><img width="250px" height="200px" src="{{item.ImageURL
+                        }}" alt=""></div>
+                    </div>
                 </div>
-                <div class="data-bg">
-                    <div>#2</div>
-                    <div>score</div>
-                    <div>rank</div>
-                    <div>image</div>
-                </div>
-                <div class="data-bg">
-                    <div>#3</div>
-                    <div>score</div>
-                    <div>rank</div>
-                    <div>image</div>
-                </div>
-                <div class="data-bg">
-                    <div>#4</div>
-                    <div>score</div>
-                    <div>rank</div>
-                    <div>image</div>
-                </div>
-                <div class="data-bg">
-                    <div>#5</div>
-                    <div>score</div>
-                    <div>rank</div>
-                    <div>image</div>
-                </div>
-                <div class="data-bg">
-                    <div>#6</div>
-                    <div>score</div>
-                    <div>rank</div>
-                    <div>image</div>
-                </div>
-                <div class="data-bg">
-                    <div>#7</div>
-                    <div>score</div>
-                    <div>rank</div>
-                    <div>image</div>
-                </div>
-                <div class="data-bg">
-                    <div>#8</div>
-                    <div>score</div>
-                    <div>rank</div>
-                    <div>image</div>
-                </div>
-                <div class="data-bg">
-                    <div>#9</div>
-                    <div>score</div>
-                    <div>rank</div>
-                    <div>image</div>
-                </div>
-                <div class="data-bg">
-                    <div>#10</div>
-                    <div>score</div>
-                    <div>rank</div>
-                    <div>image</div>
-                </div>
+                
             </div>
         </div>
     </div>
