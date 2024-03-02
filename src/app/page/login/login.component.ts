@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { HeaderComponent } from '../header/header.component';
+import { HeaderComponent, setHeaderID } from '../header/header.component';
 import { HttpClient } from '@angular/common/http';
 import { Constants } from '../../config/constants';
 import { Router } from '@angular/router';
@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit{ 
 
-  constructor(private http:HttpClient,private constants : Constants, private router: Router){}
+  constructor(private http:HttpClient,private constants : Constants, private router: Router,private header:HeaderComponent){}
 
   ngOnInit(): void {
     if (localStorage.getItem('user')) {
@@ -43,6 +43,7 @@ export class LoginComponent implements OnInit{
               this.router.navigate(['/user'],{
                 queryParams: { user : data[0].UserID }
               });
+              setHeaderID(this.header);
             }
             else if(data[0].Type.includes("admin")){
               // console.log(data[0].Type);

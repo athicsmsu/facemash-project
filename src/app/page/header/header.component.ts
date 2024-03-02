@@ -11,8 +11,10 @@ import { Router, RouterLink, RouterOutlet } from '@angular/router';
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
-
+  id:any;
+  title:any;
   constructor(private location: Location,private router: Router){}
+
   goBack(): void {
 		this.location.back();
 	}
@@ -23,4 +25,10 @@ export class HeaderComponent {
   isLoggedIn(): boolean {
     return localStorage.length > 0;
   }
+}
+export function setHeaderID(header : HeaderComponent) {
+  header.id = localStorage.getItem('user');
+}
+export function setTitleVote(header : HeaderComponent) {
+  header.id = "vote";
 }

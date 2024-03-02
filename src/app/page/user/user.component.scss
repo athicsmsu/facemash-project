@@ -3,7 +3,10 @@
 .profile{
     display: flex;
     flex-direction: row;
-    background-color: aqua;
+    backdrop-filter: blur(2.5px);
+    background-color: rgba(255,255,255,0.13);
+    border: 2px solid rgba(255,255,255,0.1);
+    border-bottom: none;
     width: 1000px;
     height: 250px;
     border-radius: 20px;
@@ -14,8 +17,10 @@
 .image-bg{
     display: flex;
     flex-direction: row;
-    //justify-content: center;
-    background-color: yellow;
+    background-color: rgba(255,255,255,0.13);
+    border: 2px solid rgba(255,255,255,0.1);
+    border-top: none;
+    backdrop-filter: blur(2.5px);
     width: 1000px;
     height: fit-content;
     border-radius: 20px;
