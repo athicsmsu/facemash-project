@@ -25,7 +25,7 @@ export class MainComponent {
   image2: any;
   score1: any;
   score2: any;
-
+  canVote:any = true;
   constructor(
     private postService: PostService,
     private router: Router,
