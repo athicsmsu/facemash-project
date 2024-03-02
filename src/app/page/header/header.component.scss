@@ -1,0 +1,292 @@
+.header {
+  position: relative;
+  background-color: #e8e8e8;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  height: fit-content;
+}
+
+.Btn {
+  position: relative;
+  width: 130px;
+  height: 50px;
+  border: none;
+  background-color: #005f99;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 5px 5px 0px rgb(12, 12, 12);
+  transition-duration: 0.3s;
+}
+
+.Layer {
+  width: 60px;
+  position: absolute;
+  left: -30px;
+  transition-duration: 0.3s;
+  animation: spin 5s linear infinite;
+}
+
+.Btn:hover {
+  transform: translateY(5px);
+  box-shadow: 3px 3px 0px black;
+  transition-duration: 0.3s;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.Btn:hover .Layer {
+  left: 0%;
+  width: 100%;
+  transition-duration: 0.3s;
+}
+
+.text {
+  color: white;
+  font-weight: 600;
+  font-size: 1.1em;
+  position: absolute;
+  z-index: 2;
+  transition-duration: 0.1s;
+  font-family: Whitney, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Helvetica, Arial, sans-serif;
+}
+
+.Btn:hover .text {
+  color: transparent;
+  transition-duration: 0.3s;
+}
+/* svg colors */
+.cls-1 {
+  fill: #242021;
+}
+
+.cls-2 {
+  fill: #e82728;
+}
+
+.cls-3 {
+  fill: #fefefe;
+}
+
+.cls-4 {
+  fill: #e92728;
+}
+
+.cls-5 {
+  fill: #005f99;
+}
+
+.cls-6 {
+  fill: #fff;
+}
+/* svg colors */
+///***********************back***************************///
+.button {
+  display: block;
+  position: relative;
+  width: 56px;
+  height: 56px;
+  margin: 0;
+  overflow: hidden;
+  outline: none;
+  background-color: transparent;
+  cursor: pointer;
+  border: 0;
+}
+
+.button:before,
+.button:after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  inset: 7px;
+}
+
+.button:before {
+  border: 4px solid rgb(107, 106, 106);
+  transition: opacity 0.4s cubic-bezier(0.77, 0, 0.175, 1) 80ms,
+    transform 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) 80ms;
+}
+
+.button:after {
+  border: 4px solid #96daf0;
+  transform: scale(1.3);
+  transition: opacity 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
+    transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  opacity: 0;
+}
+
+.button:hover:before,
+.button:focus:before {
+  opacity: 0;
+  transform: scale(0.7);
+  transition: opacity 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
+    transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.button:hover:after,
+.button:focus:after {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 0.4s cubic-bezier(0.77, 0, 0.175, 1) 80ms,
+    transform 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) 80ms;
+}
+
+.button-box {
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.button-elem {
+  display: block;
+  width: 20px;
+  height: 20px;
+  margin: 17px 18px 0 18px;
+  transform: rotate(180deg);
+  fill: black;
+}
+
+.button:hover .button-box,
+.button:focus .button-box {
+  transition: 0.4s;
+  transform: translateX(-56px);
+}
+
+//*****************login********************//
+.login {
+  border: none;
+  position: relative;
+  width: 150px;
+  height: 70px;
+  padding: 0;
+  z-index: 2;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='868' width='2500' viewBox='0 0 726 252.17'%3E%3Cpath d='M483.92 0S481.38 24.71 466 40.11c-11.74 11.74-24.09 12.66-40.26 15.07-9.42 1.41-29.7 3.77-34.81-.79-2.37-2.11-3-21-3.22-27.62-.21-6.92-1.36-16.52-2.82-18-.75 3.06-2.49 11.53-3.09 13.61S378.49 34.3 378 36a85.13 85.13 0 0 0-30.09 0c-.46-1.67-3.17-11.48-3.77-13.56s-2.34-10.55-3.09-13.61c-1.45 1.45-2.61 11.05-2.82 18-.21 6.67-.84 25.51-3.22 27.62-5.11 4.56-25.38 2.2-34.8.79-16.16-2.47-28.51-3.39-40.21-15.13C244.57 24.71 242 0 242 0H0s69.52 22.74 97.52 68.59c16.56 27.11 14.14 58.49 9.92 74.73C170 140 221.46 140 273 158.57c69.23 24.93 83.2 76.19 90 93.6 6.77-17.41 20.75-68.67 90-93.6 51.54-18.56 103-18.59 165.56-15.25-4.21-16.24-6.63-47.62 9.93-74.73C656.43 22.74 726 0 726 0z'/%3E%3C/svg%3E")
+    no-repeat 50% 50%;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='868' width='2500' viewBox='0 0 726 252.17'%3E%3Cpath d='M483.92 0S481.38 24.71 466 40.11c-11.74 11.74-24.09 12.66-40.26 15.07-9.42 1.41-29.7 3.77-34.81-.79-2.37-2.11-3-21-3.22-27.62-.21-6.92-1.36-16.52-2.82-18-.75 3.06-2.49 11.53-3.09 13.61S378.49 34.3 378 36a85.13 85.13 0 0 0-30.09 0c-.46-1.67-3.17-11.48-3.77-13.56s-2.34-10.55-3.09-13.61c-1.45 1.45-2.61 11.05-2.82 18-.21 6.67-.84 25.51-3.22 27.62-5.11 4.56-25.38 2.2-34.8.79-16.16-2.47-28.51-3.39-40.21-15.13C244.57 24.71 242 0 242 0H0s69.52 22.74 97.52 68.59c16.56 27.11 14.14 58.49 9.92 74.73C170 140 221.46 140 273 158.57c69.23 24.93 83.2 76.19 90 93.6 6.77-17.41 20.75-68.67 90-93.6 51.54-18.56 103-18.59 165.56-15.25-4.21-16.24-6.63-47.62 9.93-74.73C656.43 22.74 726 0 726 0z'/%3E%3C/svg%3E")
+    no-repeat 50% 50%;
+  -webkit-mask-size: 100%;
+  cursor: pointer;
+  background-color: transparent;
+  transform: translateY(8px);
+}
+
+.login:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  box-shadow: 0px 0 0 0 white;
+  transition: all 2s ease;
+}
+
+.login:hover:after {
+  box-shadow: 0px -13px 56px 12px #ffffffa6;
+}
+
+.login span {
+  position: absolute;
+  width: 100%;
+  font-size: 15px;
+  font-weight: 100;
+  left: 50%;
+  top: 39%;
+  letter-spacing: 3px;
+  text-align: center;
+  transform: translate(-50%, -50%);
+  color: black;
+  transition: all 2s ease;
+}
+
+.login:hover span {
+  color: white;
+}
+
+.login:before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 100%;
+  background-color: black;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 1s ease;
+}
+
+.login:hover:before {
+  width: 100%;
+}
+
+//////////*************show***********************////////////
+
+.rank {
+  position: relative;
+  width: 130px;
+  height: 50px;
+  border: none;
+  background-color: rgb(231, 0, 0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-y: hidden;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 8px 8px 0px rgb(12, 12, 12);
+  transition-duration: 0.3s;
+}
+
+.iron {
+  width: 60px;
+  position: absolute;
+  left: -30px;
+  transition-duration: 0.3s;
+}
+
+.cls-5{
+    fill: #ffaf02;
+}
+
+.rank:hover {
+  transform: translateY(5px);
+  box-shadow: 3px 3px 0px rgb(0, 0, 0);
+  transition-duration: 0.3s;
+}
+
+.rank:hover .iron {
+  left: 0%;
+  width: 100%;
+  transition-duration: 0.3s;
+}
+
+.rank p {
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+  position: absolute;
+  z-index: 2;
+  transition-duration: 0.1s;
+  font-family: Whitney, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Helvetica, Arial, sans-serif;
+}
+
+.rank:hover p {
+  color: transparent;
+  transition-duration: 0.3s;
+}

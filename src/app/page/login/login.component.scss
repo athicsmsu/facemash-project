@@ -31,7 +31,8 @@ body{
         #23a2f6
     );
     left: -80px;
-    top: -80px;
+    top: -30px;
+    animation: move-up6 2s ease-in infinite alternate-reverse;
 }
 .shape:last-child{
     background: linear-gradient(
@@ -40,7 +41,18 @@ body{
         #f09819
     );
     right: -30px;
-    bottom: -80px;
+    bottom: -30px;
+    animation: move-down5 2s ease-in infinite alternate-reverse;
+}
+@keyframes move-up6 {
+  to {
+    transform: translateY(-15px);
+  }
+}
+@keyframes move-down5 {
+  to {
+    transform: translateY(15px);
+  }
 }
 .form {
     height: fit-content;
