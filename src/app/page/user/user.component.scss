@@ -115,14 +115,17 @@ justify-content: center;
     z-index: 1;
     transition-timing-function: ease-in-out;
     transition-duration: 0.2s;
+    cursor: pointer;
   }
   
   .plusButton:hover>.plusIcon {
     fill: black;
     transform: rotate(180deg);
+    cursor: pointer;
   }
   
   .plusButton:focus-visible>.plusIcon {
     fill: black;
     transform: rotate(180deg);
+    cursor: pointer;
   }
