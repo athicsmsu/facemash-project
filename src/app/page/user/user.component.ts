@@ -31,10 +31,7 @@ export class UserComponent {
     const selectedFile = event.target.files[0];
 
     if (selectedFile) {
-      // Perform actions with the selected file
       console.log('File selected:', selectedFile);
-
-      // You can read the file content, upload it to a server, etc.
     }
   }
 }
