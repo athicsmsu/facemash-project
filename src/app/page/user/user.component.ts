@@ -27,4 +27,14 @@ export class UserComponent {
     this.Avatar = this.user[0].Avatar;
     console.log(this.user);
   }
+  onFileSelected(event: any): void {
+    const selectedFile = event.target.files[0];
+
+    if (selectedFile) {
+      // Perform actions with the selected file
+      console.log('File selected:', selectedFile);
+
+      // You can read the file content, upload it to a server, etc.
+    }
+  }
 }
