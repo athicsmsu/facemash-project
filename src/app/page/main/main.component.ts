@@ -141,16 +141,12 @@ export class MainComponent {
           });
       }
     }
-
     // รอเวลา 5 วินาที
-  await this.delay(5000);
-
-  // เปิดให้สามารถกด Vote ได้อีก
-  this.canVote = true;
-
-  // โหลดข้อมูลใหม่หลังจาก Vote
-  this.loadDataAsync();
-
+    await this.delay(5000);
+    // เปิดให้สามารถกด Vote ได้อีก
+    this.canVote = true;
+    // โหลดข้อมูลใหม่หลังจาก Vote
+    this.loadDataAsync();
   }
 
   async delay(ms: number) {
