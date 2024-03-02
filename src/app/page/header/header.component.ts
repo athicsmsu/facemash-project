@@ -12,7 +12,7 @@ import { Router, RouterLink, RouterOutlet } from '@angular/router';
 })
 export class HeaderComponent {
   id:any;
-  title:any;
+  title:any = "VOTE";
   constructor(private location: Location,private router: Router){}
 
   goBack(): void {
@@ -25,10 +25,20 @@ export class HeaderComponent {
   isLoggedIn(): boolean {
     return localStorage.length > 0;
   }
+  changProfile(){
+    this.title = "PROFILE";
+  }
+  changVote(){
+    this.title = "VOTE";
+  }
+  changRank(){
+    this.title = "RANK";
+  }
+  changLogin(){
+    this.title = "LOGIN";
+  }
 }
 export function setHeaderID(header : HeaderComponent) {
   header.id = localStorage.getItem('user');
-}
-export function setTitleVote(header : HeaderComponent) {
-  header.id = "vote";
+  header.title = "VOTE";
 }

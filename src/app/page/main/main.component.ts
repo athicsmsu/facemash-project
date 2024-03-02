@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { PostService } from '../../services/api/post.service';
 import { CommonModule } from '@angular/common';
-import { Router, RouterLink, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-main',
@@ -11,10 +11,15 @@ import { Router, RouterLink, RouterOutlet } from '@angular/router';
   styleUrl: './main.component.scss'
 })
 export class MainComponent {
+  id:any;
   image : any[] = [];
   image1 : any;
   image2 : any;
-  constructor(private postService : PostService,private router: Router){}
+  constructor(private postService : PostService,private router: Router,private route: ActivatedRoute){
+    this.route.queryParams.subscribe(params =>{
+			this.id = params['user'];
+		}); 
+  }
 
   ngOnInit(): void {
     if (localStorage.getItem('user')) {
