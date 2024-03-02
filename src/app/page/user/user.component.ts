@@ -15,7 +15,7 @@ export class UserComponent {
   id:any;
   user : any;
   Avatar : any;
-  // file? : File;
+  file? : File;
   constructor(private route: ActivatedRoute,private userService : UserService){
 		this.route.queryParams.subscribe(params =>{
 			this.id = params['user'];
@@ -31,5 +31,11 @@ export class UserComponent {
     this.Avatar = this.user[0].Avatar;
     console.log(this.user);
   }
-  
+  onFileSelected(event: any): void {
+    const selectedFile = event.target.files[0];
+
+    if (selectedFile) {
+      console.log('File selected:', selectedFile);
+    }
+  }
 }

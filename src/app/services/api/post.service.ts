@@ -14,7 +14,7 @@ export class PostService {
     let url = '';
     if(options){
       const id = options;
-      url = this.constants.API_ENDPOINT + '/posts/' + id;
+      url = this.constants.API_ENDPOINT + '/posts/score/' + id;
     }else{
       url = this.constants.API_ENDPOINT + '/posts';
     }
