@@ -58,6 +58,14 @@ export class MainComponent {
   }
 
   Vote(Pid : Number) {
+    console.log("Vote");
+    console.log("Pid : "+Pid);
+    console.log(this.score1);
+    console.log(this.score2);
+    const EA = 1/(1+(10**((2600-3000)/400)));
+    console.log(EA);
+    
+    // const EB = 1/1+10 (this.score2-this.score1)/400;
   }
 }
 function getRandomIndex(array: any[]): number {

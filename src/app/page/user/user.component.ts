@@ -4,6 +4,7 @@ import { UserService } from '../../services/api/user.service';
 import { CommonModule } from '@angular/common';
 import { lastValueFrom } from 'rxjs';
 import { HttpClient, HttpClientModule } from '@angular/common/http';  
+import { Constants } from '../../config/constants';
 
 @Component({
   selector: 'app-user',
@@ -18,7 +19,7 @@ export class UserComponent {
   user : any;
   Avatar : any;
   file? : File;
-  constructor(private route: ActivatedRoute,private userService : UserService,private http : HttpClient){
+  constructor(private route: ActivatedRoute,private userService : UserService,private http : HttpClient,private constants: Constants){
 		this.route.queryParams.subscribe(params =>{
 			this.id = params['user'];
 		});
@@ -37,15 +38,14 @@ export class UserComponent {
   async onFileSelected(event: any): Promise<void> {
     this.file = event.target.files[0];
     console.log(this.file);
-    
 
     if (this.file) {
-      
       const formData = new FormData();
       formData.append('file',this.file);
       console.log(formData);
-      
-      //const response = await lastValueFrom(this.http.post(url, formData));
+      const url = this.constants.API_ENDPOINT + "/posts/"+this.id;
+      const response = await lastValueFrom(this.http.post(url, formData));
+      console.log(response);
     }
   }
 }
