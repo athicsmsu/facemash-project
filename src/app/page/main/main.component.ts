@@ -70,57 +70,65 @@ export class MainComponent {
   }
 
   Vote(WinPid: Number, LosePid: Number, check: Number) {
-    const url = this.constants.API_ENDPOINT + `/vote`;
-    const K = 32;
-    console.log('WinPid : ' + WinPid);
-    console.log('LosePid : ' + LosePid);
-    console.log('Check : ' + check);
-    const EA = 1 / (1 + 10 ** ((this.score2 - this.score1) / 400));
-    const EB = 1 / (1 + 10 ** ((this.score1 - this.score2) / 400));
+    
 
-    if (check == 1) {
-      //กรณี A ชนะ
-      const RA = K * (1 - EA);
-      console.log(RA);
-      const RB = K * (0 - EB);
-      console.log(RB);
-      this.http
-        .post(url + '/win', {
-          Pid: WinPid,
-          score: RA,
-        })
-        .subscribe((data: any) => {
-          console.log(data);
-        });
-      this.http
-        .post(url + '/lose', {
-          Pid: LosePid,
-          score: RB,
-        })
-        .subscribe((data: any) => {
-          console.log(data);
-        });
-    } else if (check == 2) {
-      //กรณี ฺB ชนะ
-      const RA = K * (0 - EA);
-      console.log(RA);
-      const RB = K * (1 - EB);
-      console.log(RB);
-      this.http.post(url + '/win', {
-          Pid: WinPid,
-          score: RB,
-        })
-        .subscribe((data: any) => {
-          console.log(data);
-        });
-      this.http.post(url + '/lose', {
-          Pid: LosePid,
-          score: RA,
-        })
-        .subscribe((data: any) => {
-          console.log(data);
-        });
+    if(!this.canVote){
+      return;
+    } else{
+      this.canVote = false;
+      const url = this.constants.API_ENDPOINT + `/vote`;
+      const K = 32;
+      console.log('WinPid : ' + WinPid);
+      console.log('LosePid : ' + LosePid);
+      console.log('Check : ' + check);
+      const EA = 1 / (1 + 10 ** ((this.score2 - this.score1) / 400));
+      const EB = 1 / (1 + 10 ** ((this.score1 - this.score2) / 400));
+
+      if (check == 1) {
+        //กรณี A ชนะ
+        const RA = K * (1 - EA);
+        console.log(RA);
+        const RB = K * (0 - EB);
+        console.log(RB);
+        this.http
+          .post(url + '/win', {
+            Pid: WinPid,
+            score: RA,
+          })
+          .subscribe((data: any) => {
+            console.log(data);
+          });
+        this.http
+          .post(url + '/lose', {
+            Pid: LosePid,
+            score: RB,
+          })
+          .subscribe((data: any) => {
+            console.log(data);
+          });
+      } else if (check == 2) {
+        //กรณี ฺB ชนะ
+        const RA = K * (0 - EA);
+        console.log(RA);
+        const RB = K * (1 - EB);
+        console.log(RB);
+        this.http.post(url + '/win', {
+            Pid: WinPid,
+            score: RB,
+          })
+          .subscribe((data: any) => {
+            console.log(data);
+          });
+        this.http.post(url + '/lose', {
+            Pid: LosePid,
+            score: RA,
+          })
+          .subscribe((data: any) => {
+            console.log(data);
+          });
+      }
     }
+
   }
 }
 function getRandomIndex(array: any[]): number {
