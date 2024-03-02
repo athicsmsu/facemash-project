@@ -14,6 +14,17 @@ export class PostService {
     let url = '';
     if(options){
       const id = options;
+      url = this.constants.API_ENDPOINT + '/posts/' + id;
+    }else{
+      url = this.constants.API_ENDPOINT + '/posts';
+    }
+    const response = await lastValueFrom(this.http.get(url));
+    return response as any[];
+  }
+  public async getScore(options?:any){
+    let url = '';
+    if(options){
+      const id = options;
       url = this.constants.API_ENDPOINT + '/posts/score/' + id;
     }else{
       url = this.constants.API_ENDPOINT + '/posts';
