@@ -10,6 +10,7 @@ export class VoteService {
   constructor(private constants : Constants,private http:HttpClient) { }
 
   public async getRank(){
+    
     let url = '';
     
       url = this.constants.API_ENDPOINT + '/vote/rank';
