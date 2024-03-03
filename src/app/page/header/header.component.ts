@@ -27,7 +27,6 @@ export class HeaderComponent {
   }
   goBack(): void {
 		this.location.back();
-
     // Subscribe to NavigationEnd event to get the current route after navigation
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
@@ -53,6 +52,8 @@ export class HeaderComponent {
   logout(): void{
     localStorage.removeItem('user');
     this.router.navigate(['/']);
+    this.title= "VOTE";
+    this.id = null;
   }
   isLoggedIn(): boolean {
     return localStorage.length > 0;
