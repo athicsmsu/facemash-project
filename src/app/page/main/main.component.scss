@@ -13,74 +13,10 @@
   width: fit-content;
   height: fit-content;
 }
-/***************/
-.card {
-  gap: 10px;
-  padding: 0px 15px;
-  background-color: red;
-  border-radius: 10px;
-  border: none;
-  color: white;
-  cursor: pointer;
-  transition-duration: 0.2s;
-  background: linear-gradient(0deg, #000, #272727);
-}
-.card:before,.card:after {
-  content: "";
-  position: absolute;
-  left: -2px;
-  top: -2px;
-  border-radius: 10px;
-  background: linear-gradient(
-    45deg,
-    #fb0094,
-    #0000ff,
-    #00ff00,
-    #ffff00,
-    #ff0000,
-    #fb0094,
-    #0000ff,
-    #00ff00,
-    #ffff00,
-    #ff0000
-  );
-  background-size: 400%;
-  width: calc(100% + 4px);
-  height: calc(100% + 4px);
-  z-index: -1;
-  animation: steam 20s linear infinite;
-}
-@keyframes steam {
-  0% {
-    background-position: 0 0;
-  }
-
-  50% {
-    background-position: 400% 0;
-  }
-
-  100% {
-    background-position: 0 0;
-  }
-}
-.card:after {
-  filter: blur(100px);
-}
-/**************************************/
-
-@keyframes glider {
-  0% {
-    transform: rotate(45deg) translate(-140px, -140px);
-  }
-
-  100% {
-    transform: rotate(45deg) translate(220px, -40px);
-  }
-}
 .image1 {
   width: 400px;
   height: 450px;
-  border-radius: 1.8rem;
+  border-radius: 1rem;
   transition: all .3s;
   z-index: 1;
   transform: perspective(400em) rotateY(15deg) rotateX(6deg) skew(8deg, -4deg)
@@ -90,7 +26,7 @@
 .image2 {
   width: 400px;
   height: 450px;
-  border-radius: 1.8rem;
+  border-radius: 1rem;
   transition: all .3s;
   z-index: 1;
   transform: perspective(400em) rotateY(-15deg) rotateX(6deg) skew(-8deg, 4deg)
