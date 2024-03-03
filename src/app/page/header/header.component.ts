@@ -32,8 +32,6 @@ export class HeaderComponent {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         const currentRoute = this.router.routerState.snapshot.url;
-        console.log('Current Route:', currentRoute);
-
         if (currentRoute.includes('/rank')) {
           this.title= "RANK";
         }
