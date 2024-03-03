@@ -26,6 +26,7 @@ export class MainComponent {
   score1: any;
   score2: any;
   canVote = true;
+  countnum = 0;
 
   constructor(
     private postService: PostService,
@@ -68,11 +69,16 @@ export class MainComponent {
     if (this.score2 == null) {
       this.score2 = 0;
     }
+    // เปิดให้สามารถกด Vote ได้อีก
+    this.canVote = true;
   }
 
   async Vote(WinPid: Number, LosePid: Number, check: Number) {
+    
     if (!this.canVote) {
       return; // ไม่สามารถกด Vote ได้อีก
+    } else {
+      this.countnum = 5;
     }
     this.canVote = false;
     const url = this.constants.API_ENDPOINT + "/vote";
@@ -124,11 +130,18 @@ export class MainComponent {
         });
     }
     // รอเวลา 5 วินาที
-    await this.delay(5000);
+    await this.delay(1000);
+    this.countnum = 4;
+    await this.delay(1000);
+    this.countnum = 3;
+    await this.delay(1000);
+    this.countnum = 2;
+    await this.delay(1000);
+    this.countnum = 1;
+    await this.delay(1000);
+    this.countnum = 0;
     // โหลดข้อมูลใหม่หลังจาก Vote
     this.loadDataAsync();
-    // เปิดให้สามารถกด Vote ได้อีก
-    this.canVote = true;
   }
 
   async delay(ms: number) {
