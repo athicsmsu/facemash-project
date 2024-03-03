@@ -127,7 +127,7 @@ img {
   position: absolute;
   display: block;
   width: 150px;
-  height: 350px;
+  height: 210px;
   border-radius: 10%;
   background: linear-gradient(90deg, transparent, #f7ba2b, #ea5358, transparent);
   transition: opacity 300ms;
@@ -182,7 +182,7 @@ img {
 }
 
 .one-div:hover {
-  box-shadow: 0 0 30px 1500px rgb(255, 255, 255), inset 5px 5px 5px 0px rgb(31, 31, 31);
+  box-shadow: 0 0 30px 20px rgb(255, 255, 255), inset 5px 5px 5px 0px rgb(31, 31, 31);
 }
 
 @keyframes rot {
