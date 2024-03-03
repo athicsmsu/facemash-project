@@ -2,17 +2,21 @@
     <div style="display: flex; flex-direction: row; margin-top: 2%;">
         <div style="display: flex; flex-direction: column; width: 100%;">
             <div class="bg">
-                <button class="btn">TOP-10</button>
+                <button class="btn">TOP 10</button>
                 <div class="for-bg" *ngFor="let item of image;let i=index">
                     <div class="data-bg">
-                        <div><h1>#{{i+1}}</h1></div>
-                        <div><button id="bottone1"><strong>{{item.total_score}}</strong></button></div>
+                        <div>
+                            <h1>#{{i+1}}</h1>
+                        </div>
+                        <div>
+                            <button id="bottone1"><strong>{{item.total_score}}</strong></button>
+                        </div>
                         <div>rank</div>
-                        <div><img width="250px" height="200px" src="{{item.ImageURL
-                        }}" alt=""></div>
+                        <div>
+                            <img width="250px" height="200px" src="{{item.ImageURL}}">
+                        </div>
                     </div>
                 </div>
-                
             </div>
         </div>
     </div>

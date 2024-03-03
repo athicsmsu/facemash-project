@@ -11,6 +11,7 @@ import { Router, RouterLink, RouterOutlet } from '@angular/router';
   styleUrl: './rank.component.scss'
 })
 export class RankComponent {
+  
   image : any[] = [];
   constructor(private voteService : VoteService,private router: Router){
     this.loadDataAsync();
@@ -19,6 +20,5 @@ export class RankComponent {
   async loadDataAsync (){
     this.image = await this.voteService.getRank();
     console.log(this.image);
-    
   }
 }

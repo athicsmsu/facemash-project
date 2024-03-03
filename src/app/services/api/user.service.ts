@@ -10,7 +10,7 @@ export class UserService {
 
   constructor(private constants : Constants,private http:HttpClient) { }
 
-  public async getUser(options?:any){
+  public async getAllDataUser(options?:any){
     let url = '';
     if(options){
       const id = options;
