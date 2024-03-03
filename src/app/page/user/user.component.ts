@@ -8,6 +8,7 @@ import { Constants } from '../../config/constants';
 import { PostService } from '../../services/api/post.service';
 import { ResRow } from '../../model/res_get_row';
 import { VoteService } from '../../services/api/vote.service';
+// import { AngularFireStorage } from '@angular/fire/storage';
 
 @Component({
   selector: 'app-user',
@@ -25,7 +26,7 @@ export class UserComponent {
   Avatar : any;
   file? : File;
   load : any;
-
+// private storage: AngularFireStorage
   constructor(private route: ActivatedRoute,private http : HttpClient,private constants: Constants,private userService : UserService,private postService : PostService,private voteService : VoteService){
 		this.route.queryParams.subscribe(params =>{
 			this.id = params['user'];
@@ -64,4 +65,18 @@ export class UserComponent {
   DeletePost(Pid: any) {
     console.log("Delete : "+Pid);
   }
+
+  // deleteImage(imagePath: string): void {
+  //   // ใส่ path ของรูปที่ต้องการลบ
+  //   const storageRef = this.storage.ref(imagePath);
+
+  //   // ลบรูป
+  //   storageRef.delete().subscribe(() => {
+  //     console.log('Image deleted successfully');
+  //   }
+  //   ,(error) => {
+  //     console.error('Error deleting image:', error);
+  //   }
+  //   );
+  // }
 }

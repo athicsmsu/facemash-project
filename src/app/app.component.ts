@@ -11,5 +11,5 @@ import { HeaderComponent } from "./page/header/header.component";
     imports: [CommonModule, RouterOutlet, HeaderComponent]
 })
 export class AppComponent {
-  title = 'UIPro';
+  title = 'facemash-msu';
 }
