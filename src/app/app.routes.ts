@@ -9,7 +9,7 @@ import { RankComponent } from './page/user/rank/rank.component';
 export const routes: Routes = [
     { path: '', component: MainComponent },
     { path: 'login', component: LoginComponent },
-    { path: 'profile', component: UserComponent },
+    { path: 'profile', component: UserComponent},
     { path: 'admin', component: AdminComponent },
     { path: 'image', component: ImageComponent },
     { path: 'rank', component: RankComponent },

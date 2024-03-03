@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink, RouterOutlet } from '@angular/router';
 import { UserService } from '../../services/api/user.service';
 import { CommonModule } from '@angular/common';
 import { lastValueFrom } from 'rxjs';
@@ -12,7 +12,7 @@ import { VoteService } from '../../services/api/vote.service';
 @Component({
   selector: 'app-user',
   standalone: true,
-  imports: [CommonModule,HttpClientModule],
+  imports: [CommonModule,HttpClientModule,RouterOutlet, RouterLink],
   templateUrl: './user.component.html',
   styleUrl: './user.component.scss'
 })
@@ -25,6 +25,7 @@ export class UserComponent {
   Avatar : any;
   file? : File;
   load : any;
+
   constructor(private route: ActivatedRoute,private http : HttpClient,private constants: Constants,private userService : UserService,private postService : PostService,private voteService : VoteService){
 		this.route.queryParams.subscribe(params =>{
 			this.id = params['user'];
@@ -42,7 +43,7 @@ export class UserComponent {
     // console.log(this.user);
     this.load = false;
   }
-
+  
   async onFileSelected(event: any): Promise<void> {
     this.load = true;
     this.file = event.target.files[0];
@@ -58,5 +59,9 @@ export class UserComponent {
 
   async delay(ms: number) {
     return await new Promise((resolve) => setTimeout(resolve, ms));
+  }
+
+  DeletePost(Pid: any) {
+    console.log("Delete : "+Pid);
   }
 }
