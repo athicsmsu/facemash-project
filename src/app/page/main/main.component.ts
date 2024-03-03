@@ -75,7 +75,6 @@ export class MainComponent {
       return; // ไม่สามารถกด Vote ได้อีก
     }
     this.canVote = false;
-
     const url = this.constants.API_ENDPOINT + "/vote";
     const K = 32;
     const EA = 1 / (1 + 10 ** ((this.score2 - this.score1) / 400));
@@ -124,13 +123,12 @@ export class MainComponent {
           // console.log(data);
         });
     }
-
     // รอเวลา 5 วินาที
-  await this.delay(5000);
-  // เปิดให้สามารถกด Vote ได้อีก
-  this.canVote = true;
-  // โหลดข้อมูลใหม่หลังจาก Vote
-  this.loadDataAsync();
+    await this.delay(5000);
+    // โหลดข้อมูลใหม่หลังจาก Vote
+    this.loadDataAsync();
+    // เปิดให้สามารถกด Vote ได้อีก
+    this.canVote = true;
   }
 
   async delay(ms: number) {

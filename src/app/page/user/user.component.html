@@ -22,9 +22,28 @@
             </div>
             <div class="image-bg">
                 <div *ngFor="let item of image">
-                    <img class="in-image-bg" src="{{item.ImageURL}}" alt="">
+                    <img class="in-image-bg" src="{{item.ImageURL}}">
                 </div>
-                <div tabindex="0" class="plusButton btn-upload" *ngIf="this.image.length < 5">
+                <!-- Loader -->
+                <div *ngIf="this.load == true" aria-label="Orange and tan hamster running in a metal wheel" role="img" class="wheel-and-hamster">
+                    <div class="wheel"></div>
+                    <div class="hamster">
+                        <div class="hamster__body">
+                            <div class="hamster__head">
+                                <div class="hamster__ear"></div>
+                                <div class="hamster__eye"></div>
+                                <div class="hamster__nose"></div>
+                            </div>
+                            <div class="hamster__limb hamster__limb--fr"></div>
+                            <div class="hamster__limb hamster__limb--fl"></div>
+                            <div class="hamster__limb hamster__limb--br"></div>
+                            <div class="hamster__limb hamster__limb--bl"></div>
+                            <div class="hamster__tail"></div>
+                        </div>
+                    </div>
+                    <div class="spoke"></div>
+                </div>
+                <div tabindex="0" class="plusButton btn-upload" *ngIf="this.image.length < 5 && this.load == false">
                     <input type="file" #fileInput style="display: none" (change)="onFileSelected($event)">
                     <svg (click)="fileInput.click()" class="plusIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
                       <g mask="url(#mask0_21_345)">

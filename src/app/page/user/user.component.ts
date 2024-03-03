@@ -24,7 +24,7 @@ export class UserComponent {
   user : any;
   Avatar : any;
   file? : File;
-
+  load : any;
   constructor(private route: ActivatedRoute,private http : HttpClient,private constants: Constants,private userService : UserService,private postService : PostService,private voteService : VoteService){
 		this.route.queryParams.subscribe(params =>{
 			this.id = params['user'];
@@ -40,9 +40,11 @@ export class UserComponent {
     this.image =  await this.postService.getPosts(this.id);
     this.Avatar = this.user[0].Avatar;
     // console.log(this.user);
+    this.load = false;
   }
 
   async onFileSelected(event: any): Promise<void> {
+    this.load = true;
     this.file = event.target.files[0];
     if (this.file) {
       const formData = new FormData();

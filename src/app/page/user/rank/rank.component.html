@@ -1,5 +1,5 @@
 <div class="container">
-    <div style="display: flex; flex-direction: row; margin-top: 2%;">
+    <div style="display: flex; flex-direction: row; margin-top: 50px;">
         <div style="display: flex; flex-direction: column; width: 100%;">
             <div class="bg">
                 <button class="btn">TOP 10</button>
@@ -13,7 +13,14 @@
                         </div>
                         <div>rank</div>
                         <div>
-                            <img width="250px" height="200px" src="{{item.ImageURL}}">
+                            <div *ngIf="i == 0 else more" id="card" class="card">
+                                <div class="content one-div">
+                                    <img class="show-image" src="{{item.ImageURL}}">
+                                </div>
+                            </div>
+                            <ng-template #more>
+                                <img class="show-image" src="{{item.ImageURL}}">
+                            </ng-template>
                         </div>
                     </div>
                 </div>
