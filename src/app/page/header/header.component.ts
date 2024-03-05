@@ -1,7 +1,7 @@
 import { CommonModule, Location } from '@angular/common';
 import { Component } from '@angular/core';
 import {MatToolbarModule} from '@angular/material/toolbar';
-import { Router, RouterLink, RouterOutlet } from '@angular/router';
+import { NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -13,14 +13,47 @@ import { Router, RouterLink, RouterOutlet } from '@angular/router';
 export class HeaderComponent {
   id:any;
   title:any = "VOTE";
-  constructor(private location: Location,private router: Router){}
-
+  constructor(private location: Location,private router: Router){
+    this.id = localStorage.getItem('user');
+  }
+  ngOnInit(): void {
+    if (localStorage.getItem('user')) {
+      this.router.navigate(['/user'], {
+        queryParams: { user: localStorage.getItem('user') },
+      });
+    } else {
+      this.router.navigateByUrl('');
+    }
+  }
   goBack(): void {
 		this.location.back();
+    // Subscribe to NavigationEnd event to get the current route after navigation
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        const currentRoute = this.router.routerState.snapshot.url;
+        if (currentRoute.includes('/rank')) {
+          this.title= "RANK";
+        }
+        if (currentRoute.includes('/profile')) {
+          this.title= "PROFILE";
+        }
+        if (currentRoute.includes('/user')) {
+          this.title= "VOTE";
+        }
+        if (currentRoute.includes('/login')) {
+          this.title= "LOGIN";
+        }
+        if (currentRoute == '/') {
+          this.title= "VOTE";
+        }
+      }
+    });
 	}
   logout(): void{
     localStorage.removeItem('user');
     this.router.navigate(['/']);
+    this.title= "VOTE";
+    this.id = null;
   }
   isLoggedIn(): boolean {
     return localStorage.length > 0;

@@ -1,26 +1,33 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink, RouterOutlet } from '@angular/router';
 import { UserService } from '../../services/api/user.service';
 import { CommonModule } from '@angular/common';
 import { lastValueFrom } from 'rxjs';
 import { HttpClient, HttpClientModule } from '@angular/common/http';  
 import { Constants } from '../../config/constants';
 import { PostService } from '../../services/api/post.service';
+import { ResRow } from '../../model/res_get_row';
+import { VoteService } from '../../services/api/vote.service';
+// import { AngularFireStorage } from '@angular/fire/storage';
 
 @Component({
   selector: 'app-user',
   standalone: true,
-  imports: [CommonModule,HttpClientModule],
+  imports: [CommonModule,HttpClientModule,RouterOutlet, RouterLink],
   templateUrl: './user.component.html',
   styleUrl: './user.component.scss'
 })
 export class UserComponent {
+
+  responseRow : ResRow | any;
   image : any[]=[];
   id:any;
   user : any;
   Avatar : any;
   file? : File;
-  constructor(private route: ActivatedRoute,private userService : UserService,private http : HttpClient,private constants: Constants,private postService : PostService){
+  load : any;
+// private storage: AngularFireStorage
+  constructor(private route: ActivatedRoute,private http : HttpClient,private constants: Constants,private userService : UserService,private postService : PostService,private voteService : VoteService){
 		this.route.queryParams.subscribe(params =>{
 			this.id = params['user'];
 		});
@@ -31,30 +38,45 @@ export class UserComponent {
   }
 
   async loadDataAsync (){
-
-    this.user = await this.userService.getUser(this.id);
+    this.user = await this.userService.getAllDataUser(this.id);
     this.image =  await this.postService.getPosts(this.id);
-    console.log(this.image);
     this.Avatar = this.user[0].Avatar;
     // console.log(this.user);
+    this.load = false;
   }
-
+  
   async onFileSelected(event: any): Promise<void> {
+    this.load = true;
     this.file = event.target.files[0];
-    console.log(this.file);
-
     if (this.file) {
       const formData = new FormData();
       formData.append('file',this.file);
-      console.log(formData);
-      const url = this.constants.API_ENDPOINT + "/posts/"+this.id;
-      const response = await lastValueFrom(this.http.post(url, formData));
+      this.responseRow = await this.postService.UploadPosts(this.id,formData);
+      this.responseRow = await this.voteService.NewPosts(this.responseRow.last_idx);
     }
     await this.delay(3000);
     this.loadDataAsync();
-
   }
+
   async delay(ms: number) {
     return await new Promise((resolve) => setTimeout(resolve, ms));
   }
+
+  DeletePost(Pid: any) {
+    console.log("Delete : "+Pid);
+  }
+
+  // deleteImage(imagePath: string): void {
+  //   // ใส่ path ของรูปที่ต้องการลบ
+  //   const storageRef = this.storage.ref(imagePath);
+
+  //   // ลบรูป
+  //   storageRef.delete().subscribe(() => {
+  //     console.log('Image deleted successfully');
+  //   }
+  //   ,(error) => {
+  //     console.error('Error deleting image:', error);
+  //   }
+  //   );
+  // }
 }

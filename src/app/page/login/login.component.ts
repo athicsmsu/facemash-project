@@ -3,6 +3,7 @@ import { HeaderComponent, setHeaderID } from '../header/header.component';
 import { HttpClient } from '@angular/common/http';
 import { Constants } from '../../config/constants';
 import { Router } from '@angular/router';
+import { UserService } from '../../services/api/user.service';
 
 @Component({
   selector: 'app-login',
@@ -11,22 +12,13 @@ import { Router } from '@angular/router';
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
-export class LoginComponent implements OnInit{ 
+export class LoginComponent{ 
 
-  constructor(private http:HttpClient,private constants : Constants, private router: Router,private header:HeaderComponent){}
-
-  ngOnInit(): void {
-    if (localStorage.getItem('user')) {
-      this.router.navigate(['/user'], {
-        queryParams: { user: localStorage.getItem('user') },
-      });
-    } else {
-      this.router.navigateByUrl('/login');
-    }
-  }
+  constructor(private http:HttpClient,private constants : Constants, private router: Router,private header:HeaderComponent,private userService :UserService){}
 
   login(email: HTMLInputElement,password: HTMLInputElement) {
     const url = this.constants.API_ENDPOINT + `/user`;
+
     if(email.value && password.value){
         this.http.get(url, {
           params : {
@@ -36,30 +28,32 @@ export class LoginComponent implements OnInit{
         if(data == null || (Array.isArray(data) && data.length === 0)){
           console.log("Email Incorrect");
         } else {
-          if(data[0].Password == password.value){
-            if(data[0].Type.includes("user")){
-              // console.log(data[0].Type);
-              localStorage.setItem('user', data[0].UserID);
-              this.router.navigate(['/user'],{
-                queryParams: { user : data[0].UserID }
-              });
-              setHeaderID(this.header);
+            if(data[0].Password == password.value){
+              if(data[0].Type.includes("user")){
+                // console.log(data[0].Type);
+                localStorage.setItem('user', data[0].UserID);
+                this.router.navigate(['/user'],{
+                  queryParams: { user : data[0].UserID }
+                });
+                setHeaderID(this.header);
+              }
+              else if(data[0].Type.includes("admin")){
+                // console.log(data[0].Type);
+                this.router.navigate(['/admin']);
+              }
+            } else{
+              console.log("Password Incorrect");
             }
-            else if(data[0].Type.includes("admin")){
-              // console.log(data[0].Type);
-              this.router.navigate(['/admin']);
-            }
-          } else{
-            console.log("Password Incorrect");
           }
-        }
       });
     } else {
-      console.log("Input is invalid");
+        console.log("Input is invalid");
     }
   }
   register(username: HTMLInputElement,email: HTMLInputElement,password: HTMLInputElement) {
+
     const url = this.constants.API_ENDPOINT + `/user`;
+
     if(username.value && email.value && password.value){
       this.http.get(url, {
         params : {
@@ -75,11 +69,11 @@ export class LoginComponent implements OnInit{
             console.log(data);
           })
         } else {
-          console.log("Email have");
+          console.log("Email already registered.");
         }
       })
     }else{
-      console.log("Please Input");
+      console.log("Input is invalid");
     }
   }
 
