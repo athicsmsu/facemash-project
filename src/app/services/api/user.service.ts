@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Constants } from '../../config/constants';
 import { HttpClient } from '@angular/common/http';
 import { lastValueFrom } from 'rxjs';
+import { ResUser } from '../../model/res_get_user';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,8 @@ export class UserService {
       url = this.constants.API_ENDPOINT + '/user';
     }
     const response = await lastValueFrom(this.http.get(url));
-    return response as any[];
+    console.log(response);
+    
+    return response as ResUser[];
   }
 }

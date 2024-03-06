@@ -3,6 +3,8 @@ import { Constants } from '../../config/constants';
 import { HttpClient } from '@angular/common/http';
 import { lastValueFrom } from 'rxjs';
 import { ResRow } from '../../model/res_get_row';
+import { ResPost } from '../../model/res_get_post';
+import { ResScore } from '../../model/res_get_score';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +22,7 @@ export class PostService {
       url = this.constants.API_ENDPOINT + '/posts';
     }
     const response = await lastValueFrom(this.http.get(url));
-    return response as any[];
+    return response as ResPost[];
   }
 
   public async getScore(options?:any){
@@ -32,7 +34,7 @@ export class PostService {
       console.log("GET SCORE FAIL...");
     }
     const response = await lastValueFrom(this.http.get(url));
-    return response as any[];
+    return response as ResScore[];
   }
 
   public async UploadPosts(UserID?:any,formData?:any){
