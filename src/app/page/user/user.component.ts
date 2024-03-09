@@ -72,22 +72,7 @@ export class UserComponent {
   }
 
   async DeletePost(Pid: any) {
-    console.log("Delete : "+Pid);
-    // const response =  await this.postService.DeletePosts(this.id);
-    // console.log(response); 
+    const response = await this.postService.DeletePosts(Pid);
+    console.log(response);
   }
-
-  // deleteImage(imagePath: string): void {
-  //   // ใส่ path ของรูปที่ต้องการลบ
-  //   const storageRef = this.storage.ref(imagePath);
-
-  //   // ลบรูป
-  //   storageRef.delete().subscribe(() => {
-  //     console.log('Image deleted successfully');
-  //   }
-  //   ,(error) => {
-  //     console.error('Error deleting image:', error);
-  //   }
-  //   );
-  // }
 }
