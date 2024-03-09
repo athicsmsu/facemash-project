@@ -13,5 +13,6 @@ export const routes: Routes = [
     { path: 'admin', component: AdminComponent },
     { path: 'image', component: ImageComponent },
     { path: 'rank', component: RankComponent },
-    { path: 'user', component: MainComponent }
+    { path: 'user', component: MainComponent },
+    { path: 'people', component: UserComponent }
 ];

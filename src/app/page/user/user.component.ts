@@ -8,7 +8,6 @@ import { Constants } from '../../config/constants';
 import { PostService } from '../../services/api/post.service';
 import { ResRow } from '../../model/res_get_row';
 import { VoteService } from '../../services/api/vote.service';
-// import { AngularFireStorage } from '@angular/fire/storage';
 
 @Component({
   selector: 'app-user',
@@ -26,6 +25,7 @@ export class UserComponent {
   Avatar : any;
   file? : File;
   load : any;
+  show : any = false;
 // private storage: AngularFireStorage
   constructor(private route: ActivatedRoute,private http : HttpClient,private constants: Constants,private userService : UserService,private postService : PostService,private voteService : VoteService){
 		this.route.queryParams.subscribe(params =>{
@@ -38,6 +38,15 @@ export class UserComponent {
   }
 
   async loadDataAsync (){
+    if(localStorage.getItem('user') == this.id){
+      this.show = true;
+      console.log(this.show);
+      
+    } else {
+      this.show = false;
+      console.log(this.show);
+      
+    }
     this.user = await this.userService.getAllDataUser(this.id);
     this.image =  await this.postService.getPosts(this.id);
     this.Avatar = this.user[0].Avatar;
@@ -64,8 +73,8 @@ export class UserComponent {
 
   async DeletePost(Pid: any) {
     console.log("Delete : "+Pid);
-    const response =  await this.postService.DeletePosts(this.id);
-    console.log(response); 
+    // const response =  await this.postService.DeletePosts(this.id);
+    // console.log(response); 
   }
 
   // deleteImage(imagePath: string): void {

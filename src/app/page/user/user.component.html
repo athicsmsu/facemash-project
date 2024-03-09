@@ -82,7 +82,6 @@
                     <img *ngIf="this.Avatar == null" class="img-profile" src="https://www.366icons.com/media/01/profile-avatar-account-icon-16699.png">
                     <img *ngIf="this.Avatar != null " class="img-profile" src="{{ this.user[0].Avatar }}">
                 </div>
-                
                 <div style="display: flex;
                 flex-direction: column;
                 justify-content: center;
@@ -95,7 +94,7 @@
             <div class="image-bg">
                 <div *ngFor="let item of image" style="position: relative;display: flex;align-items: flex-end;">
                     <img routerLink="/image" [queryParams]="{posts: item.Pid}" class="in-image-bg" src="{{item.ImageURL}}">
-                    <button class="bin-button" (click)="DeletePost(item.Pid)">
+                    <button  *ngIf="this.show == true" class="bin-button" (click)="DeletePost(item.Pid)">
                         <svg class="bin-top" viewBox="0 0 39 7"fill="none"xmlns="http://www.w3.org/2000/svg">
                           <line y1="5" x2="39" y2="5" stroke="white" stroke-width="4"></line>
                           <line x1="12" y1="1.5" x2="26.0357" y2="1.5" stroke="white"stroke-width="3"></line>

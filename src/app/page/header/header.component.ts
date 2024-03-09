@@ -37,6 +37,9 @@ export class HeaderComponent {
         if (currentRoute.includes('/profile')) {
           this.title= "PROFILE";
         }
+        if (currentRoute.includes('/people')) {
+          this.title= "PROFILE";
+        }
         if (currentRoute.includes('/user')) {
           this.title= "VOTE";
         }
@@ -74,4 +77,7 @@ export class HeaderComponent {
 export function setHeaderID(header : HeaderComponent) {
   header.id = localStorage.getItem('user');
   header.title = "VOTE";
+}
+export function setHeaderProfile(header : HeaderComponent) {
+  header.title = "PROFILE";
 }

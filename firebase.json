@@ -1,18 +1,25 @@
 {
-  "hosting": {
-    "public": "dist/facemash-project/browser",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ],
-    "rewrites": [
-      {
-        "source": "**",
-        "destination": "/index.html"
-      }
-    ]
-  },
+  "hosting": [
+    {
+      "public": "dist/facemash-project/browser",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    },
+    {
+      "target": "facemash-project",
+      "source": ".",
+      "frameworksBackend": {}
+    }
+  ],
   "storage": {
     "rules": "storage.rules"
   }
