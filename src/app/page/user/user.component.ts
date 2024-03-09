@@ -62,8 +62,10 @@ export class UserComponent {
     return await new Promise((resolve) => setTimeout(resolve, ms));
   }
 
-  DeletePost(Pid: any) {
+  async DeletePost(Pid: any) {
     console.log("Delete : "+Pid);
+    const response =  await this.postService.DeletePosts(this.id);
+    console.log(response); 
   }
 
   // deleteImage(imagePath: string): void {

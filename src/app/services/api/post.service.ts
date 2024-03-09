@@ -47,4 +47,16 @@ export class PostService {
     const response = await lastValueFrom(this.http.post(url,formData));
     return response as ResRow[];
   }
+
+  public async DeletePosts(options?:any){
+    let url = '';
+    if(options){
+      const id = options;
+      url = this.constants.API_ENDPOINT + '/posts/' + id;
+    }else{
+      console.log("DELETE FAIL...");
+    }
+    const response = await lastValueFrom(this.http.delete(url));
+    return response as any[];
+  }
 }
