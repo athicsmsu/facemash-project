@@ -41,12 +41,8 @@ export class UserComponent {
   async loadDataAsync (){
     if(localStorage.getItem('user') == this.id){
       this.show = true;
-      console.log(this.show);
-      
     } else {
       this.show = false;
-      console.log(this.show);
-      
     }
     this.user = await this.userService.getAllDataUser(this.id);
     this.image =  await this.postService.getPosts(this.id);
@@ -88,5 +84,7 @@ export class UserComponent {
   async DeletePost(Pid: any) {
     const response = await this.postService.DeletePosts(Pid);
     console.log(response);
+    await this.delay(3000);
+    this.loadDataAsync();
   }
 }
