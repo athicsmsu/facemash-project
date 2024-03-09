@@ -74,13 +74,12 @@
     <div style="display: flex; flex-direction: row; margin-top: 2%;justify-content: center;">
         <div style="display: flex; flex-direction: column;">
             <div class="profile">
-                <div style="display: flex; 
-                flex-direction: column; 
-                align-items: center;
-                justify-content: center; 
-                width: 300px;">
-                    <img *ngIf="this.Avatar == null" class="img-profile" src="https://www.366icons.com/media/01/profile-avatar-account-icon-16699.png">
-                    <img *ngIf="this.Avatar != null " class="img-profile" src="{{ this.user[0].Avatar }}">
+                <div style="display: flex;flex-direction: column; align-items: center;justify-content: center;width: 300px;">
+                  <div>
+                    <input type="file" #avartar style="display: none" (change)="onAvatar($event)">
+                    <img (click)="avartar.click()" *ngIf="this.Avatar == null" class="img-profile" src="https://www.366icons.com/media/01/profile-avatar-account-icon-16699.png">
+                    <img (click)="avartar.click()" *ngIf="this.Avatar != null " class="img-profile" src="{{ this.user[0].Avatar }}" >
+                  </div>
                 </div>
                 <div style="display: flex;
                 flex-direction: column;

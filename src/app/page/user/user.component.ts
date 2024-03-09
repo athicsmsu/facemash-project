@@ -25,8 +25,9 @@ export class UserComponent {
   Avatar : any;
   file? : File;
   load : any;
+  loadAvatar : any;
   show : any = false;
-// private storage: AngularFireStorage
+  // private storage: AngularFireStorage
   constructor(private route: ActivatedRoute,private http : HttpClient,private constants: Constants,private userService : UserService,private postService : PostService,private voteService : VoteService){
 		this.route.queryParams.subscribe(params =>{
 			this.id = params['user'];
@@ -52,6 +53,7 @@ export class UserComponent {
     this.Avatar = this.user[0].Avatar;
     // console.log(this.user);
     this.load = false;
+    this.loadAvatar = false;
   }
   
   async onFileSelected(event: any): Promise<void> {
@@ -62,6 +64,18 @@ export class UserComponent {
       formData.append('file',this.file);
       this.responseRow = await this.postService.UploadPosts(this.id,formData);
       this.responseRow = await this.voteService.NewPosts(this.responseRow.last_idx);
+    }
+    await this.delay(3000);
+    this.loadDataAsync();
+  }
+
+  async onAvatar(event: any): Promise<void> {
+    this.loadAvatar = true;
+    this.file = event.target.files[0];
+    if (this.file) {
+      const formData = new FormData();
+      formData.append('file',this.file);
+      this.responseRow = await this.userService.UpdateAvatar(this.id,formData);
     }
     await this.delay(3000);
     this.loadDataAsync();
