@@ -37,9 +37,6 @@ export class HeaderComponent {
         if (currentRoute.includes('/profile')) {
           this.title= "PROFILE";
         }
-        if (currentRoute.includes('/people')) {
-          this.title= "PROFILE";
-        }
         if (currentRoute.includes('/user')) {
           this.title= "VOTE";
         }
