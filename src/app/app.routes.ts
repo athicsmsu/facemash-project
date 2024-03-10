@@ -14,5 +14,5 @@ export const routes: Routes = [
     { path: 'image', component: ImageComponent },
     { path: 'rank', component: RankComponent },
     { path: 'user', component: MainComponent },
-    { path: 'people', component: UserComponent }
+    { path: 'profiles', component: UserComponent }
 ];
