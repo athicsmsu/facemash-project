@@ -28,13 +28,16 @@ export class UserComponent {
   loadAvatar : any;
   show : any = false;
   // private storage: AngularFireStorage
-  constructor(private route: ActivatedRoute,private http : HttpClient,private constants: Constants,private userService : UserService,private postService : PostService,private voteService : VoteService){
+  constructor(private router: Router,private route: ActivatedRoute,private http : HttpClient,private constants: Constants,private userService : UserService,private postService : PostService,private voteService : VoteService){
 		this.route.queryParams.subscribe(params =>{
 			this.id = params['user'];
 		});
 	}
 
   ngOnInit(): void {
+    if (!localStorage.getItem('user')) {
+      this.router.navigateByUrl('');
+    }
     this.loadDataAsync();
   }
 
