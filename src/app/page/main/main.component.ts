@@ -60,9 +60,9 @@ export class MainComponent {
 
   async loadDataAsync() {
     this.image = await this.postService.getPosts();
-    this.image1 = this.image[getRandomIndex(this.image)];
+    this.image1 = this.image[this.getRandomIndex(this.image)];
     do {
-      this.image2 = this.image[getRandomIndex(this.image)];
+      this.image2 = this.image[this.getRandomIndex(this.image)];
     } while (this.image2 === this.image1);
     this.user1 = await this.userService.getAllDataUser(this.image1.UserID);
     this.user2 = await this.userService.getAllDataUser(this.image2.UserID);
@@ -152,7 +152,10 @@ export class MainComponent {
   ChangeHeader(){
     setHeaderProfile(this.header);
   }
+  getRandomIndex(array: any[]): number {
+    return Math.floor(Math.random() * array.length);
+  }
 }
-function getRandomIndex(array: any[]): number {
-  return Math.floor(Math.random() * array.length);
-}
+// function getRandomIndex(array: any[]): number {
+//   return Math.floor(Math.random() * array.length);
+// }

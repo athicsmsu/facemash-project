@@ -27,7 +27,7 @@ export class UserComponent {
   load : any;
   loadAvatar : any;
   show : any = false;
-  // private storage: AngularFireStorage
+  loaddelete : any;
   constructor(private router: Router,private route: ActivatedRoute,private http : HttpClient,private constants: Constants,private userService : UserService,private postService : PostService,private voteService : VoteService){
 		this.route.queryParams.subscribe(params =>{
 			this.id = params['user'];
