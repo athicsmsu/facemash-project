@@ -75,11 +75,15 @@
         <div style="display: flex; flex-direction: column;">
             <div class="profile">
                 <div style="display: flex;flex-direction: column; align-items: center;justify-content: center;width: 300px;">
-                  <div>
+                  <div *ngIf="this.show == true else other">
                     <input type="file" #avartar style="display: none" (change)="onAvatar($event)">
-                    <img (click)="avartar.click()" *ngIf="this.Avatar == null" class="img-profile" src="https://www.366icons.com/media/01/profile-avatar-account-icon-16699.png">
-                    <img (click)="avartar.click()" *ngIf="this.Avatar != null " class="img-profile" src="{{ this.user[0].Avatar }}" >
+                    <img (click)="avartar.click()" *ngIf="this.Avatar == null" class="img-profile" src="https://www.366icons.com/media/01/profile-avatar-account-icon-16699.png" style="cursor: pointer;">
+                    <img (click)="avartar.click()" *ngIf="this.Avatar != null " class="img-profile" src="{{ this.user[0].Avatar }}" style="cursor: pointer;">
                   </div>
+                  <ng-template #other>
+                    <img *ngIf="this.Avatar == null" class="img-profile" src="https://www.366icons.com/media/01/profile-avatar-account-icon-16699.png">
+                    <img *ngIf="this.Avatar != null " class="img-profile" src="{{ this.user[0].Avatar }}" >
+                  </ng-template>
                 </div>
                 <div style="display: flex;
                 flex-direction: column;
@@ -92,8 +96,9 @@
             </div>
             <div class="image-bg">
                 <div *ngFor="let item of image" style="position: relative;display: flex;align-items: flex-end;">
-                    <img routerLink="/image" [queryParams]="{posts: item.Pid}" class="in-image-bg" src="{{item.ImageURL}}">
-                    <button  *ngIf="this.show == true" class="bin-button" (click)="DeletePost(item.Pid)">
+                  <div *ngIf="this.show == true else otherimg">
+                    <img routerLink="/image" [queryParams]="{posts: item.Pid}" class="in-image-bg" src="{{item.ImageURL}}" style="cursor: pointer;">
+                    <button class="bin-button" (click)="DeletePost(item.Pid)">
                         <svg class="bin-top" viewBox="0 0 39 7"fill="none"xmlns="http://www.w3.org/2000/svg">
                           <line y1="5" x2="39" y2="5" stroke="white" stroke-width="4"></line>
                           <line x1="12" y1="1.5" x2="26.0357" y2="1.5" stroke="white"stroke-width="3"></line>
@@ -107,6 +112,10 @@
                           <path d="M21 6V29" stroke="white" stroke-width="4"></path>
                         </svg>
                       </button>
+                  </div>
+                  <ng-template #otherimg>
+                    <img class="in-image-bg" src="{{item.ImageURL}}">
+                  </ng-template>
                 </div>
                 <!-- Loader -->
                 <div *ngIf="this.load == true" aria-label="Orange and tan hamster running in a metal wheel" role="img" class="wheel-and-hamster">
