@@ -76,22 +76,46 @@
             <div class="profile">
                 <div style="display: flex;flex-direction: column; align-items: center;justify-content: center;width: 300px;">
                   <div *ngIf="this.show == true else other">
-                    <input type="file" #avartar style="display: none" (change)="onAvatar($event)">
-                    <img (click)="avartar.click()" *ngIf="this.Avatar == null" class="img-profile" src="https://www.366icons.com/media/01/profile-avatar-account-icon-16699.png" style="cursor: pointer;">
-                    <img (click)="avartar.click()" *ngIf="this.Avatar != null " class="img-profile" src="{{ this.user[0].Avatar }}" style="cursor: pointer;">
+                    <div *ngIf="this.loadAvatar == false else LoaderAvartar">
+                      <input type="file" #avartar style="display: none" (change)="onAvatar($event)">
+                      <img (click)="avartar.click()" *ngIf="this.Avatar == null" class="img-profile" src="https://www.366icons.com/media/01/profile-avatar-account-icon-16699.png" style="cursor: pointer;">
+                      <img (click)="avartar.click()" *ngIf="this.Avatar != null " class="img-profile" src="{{ this.user[0].Avatar }}" style="cursor: pointer;">
+                    </div>
+                    <ng-template #LoaderAvartar>
+                      <div class="loader"></div>
+                    </ng-template>
                   </div>
                   <ng-template #other>
                     <img *ngIf="this.Avatar == null" class="img-profile" src="https://www.366icons.com/media/01/profile-avatar-account-icon-16699.png">
                     <img *ngIf="this.Avatar != null " class="img-profile" src="{{ this.user[0].Avatar }}" >
                   </ng-template>
                 </div>
-                <div style="display: flex;
-                flex-direction: column;
-                justify-content: center;
-                margin-left: 6%;">
-                    <div *ngIf="this.user" class="user-profile" style="font-size: 50px;">{{ this.user[0].Username }}</div>
-                    <br>
-                    <div *ngIf="this.user" class="email-profile">{{ this.user[0].Email }}</div>
+                <div style="display: flex;flex-direction: column;justify-content: center;margin-left: 6%;">
+                  <ng-container *ngIf="this.show != true else otherinput">
+                    <div *ngIf="this.user">
+                      <div class="user-profile" style="font-size: 40px;text-align: center;">{{ this.user[0].Username }}</div>
+                      <br>
+                      <div class="email-profile" style="font-size: 20px;text-align: center;">{{ this.user[0].Email }}</div>
+                    </div>
+                  </ng-container>
+                  <ng-template #otherinput>
+                    <div *ngIf="this.user">
+                      <input  class="user-profile" style="font-size: 50px;text-align: center;" type="text" value="{{ this.user[0].Username }}" #username/>
+                      <br>
+                      <div style="display: flex;flex-direction: row;align-items: center;">
+                        <input class="email-profile" style="font-size: 25px;text-align: center;" type="text" value="{{ this.user[0].Email }}" #email/>
+                        <div class="container-button" (click)="ChangeInformation(username,email)">
+                          <div class="hover bt-1"></div>
+                          <div class="hover bt-2"></div>
+                          <div class="hover bt-3"></div>
+                          <div class="hover bt-4"></div>
+                          <div class="hover bt-5"></div>
+                          <div class="hover bt-6"></div>
+                          <button class="save"></button>
+                        </div>
+                      </div>
+                    </div>
+                  </ng-template>
                 </div>
             </div>
             <div class="image-bg">

@@ -8,6 +8,7 @@ import { Constants } from '../../config/constants';
 import { PostService } from '../../services/api/post.service';
 import { ResRow } from '../../model/res_get_row';
 import { VoteService } from '../../services/api/vote.service';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-user',
@@ -25,10 +26,11 @@ export class UserComponent {
   Avatar : any;
   file? : File;
   load : any;
-  loadAvatar : any;
+  loadAvatar : any = false;
   show : any = false;
   loaddelete : any;
-  constructor(private router: Router,private route: ActivatedRoute,private http : HttpClient,private constants: Constants,private userService : UserService,private postService : PostService,private voteService : VoteService){
+
+  constructor(private header:HeaderComponent,private router: Router,private route: ActivatedRoute,private http : HttpClient,private constants: Constants,private userService : UserService,private postService : PostService,private voteService : VoteService){
 		this.route.queryParams.subscribe(params =>{
 			this.id = params['user'];
 		});
@@ -76,8 +78,10 @@ export class UserComponent {
       formData.append('file',this.file);
       this.responseRow = await this.userService.UpdateAvatar(this.id,formData);
     }
+    this.loadAvatar = true;
     await this.delay(3000);
     this.loadDataAsync();
+    this.header.loadDataUser();
   }
 
   async delay(ms: number) {
@@ -89,5 +93,19 @@ export class UserComponent {
     console.log(response);
     await this.delay(3000);
     this.loadDataAsync();
+  }
+
+  async ChangeInformation(username: HTMLInputElement,email: HTMLInputElement){
+    const url = this.constants.API_ENDPOINT + `/user`;
+    if(username.value && email.value){
+      this.http.put(url + "/" + this.id, {
+          Username: username.value,
+          Email: email.value
+      }).subscribe((data:any)=>{
+        console.log(data);
+      })
+    }else{
+      console.log("Input is invalid");
+    }
   }
 }
