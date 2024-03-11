@@ -26,9 +26,9 @@ export class UserComponent {
   Avatar : any;
   file? : File;
   load : any;
-  loadAvatar : any = false;
   show : any = false;
-  loaddelete : any;
+  loadAvatar : any = false;
+  loaddelete : any = false;
 
   constructor(private header:HeaderComponent,private router: Router,private route: ActivatedRoute,private http : HttpClient,private constants: Constants,private userService : UserService,private postService : PostService,private voteService : VoteService){
 		this.route.queryParams.subscribe(params =>{
@@ -55,6 +55,7 @@ export class UserComponent {
     // console.log(this.user);
     this.load = false;
     this.loadAvatar = false;
+    this.loaddelete = false;
   }
   
   async onFileSelected(event: any): Promise<void> {
@@ -89,10 +90,15 @@ export class UserComponent {
   }
 
   async DeletePost(Pid: any) {
-    const response = await this.postService.DeletePosts(Pid);
-    console.log(response);
-    await this.delay(3000);
-    this.loadDataAsync();
+    if(this.loaddelete){
+      return;
+    } else {
+      this.loaddelete = true;
+      const response = await this.postService.DeletePosts(Pid);
+      console.log(response);
+      await this.delay(3000);
+      this.loadDataAsync();
+    }
   }
 
   async ChangeInformation(username: HTMLInputElement,email: HTMLInputElement){
