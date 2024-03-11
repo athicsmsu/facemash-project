@@ -98,79 +98,20 @@
 
 ///**********************profile*************//
 .btn1 {
-  z-index: 2;
-  position: relative;
+  // z-index: 2;
+  // position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 4.5em;
   height: 4.5em;
   outline: none;
   border: none;
   border-radius: 50%;
   background-color: white;
-  transition: 0.4s all;
+  // transition: 0.4s all;
   cursor: pointer;
 }
-
-// .btn1 .tooltiptext1 {
-//   visibility: hidden;
-//   width: 10em;
-//   height: 8em;
-//   background-color: whitesmoke;
-//   color: black;
-//   text-align: center;
-//   border-radius: 10px;
-//   padding: 1em;
-//   position: absolute;
-//   left: -1.5em;
-//   top: -8em;
-//   z-index: 1;
-//   transition: 0.1s ease-in-out;
-//   align-items: center;
-//   align-content: center;
-//   justify-content: center;
-// }
-// .btn1 .tooltiptext2 {
-//   visibility: hidden;
-//   width: 10em;
-//   height: 8em;
-//   background-color: whitesmoke;
-//   color: black;
-//   text-align: center;
-//   border-radius: 10px;
-//   padding: 1em;
-//   position: absolute;
-//   right: -1.5em;
-//   top: -8em;
-//   z-index: 1;
-//   transition: 0.1s ease-in-out;
-//   align-items: center;
-//   align-content: center;
-//   justify-content: center;
-// }
-
-// .btn1 .tooltiptext1 .card,
-// .btn1 .tooltiptext2 .card {
-//   width: 5em;
-//   height: 5em;
-//   background-color: white;
-// }
-
-// .btn1 .tooltiptext1 .account,
-// .btn1 .tooltiptext2 .account {
-//   margin-top: 1em;
-// }
-
-// .btn1 .tooltiptext1 .username,
-// .btn1 .tooltiptext2 .username {
-//   font-size: 0.7em;
-//   margin-top: 1.6em;
-//   font-weight: bold;
-// }
-
-// .btn1:hover .tooltiptext1,
-// .btn1:hover .tooltiptext2 {
-//   transform: translateY(-1em);
-//   visibility: visible;
-// }
 
 /***********title**********/
 .glowbutton {

@@ -16,11 +16,11 @@
             <div>
                 <div style="display: flex;flex-direction: row;align-items: flex-end;">
                     <button class="btn1" (click)="ChangeHeader()" *ngIf="this.id && user1  && user2" routerLink="/profiles" [queryParams]="{user: user1[0].UserID}">
-                        <div>
+                        <div *ngIf="user1[0].Avatar == null else avatar1">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12,12.5c-3.04,0-5.5,1.73-5.5,3.5s2.46,3.5,5.5,3.5,5.5-1.73,5.5-3.5-2.46-3.5-5.5-3.5Zm0-.5c1.66,0,3-1.34,3-3s-1.34-3-3-3-3,1.34-3,3,1.34,3,3,3Z"></path></svg>
                         </div>
-                        <ng-template >
-    
+                        <ng-template #avatar1>
+                            <img src="{{ user1[0].Avatar }}" style="width: 4.5em;height: 4.5em;border-radius: 50%;object-fit: cover;">
                         </ng-template>
                     </button>
                     <img src="{{ image1.ImageURL }}" class="image1" (click)="Vote(this.image1.Pid,this.image2.Pid,1)">
@@ -30,9 +30,7 @@
                         <span class="leftContainer">
                         <svg fill="white" viewBox="0 0 512 512" height="1em" xmlns="http://www.w3.org/2000/svg"><path d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z"></path></svg>
                         </span>
-                        <span class="likeCount">
-                        {{ this.score1 }}
-                        </span>
+                        <span class="likeCount">{{ this.score1 }}</span>
                     </button>
                 </div>
             </div>
@@ -50,11 +48,11 @@
                 <div style="display: flex;flex-direction: row;align-items: flex-end;">
                 <img src="{{ image2.ImageURL }}" class="image2" (click)="Vote(this.image2.Pid,this.image1.Pid,2)">
                 <button class="btn1" (click)="ChangeHeader()" *ngIf="this.id && user1  && user2" routerLink="/profiles" [queryParams]="{user: user2[0].UserID}">
-                    <div>
+                    <ng-container *ngIf="user2[0].Avatar == null else avatar2">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12,12.5c-3.04,0-5.5,1.73-5.5,3.5s2.46,3.5,5.5,3.5,5.5-1.73,5.5-3.5-2.46-3.5-5.5-3.5Zm0-.5c1.66,0,3-1.34,3-3s-1.34-3-3-3-3,1.34-3,3,1.34,3,3,3Z"></path></svg>
-                    </div>
-                    <ng-template >
-
+                    </ng-container>
+                    <ng-template #avatar2>
+                        <img src="{{ user2[0].Avatar }}" style="width: 4.5em;height: 4.5em;border-radius: 50%;object-fit: cover;">
                     </ng-template>
                 </button>
                 </div>
@@ -63,9 +61,7 @@
                     <span class="leftContainer">
                     <svg fill="white" viewBox="0 0 512 512" height="1em" xmlns="http://www.w3.org/2000/svg"><path d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z"></path></svg>
                     </span>
-                    <span class="likeCount">
-                    {{ this.score2 }}
-                    </span>
+                    <span class="likeCount">{{ this.score2 }}</span>
                 </button>
                 </div>
             </div>
