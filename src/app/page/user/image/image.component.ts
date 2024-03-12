@@ -22,6 +22,7 @@ export class ImageComponent implements OnInit {
   pid : any;
   image : any;
   AllDataYesterday : any[] = [];
+  data7day : any[] = [];
   NumNowRank : any[] = [];
   
   constructor(
@@ -45,11 +46,13 @@ export class ImageComponent implements OnInit {
 
   async loadDataAsync(){
     this.image = await this.postService.getPostsByPid(this.pid);
-    console.log(this.image);
-    this.AllDataYesterday.push(await this.dailyService.getAllDailystats(this.pid));
-    console.log( this.AllDataYesterday);
-    this.NumNowRank.push(this.AllDataYesterday[0][0].rank);
-    console.log(this.NumNowRank);
+    //console.log(this.image);
+    //this.AllDataYesterday.push(await this.dailyService.getAllDailystats(this.pid));
+    //console.log( this.AllDataYesterday);
+    this.data7day = await this.dailyService.getAllDailystats7day(this.pid);
+    console.log( this.data7day);
+    this.NumNowRank = this.data7day[0].rank;
+    //console.log(this.NumNowRank);
   }
 
   day: any;
