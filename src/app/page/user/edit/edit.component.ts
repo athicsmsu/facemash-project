@@ -19,28 +19,32 @@ import { ResRe } from '../../../model/res_get';
   providers: [MessageService]
 })
 export class EditComponent {
+
   id:any;
   result : ResRe | any;
   constructor(private toastr: ToastrService,private messageService: MessageService, private route: ActivatedRoute, private http:HttpClient,private constants : Constants, private router: Router,private header:HeaderComponent,private userService :UserService){
     this.id = localStorage.getItem('user');
-    console.log(this.id);
   }
 
   async edit(oldPass: HTMLInputElement, newPass: HTMLInputElement, cfPass: HTMLInputElement) {
-    this.result = await this.userService.UpdatePassword(this.id,oldPass.value,newPass.value,cfPass.value); 
-    console.log(this.result.result);
-    if(this.result.result.includes("Not_Password")){
-      this.toastr.error('The password is incorrect', 'Error');
-    }
-    else if(this.result.result.includes("Not_Math")){
-      this.toastr.warning('Passwords dont match', 'warning');
-    }
-    else if(this.result.result.includes("success")){
-      this.toastr.success('successfully', 'success');
-      const UserID = localStorage.getItem('user');
-      this.router.navigate(['/profile'],{
-      queryParams: { user : UserID}
-      });
+    if(newPass.value && cfPass.value){
+      this.result = await this.userService.UpdatePassword(this.id,oldPass.value,newPass.value,cfPass.value);
+      console.log(this.result.result);
+      if(this.result.result.includes("Not_Password")){
+        this.toastr.error('The password is incorrect', 'Error');
+      }
+      else if(this.result.result.includes("Not_Math")){
+        this.toastr.warning('Passwords dont match', 'warning');
+      }
+      else if(this.result.result.includes("success")){
+        this.toastr.success('successfully', 'success');
+        const UserID = localStorage.getItem('user');
+        this.router.navigate(['/profile'],{
+          queryParams: { user : UserID}
+        });
+      }
+    } else {
+      this.toastr.warning('Invalid Input', 'warning')
     }
   }
 

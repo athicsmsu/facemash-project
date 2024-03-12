@@ -31,6 +31,9 @@ export class HeaderComponent {
         if (currentRoute.includes('/user')) {
           this.title= "VOTE";
         }
+        if (currentRoute == '/edit') {
+          this.title= "EDIT";
+        }
         if (currentRoute.includes('/login')) {
           this.title= "LOGIN";
         }
@@ -58,6 +61,9 @@ export class HeaderComponent {
         }
         if (currentRoute.includes('/user')) {
           this.title= "VOTE";
+        }
+        if (currentRoute == '/edit') {
+          this.title= "EDIT";
         }
         if (currentRoute.includes('/login')) {
           this.title= "LOGIN";

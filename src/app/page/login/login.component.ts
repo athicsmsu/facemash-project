@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Constants } from '../../config/constants';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/api/user.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,7 @@ import { UserService } from '../../services/api/user.service';
 })
 export class LoginComponent{ 
 
-  constructor(private http:HttpClient,private constants : Constants, private router: Router,private header:HeaderComponent,private userService :UserService){
+  constructor(private toastr: ToastrService,private http:HttpClient,private constants : Constants, private router: Router,private header:HeaderComponent,private userService :UserService){
     if (localStorage.getItem('user')) {
       this.router.navigate(['/user'], {
         queryParams: { user: localStorage.getItem('user') },
@@ -32,7 +33,7 @@ export class LoginComponent{
           }
       }).subscribe((data:any)=>{
         if(data == null || (Array.isArray(data) && data.length === 0)){
-          console.log("Email Incorrect");
+          this.toastr.error('Email Incorrect', 'Error');
         } else {
             if(data[0].Password == password.value){
               if(data[0].Type.includes("user")){
@@ -42,18 +43,20 @@ export class LoginComponent{
                   queryParams: { user : data[0].UserID }
                 });
                 setHeaderID(this.header);
+                this.toastr.success('Login Success', 'User');
               }
               else if(data[0].Type.includes("admin")){
                 // console.log(data[0].Type);
                 this.router.navigate(['/admin']);
+                this.toastr.success('Login Success', 'Admin');
               }
             } else{
-              console.log("Password Incorrect");
+              this.toastr.error('Password Incorrect', 'Error');
             }
           }
       });
     } else {
-        console.log("Input is invalid");
+        this.toastr.warning('Input is invalid', 'Warning');
     }
   }
   
@@ -74,13 +77,14 @@ export class LoginComponent{
               Password: password.value
           }).subscribe((data:any)=>{
             console.log(data);
+            this.toastr.success('Sing up', 'Success');
           })
         } else {
-          console.log("Email already registered.");
+          this.toastr.error('Email already registered.', 'Error');
         }
       })
     }else{
-      console.log("Input is invalid");
+      this.toastr.warning('Input is invalid', 'Warning');
     }
   }
 

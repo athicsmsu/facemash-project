@@ -60,7 +60,7 @@ export class ImageComponent implements OnInit {
     console.log(this.data7day);
     
     if(this.data7day.length>0){
-     this.NumNowRank = this.data7day[0].rank; 
+     this.NumNowRank = this.data7day[this.data7day.length-1].rank; 
     }
     else{
       this.NumNowRank = 0;

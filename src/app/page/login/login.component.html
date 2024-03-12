@@ -6,7 +6,7 @@
     <div class="form">
         <h3>Login</h3>
         <label>Email</label>
-        <input type="text" placeholder="Email" required #email>
+        <input type="text" placeholder="Email" (keyup.enter)="login(email,password)"  required #email>
         <label>Password</label>
         <input type="password" placeholder="Password" (keyup.enter)="login(email,password)" #password>
         <div style="display: flex;flex-direction: row;justify-content: space-between;align-items: flex-end;">
