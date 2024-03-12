@@ -23,13 +23,15 @@
                             <span *ngIf="this.NumNowRank>this.rank">
                                 +{{this.NumNowRank - this.rank}}
                             </span>
-                            <span *ngIf="this.NumNowRank<this.rank">
+                            <span *ngIf="this.NumNowRank<this.rank && this.NumNowRank != 0">
                                 -{{this.rank - this.NumNowRank}}
                             </span>
                             <span *ngIf="this.NumNowRank==this.rank">
                                -
                             </span>
-                            
+                            <span *ngIf="this.NumNowRank== 0">
+                                -
+                             </span>
                         </div>
                     </div>
                 </div>

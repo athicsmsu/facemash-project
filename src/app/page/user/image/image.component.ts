@@ -29,7 +29,6 @@ export class ImageComponent implements OnInit {
   NumNowRank : number = 0;
   NowRank : any[] = [];
   rank : number = 0;
-  loadPost : any =  false;
   file? : File;
    
   constructor(
@@ -58,30 +57,35 @@ export class ImageComponent implements OnInit {
   async loadDataAsync(){
     this.image = await this.postService.getPostsByPid(this.pid);
     this.data7day = await this.dailyService.getAllDailystats7day(this.pid);
-    this.NumNowRank = this.data7day[0].rank;
+    console.log(this.data7day);
+    
+    if(this.data7day.length>0){
+     this.NumNowRank = this.data7day[0].rank; 
+    }
+    else{
+      this.NumNowRank = 0;
+    }
     this.NowRank = await this.voteService.nowRank();
 
     for (let index = 0; index < this.NowRank.length; index++) {
-      
       if(this.pid == this.NowRank[index].pid){  
-
-          this.rank = this.NowRank[index].rank;
+        this.rank = this.NowRank[index].rank;
       }
     }
     this.loadGraph();
   }
   
   async onChangePost(event: any): Promise<void> {
-    this.loadPost = true;
     this.file = event.target.files[0];
     if (this.file) {
       const formData = new FormData();
       formData.append('file',this.file);
-      this.responseRow = await this.userService.UpdateAvatar(this.pid,formData);
+      this.responseRow = await this.postService.UpdatePosts(this.pid,formData);
     }
-    this.loadPost = true;
-    await this.delay(3000);
-    this.loadDataAsync();
+    const UserID = localStorage.getItem('user');
+    this.router.navigate(['/profile'],{
+      queryParams: { user : UserID}
+    });
   }
 
   async delay(ms: number) {

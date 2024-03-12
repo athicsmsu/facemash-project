@@ -71,4 +71,16 @@ export class PostService {
     const response = await lastValueFrom(this.http.delete(url));
     return response as any[];
   }
+
+  public async UpdatePosts(Pid?:any,formData?:any){
+    let url = '';
+    const UserID = localStorage.getItem('user');
+    if(Pid){
+      url = this.constants.API_ENDPOINT + '/posts/updatePosts/'+Pid+"/"+UserID;
+    }else{
+      console.log("UpDate FAIL...");  
+    }
+    const response = await lastValueFrom(this.http.post(url,formData));
+    return response as any[];
+  }
 }
