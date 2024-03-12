@@ -23,9 +23,9 @@ export class ImageComponent implements OnInit {
   pid : any;
   image : any;
   AllDataYesterday : any[] = [];
+  data7day : any[] = [];
   NumNowRank : any[] = [];
-  NumYesterdayRank : any[] = [];
-
+  
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -45,17 +45,19 @@ export class ImageComponent implements OnInit {
     this.loadDataAsync();
   }
 
-  day: any;
-  scroe: any;
-
   async loadDataAsync(){
     this.image = await this.postService.getPostsByPid(this.pid);
-
-    this.AllDataYesterday = await this.dailyService.getAllDailystats7Day(this.pid);
-    console.log( this.AllDataYesterday);
-    this.NumYesterdayRank = this.AllDataYesterday[0].rank;
-    console.log(this.NumYesterdayRank);
+    //console.log(this.image);
+    //this.AllDataYesterday.push(await this.dailyService.getAllDailystats(this.pid));
+    //console.log( this.AllDataYesterday);
+    this.data7day = await this.dailyService.getAllDailystats7day(this.pid);
+    console.log( this.data7day);
+    this.NumNowRank = this.data7day[0].rank;
+    //console.log(this.NumNowRank);
   }
+
+  day: any;
+  scroe: any;
 
   ngOnInit() {
     this.day = {
