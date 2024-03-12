@@ -60,7 +60,7 @@ export class ImageComponent implements OnInit {
 
   ngOnInit() {
     this.day = {
-      labels: ['day1', 'day2', 'day3', 'day4', 'day5', 'day6', 'day7'],
+      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
       datasets: [
         {
           label: 'Dataset',
