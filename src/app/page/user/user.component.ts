@@ -30,10 +30,13 @@ export class UserComponent {
   loadAvatar : any = false;
   loaddelete : any = false;
 
-  constructor(private header:HeaderComponent,private router: Router,private route: ActivatedRoute,private http : HttpClient,private constants: Constants,private userService : UserService,private postService : PostService,private voteService : VoteService){
+  constructor(private header:HeaderComponent,private router: Router,private route: ActivatedRoute,private http : HttpClient,private constants: Constants,private userService : UserService,private postService : PostService,private voteService : VoteService)
+  {
 		this.route.queryParams.subscribe(params =>{
 			this.id = params['user'];
 		});
+    console.log(this.id);
+    
 	}
 
   ngOnInit(): void {

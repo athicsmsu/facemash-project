@@ -34,4 +34,20 @@ export class UserService {
     const response = await lastValueFrom(this.http.post(url,formData));
     return response as any[];
   }
+
+  public async UpdatePassword(UserID?:any,oldPass?:any,newPass?:any,cfPass?:any){
+    let url = '';
+    if(UserID){
+      url = this.constants.API_ENDPOINT + '/user/edit';
+    }else{
+      console.log("UPLOAD FAIL...");  
+    }
+    const response = await lastValueFrom(this.http.post(url,{
+      UserID: UserID,
+      oldPass : oldPass,
+      newPass : newPass,
+      cfPass : cfPass
+    }));
+    return response as any[];
+  }
 }

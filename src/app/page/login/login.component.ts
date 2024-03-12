@@ -56,6 +56,7 @@ export class LoginComponent{
         console.log("Input is invalid");
     }
   }
+  
   register(username: HTMLInputElement,email: HTMLInputElement,password: HTMLInputElement) {
 
     const url = this.constants.API_ENDPOINT + `/user`;
