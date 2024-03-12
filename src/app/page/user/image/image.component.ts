@@ -23,14 +23,7 @@ export class ImageComponent implements OnInit {
   image : any;
   AllDataYesterday : any[] = [];
   NumNowRank : any[] = [];
-  async loadDataAsync(){
-    this.image = await this.postService.getPostsByPid(this.pid);
-    console.log(this.image);
-    this.AllDataYesterday.push(await this.dailyService.getAllDailystats(this.pid));
-    console.log( this.AllDataYesterday);
-    this.NumNowRank.push(this.AllDataYesterday[0][0].rank);
-    console.log(this.NumNowRank);
-  }
+  
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -48,6 +41,15 @@ export class ImageComponent implements OnInit {
       this.router.navigateByUrl('');
     }
     this.loadDataAsync();
+  }
+
+  async loadDataAsync(){
+    this.image = await this.postService.getPostsByPid(this.pid);
+    console.log(this.image);
+    this.AllDataYesterday.push(await this.dailyService.getAllDailystats(this.pid));
+    console.log( this.AllDataYesterday);
+    this.NumNowRank.push(this.AllDataYesterday[0][0].rank);
+    console.log(this.NumNowRank);
   }
 
   day: any;
