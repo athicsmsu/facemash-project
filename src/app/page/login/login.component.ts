@@ -84,7 +84,7 @@ export class LoginComponent{
         }
       })
     }else{
-      this.toastr.warning('Input is invalid', 'Warning');
+      this.toastr.warning('Input is Invalid', 'Warning');
     }
   }
 
