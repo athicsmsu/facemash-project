@@ -11,7 +11,7 @@
                     <div class="data-rank">
                         <div class="in-data-rank">
                             <span>อันดับปัจจุบัน</span>
-                            <span>{{ this.NumNowRank }}</span>
+                            <span>{{ this.rank }}</span>
                         </div>
                         <div class="in-data-rank">
                             <span>อันดับก่อนหน้า</span>
@@ -19,7 +19,16 @@
                         </div>
                         <div class="in-data-rank">
                             <span>สรุปผล</span>
-                            <span>{{ this.NumNowRank }}</span>
+                            <span *ngIf="this.NumNowRank>this.rank">
+                                +{{this.NumNowRank - this.rank}}
+                            </span>
+                            <span *ngIf="this.NumNowRank<this.rank">
+                                -{{this.rank - this.NumNowRank}}
+                            </span>
+                            <span *ngIf="this.NumNowRank==this.rank">
+                               -
+                            </span>
+                            
                         </div>
                     </div>
                 </div>

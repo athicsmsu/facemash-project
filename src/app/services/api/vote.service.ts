@@ -26,4 +26,11 @@ export class VoteService {
     }));
     return response as ResRow[];
   }
+
+  public async nowRank(){
+    let url = '';
+    url = this.constants.API_ENDPOINT + '/vote/nowRank';
+    const response = await lastValueFrom(this.http.get(url));
+    return response as any[];
+  }
 }

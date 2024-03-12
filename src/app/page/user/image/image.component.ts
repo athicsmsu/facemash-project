@@ -24,7 +24,9 @@ export class ImageComponent implements OnInit {
   image : any;
   AllDataYesterday : any[] = [];
   data7day : any[] = [];
-  NumNowRank : any[] = [];
+  NumNowRank : number = 0;
+  NowRank : any[] = [];
+  rank : number = 0;
   
   constructor(
     private router: Router,
@@ -33,7 +35,8 @@ export class ImageComponent implements OnInit {
     private constants: Constants,
     private userService : UserService,
     private postService : PostService,
-    private dailyService: DailystatsService
+    private dailyService: DailystatsService,
+    private voteService : VoteService
   ) {
     this.route.queryParams.subscribe(params =>{
       this.pid = params['posts'];
@@ -51,13 +54,17 @@ export class ImageComponent implements OnInit {
 
   async loadDataAsync(){
     this.image = await this.postService.getPostsByPid(this.pid);
-    //console.log(this.image);
-    //this.AllDataYesterday.push(await this.dailyService.getAllDailystats(this.pid));
-    //console.log( this.AllDataYesterday);
     this.data7day = await this.dailyService.getAllDailystats7day(this.pid);
-    console.log( this.data7day);
     this.NumNowRank = this.data7day[0].rank;
-    //console.log(this.NumNowRank);
+    this.NowRank = await this.voteService.nowRank();
+
+    for (let index = 0; index < this.NowRank.length; index++) {
+      
+      if(this.pid == this.NowRank[index].pid){  
+
+          this.rank = this.NowRank[index].rank;
+      }
+    }
     this.loadGraph();
   }
 
@@ -72,10 +79,10 @@ export class ImageComponent implements OnInit {
       labels: labels,
       datasets: [
         {
-          label: 'Dataset',
+          label: 'Score',
           data: data,
           fill: false, //พื้นที่ใต้กราฟ
-          borderColor: '#000000', //เส้นของข้อมูล
+          borderColor: '#005f99', //เส้นของข้อมูล
         },
       ]
     };
@@ -88,22 +95,22 @@ export class ImageComponent implements OnInit {
       scales: {
         x: {
           ticks: {
-            color: 'rgba(255,255,255,255)'
+            color: '#000000'
           },
           grid: {
-            color: 'rgba(255,255,255,255)',
-            borderColor: 'rgba(255,255,255,255)',
+            color: '#000000',
+            borderColor: '#000000',
             borderWidth: 1,
             drawBorder: false
           }
         },
         y: {
           ticks: {
-            color: 'rgba(255,255,255,255)'
+            color: '#000000'
           },
           grid: {
-            color: 'rgba(255,255,255,255)',
-            borderColor: 'rgba(255,255,255,255)',
+            color: '#000000',
+            borderColor: '#000000',
             borderWidth: 1,
             drawBorder: false
           }
