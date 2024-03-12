@@ -24,6 +24,7 @@ export class ImageComponent implements OnInit {
   image : any;
   AllDataYesterday : any[] = [];
   NumNowRank : any[] = [];
+  NumYesterdayRank : any[] = [];
 
   constructor(
     private router: Router,
@@ -52,9 +53,8 @@ export class ImageComponent implements OnInit {
 
     this.AllDataYesterday = await this.dailyService.getAllDailystats7Day(this.pid);
     console.log( this.AllDataYesterday);
-
-    this.NumNowRank.push(this.AllDataYesterday[0].date);
-    console.log(this.NumNowRank);
+    this.NumYesterdayRank = this.AllDataYesterday[0].rank;
+    console.log(this.NumYesterdayRank);
   }
 
   ngOnInit() {
