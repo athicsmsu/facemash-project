@@ -9,6 +9,8 @@ import {
 } from '@angular/router';
 import { Constants } from '../../config/constants';
 import { HttpClient } from '@angular/common/http';
+import { UserService } from '../../services/api/user.service';
+import { HeaderComponent, setHeaderProfile } from '../header/header.component';
 
 @Component({
   selector: 'app-main',
@@ -23,6 +25,8 @@ export class MainComponent {
   score: any[] = [];
   image1: any;
   image2: any;
+  user1: any;
+  user2: any;
   score1: any;
   score2: any;
   canVote = true;
@@ -30,14 +34,17 @@ export class MainComponent {
 
   constructor(
     private postService: PostService,
+    private userService : UserService,
     private router: Router,
     private route: ActivatedRoute,
     private constants: Constants,
-    private http: HttpClient
+    private http: HttpClient,
+    private header:HeaderComponent
   ) {
     this.route.queryParams.subscribe((params) => {
       this.id = params['user'];
     });
+    
   }
 
   ngOnInit(): void {
@@ -53,22 +60,16 @@ export class MainComponent {
 
   async loadDataAsync() {
     this.image = await this.postService.getPosts();
-    this.image1 = this.image[getRandomIndex(this.image)];
+    this.image1 = this.image[this.getRandomIndex(this.image)];
     do {
-      this.image2 = this.image[getRandomIndex(this.image)];
+      this.image2 = this.image[this.getRandomIndex(this.image)];
     } while (this.image2 === this.image1);
-    // console.log(this.image1);
-    // console.log(this.image2);
+    this.user1 = await this.userService.getAllDataUser(this.image1.UserID);
+    this.user2 = await this.userService.getAllDataUser(this.image2.UserID);
     this.score = await this.postService.getScore(this.image1.Pid);
     this.score1 = this.score[0].total_score;
     this.score = await this.postService.getScore(this.image2.Pid);
     this.score2 = this.score[0].total_score;
-    if (this.score1 == null) {
-      this.score1 = 0;
-    }
-    if (this.score2 == null) {
-      this.score2 = 0;
-    }
     // เปิดให้สามารถกด Vote ได้อีก
     this.canVote = true;
   }
@@ -147,7 +148,14 @@ export class MainComponent {
   async delay(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
+
+  ChangeHeader(){
+    setHeaderProfile(this.header);
+  }
+  getRandomIndex(array: any[]): number {
+    return Math.floor(Math.random() * array.length);
+  }
 }
-function getRandomIndex(array: any[]): number {
-  return Math.floor(Math.random() * array.length);
-}
+// function getRandomIndex(array: any[]): number {
+//   return Math.floor(Math.random() * array.length);
+// }

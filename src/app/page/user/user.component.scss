@@ -42,7 +42,6 @@
   height: 400px;
   border-radius: 20px;
   object-fit: cover;
-  cursor: pointer;
 }
 
 .img-profile {
@@ -50,6 +49,7 @@
   background-color: azure;
   width: 200px;
   height: 200px;
+  object-fit: cover;
 }
 
 .user-profile {
@@ -590,4 +590,225 @@
 }
 .bin-button:active {
   transform: scale(0.9);
+}
+
+
+.container-button {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas: "bt-1 bt-2 bt-3"
+    "bt-4 bt-5 bt-6";
+  position: relative;
+  perspective: 800;
+  padding: 0;
+  width: 135px;
+  height: 47px;
+  transition: all 0.3s ease-in-out;
+  margin-left: 10px;
+}
+
+.container-button:active {
+  transform: scale(0.95);
+}
+
+.hover {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 200;
+}
+
+.bt-1 {
+  grid-area: bt-1;
+}
+
+.bt-2 {
+  grid-area: bt-2;
+}
+
+.bt-3 {
+  grid-area: bt-3;
+}
+
+.bt-4 {
+  grid-area: bt-4;
+}
+
+.bt-5 {
+  grid-area: bt-5;
+}
+
+.bt-6 {
+  grid-area: bt-6;
+}
+
+.bt-1:hover ~ .save {
+  transform: rotateX(15deg) rotateY(-15deg) rotateZ(0deg);
+  box-shadow: -2px -2px #18181888;
+}
+
+.bt-1:hover ~ .save::after {
+  animation: shake 0.5s ease-in-out 0.3s;
+  text-shadow: -2px -2px #18181888;
+}
+
+.bt-3:hover ~ .save {
+  transform: rotateX(15deg) rotateY(15deg) rotateZ(0deg);
+  box-shadow: 2px -2px #18181888;
+}
+
+.bt-3:hover ~ .save::after {
+  animation: shake 0.5s ease-in-out 0.3s;
+  text-shadow: 2px -2px #18181888;
+}
+
+.bt-4:hover ~ .save {
+  transform: rotateX(-15deg) rotateY(-15deg) rotateZ(0deg);
+  box-shadow: -2px 2px #18181888;
+}
+
+.bt-4:hover ~ .save::after {
+  animation: shake 0.5s ease-in-out 0.3s;
+  text-shadow: -2px 2px #18181888;
+}
+
+.bt-6:hover ~ .save {
+  transform: rotateX(-15deg) rotateY(15deg) rotateZ(0deg);
+  box-shadow: 2px 2px #18181888;
+}
+
+.bt-6:hover ~ .save::after {
+  animation: shake 0.5s ease-in-out 0.3s;
+  text-shadow: 2px 2px #18181888;
+}
+
+.hover:hover ~ .save::before {
+  background: transparent;
+}
+
+.hover:hover ~ .save::after {
+  content: "Click";
+  top: -150%;
+  transform: translate(-50%, 0);
+  font-size: 34px;
+  color: #23c483;
+}
+
+.save {
+  position: absolute;
+  padding: 0;
+  width: 135px;
+  height: 47px;
+  background: transparent;
+  font-size: 17px;
+  font-weight: 900;
+  border: 3px solid #23c483;
+  border-radius: 12px;
+  transition: all 0.3s ease-in-out;
+}
+
+.save::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 135px;
+  height: 47px;
+  background-color: #23c483;
+  border-radius: 12px;
+  transition: all 0.3s ease-in-out;
+  z-index: -1;
+}
+
+.save::after {
+  content: "Save";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 135px;
+  height: 47px;
+  background-color: transparent;
+  font-size: 17px;
+  font-weight: 900;
+  line-height: 47px;
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  transition: all 0.3s ease-in-out;
+  z-index: 2;
+}
+
+@keyframes shake {
+  0% {
+    left: 45%;
+  }
+
+  25% {
+    left: 54%;
+  }
+
+  50% {
+    left: 48%;
+  }
+
+  75% {
+    left: 52%;
+  }
+
+  100% {
+    left: 50%;
+  }
+}
+
+
+//loder avatar //
+.loader { 
+  background: linear-gradient(to right, #2cc16f 50%, #fafafa 50%);
+  border-radius: 100%;
+  height: 70px;
+  width: 70px;
+  animation: loader-circle-time 8s steps(800, start) infinite;
+}
+
+.loader:after {
+  content: "";
+  border-radius: 100% 0 0 100% / 50% 0 0 50%;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 50%;
+  animation: loader-circle-mask 8s steps(250, start) infinite;
+  transform-origin: 100% 50%;
+}
+
+@keyframes loader-circle-time {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes loader-circle-mask {
+  0% {
+    background: #fafafa;
+    transform: rotate(0deg);
+  }
+
+  50% {
+    background: #fafafa;
+    transform: rotate(-180deg);
+  }
+
+  50.01% {
+    background: #2cc16f;
+    transform: rotate(0deg);
+  }
+
+  100% {
+    background: #2cc16f;
+    transform: rotate(-180deg);
+  }
 }

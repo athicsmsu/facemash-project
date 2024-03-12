@@ -74,27 +74,54 @@
     <div style="display: flex; flex-direction: row; margin-top: 2%;justify-content: center;">
         <div style="display: flex; flex-direction: column;">
             <div class="profile">
-                <div style="display: flex; 
-                flex-direction: column; 
-                align-items: center;
-                justify-content: center; 
-                width: 300px;">
+                <div style="display: flex;flex-direction: column; align-items: center;justify-content: center;width: 300px;">
+                  <div *ngIf="this.show == true else other">
+                    <div *ngIf="this.loadAvatar == false else LoaderAvartar">
+                      <input type="file" #avartar style="display: none" (change)="onAvatar($event)">
+                      <img (click)="avartar.click()" *ngIf="this.Avatar == null" class="img-profile" src="https://www.366icons.com/media/01/profile-avatar-account-icon-16699.png" style="cursor: pointer;">
+                      <img (click)="avartar.click()" *ngIf="this.Avatar != null " class="img-profile" src="{{ this.user[0].Avatar }}" style="cursor: pointer;">
+                    </div>
+                    <ng-template #LoaderAvartar>
+                      <div class="loader"></div>
+                    </ng-template>
+                  </div>
+                  <ng-template #other>
                     <img *ngIf="this.Avatar == null" class="img-profile" src="https://www.366icons.com/media/01/profile-avatar-account-icon-16699.png">
-                    <img *ngIf="this.Avatar != null " class="img-profile" src="{{ this.user[0].Avatar }}">
+                    <img *ngIf="this.Avatar != null " class="img-profile" src="{{ this.user[0].Avatar }}" >
+                  </ng-template>
                 </div>
-                
-                <div style="display: flex;
-                flex-direction: column;
-                justify-content: center;
-                margin-left: 6%;">
-                    <div *ngIf="this.user" class="user-profile" style="font-size: 50px;">{{ this.user[0].Username }}</div>
-                    <br>
-                    <div *ngIf="this.user" class="email-profile">{{ this.user[0].Email }}</div>
+                <div style="display: flex;flex-direction: column;justify-content: center;margin-left: 6%;">
+                  <ng-container *ngIf="this.show != true else otherinput">
+                    <div *ngIf="this.user">
+                      <div class="user-profile" style="font-size: 40px;text-align: center;">{{ this.user[0].Username }}</div>
+                      <br>
+                      <div class="email-profile" style="font-size: 20px;text-align: center;">{{ this.user[0].Email }}</div>
+                    </div>
+                  </ng-container>
+                  <ng-template #otherinput>
+                    <div *ngIf="this.user">
+                      <input  class="user-profile" style="font-size: 50px;text-align: center;" type="text" value="{{ this.user[0].Username }}" #username/>
+                      <br>
+                      <div style="display: flex;flex-direction: row;align-items: center;">
+                        <input class="email-profile" style="font-size: 20px;text-align: center;" type="text" value="{{ this.user[0].Email }}" #email/>
+                        <div class="container-button" (click)="ChangeInformation(username,email)">
+                          <div class="hover bt-1"></div>
+                          <div class="hover bt-2"></div>
+                          <div class="hover bt-3"></div>
+                          <div class="hover bt-4"></div>
+                          <div class="hover bt-5"></div>
+                          <div class="hover bt-6"></div>
+                          <button class="save"></button>
+                        </div>
+                      </div>
+                    </div>
+                  </ng-template>
                 </div>
             </div>
             <div class="image-bg">
                 <div *ngFor="let item of image" style="position: relative;display: flex;align-items: flex-end;">
-                    <img routerLink="/image" [queryParams]="{posts: item.Pid}" class="in-image-bg" src="{{item.ImageURL}}">
+                  <div *ngIf="this.show == true else otherimg">
+                    <img routerLink="/image" [queryParams]="{posts: item.Pid}" class="in-image-bg" src="{{item.ImageURL}}" style="cursor: pointer;">
                     <button class="bin-button" (click)="DeletePost(item.Pid)">
                         <svg class="bin-top" viewBox="0 0 39 7"fill="none"xmlns="http://www.w3.org/2000/svg">
                           <line y1="5" x2="39" y2="5" stroke="white" stroke-width="4"></line>
@@ -109,6 +136,10 @@
                           <path d="M21 6V29" stroke="white" stroke-width="4"></path>
                         </svg>
                       </button>
+                  </div>
+                  <ng-template #otherimg>
+                    <img class="in-image-bg" src="{{item.ImageURL}}">
+                  </ng-template>
                 </div>
                 <!-- Loader -->
                 <div *ngIf="this.load == true" aria-label="Orange and tan hamster running in a metal wheel" role="img" class="wheel-and-hamster">
@@ -129,7 +160,7 @@
                     </div>
                     <div class="spoke"></div>
                 </div>
-                <div tabindex="0" class="plusButton btn-upload" *ngIf="this.image.length < 5 && this.load == false">
+                <div tabindex="0" class="plusButton btn-upload" *ngIf="this.image.length < 5 && this.show == true && this.load == false">
                     <input type="file" #fileInput style="display: none" (change)="onFileSelected($event)">
                     <svg (click)="fileInput.click()" class="plusIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
                       <g mask="url(#mask0_21_345)">

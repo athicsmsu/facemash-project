@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import {MatButtonModule} from '@angular/material/button';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Constants } from '../../../config/constants';
 import { UserService } from '../../../services/api/user.service';
 import { PostService } from '../../../services/api/post.service';
@@ -18,10 +18,13 @@ import { VoteService } from '../../../services/api/vote.service';
 export class ImageComponent {
   pid : any;
 
-  constructor(private route: ActivatedRoute,private http : HttpClient,private constants: Constants,private userService : UserService,private postService : PostService,private voteService : VoteService){
+  constructor(private router: Router,private route: ActivatedRoute,private http : HttpClient,private constants: Constants,private userService : UserService,private postService : PostService,private voteService : VoteService){
 		this.route.queryParams.subscribe(params =>{
 			this.pid = params['posts'];
 		});
     console.log(this.pid);
+    if (!localStorage.getItem('user')) {
+      this.router.navigateByUrl('');
+    }
 	}
 }

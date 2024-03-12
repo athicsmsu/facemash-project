@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "facemash-msu"
+  },
+  "targets": {
+    "facemash-msu": {
+      "hosting": {
+        "facemash-project": [
+          "facemash-msu"
+        ]
+      }
+    }
   }
 }

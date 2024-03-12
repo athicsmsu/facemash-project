@@ -2,6 +2,7 @@ import { CommonModule, Location } from '@angular/common';
 import { Component } from '@angular/core';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router';
+import { UserService } from '../../services/api/user.service';
 
 @Component({
   selector: 'app-header',
@@ -13,7 +14,8 @@ import { NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router
 export class HeaderComponent {
   id:any;
   title:any = "VOTE";
-  constructor(private location: Location,private router: Router){
+  user : any;
+  constructor(private location: Location,private router: Router,private userService : UserService){
     this.id = localStorage.getItem('user');
   }
   ngOnInit(): void {
@@ -24,6 +26,10 @@ export class HeaderComponent {
     } else {
       this.router.navigateByUrl('');
     }
+    this.loadDataUser();
+  }
+  async loadDataUser(){
+    this.user = await this.userService.getAllDataUser(this.id);
   }
   goBack(): void {
 		this.location.back();
@@ -74,4 +80,8 @@ export class HeaderComponent {
 export function setHeaderID(header : HeaderComponent) {
   header.id = localStorage.getItem('user');
   header.title = "VOTE";
+  header.loadDataUser();
+}
+export function setHeaderProfile(header : HeaderComponent) {
+  header.title = "PROFILE";
 }

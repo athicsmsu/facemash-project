@@ -8,7 +8,7 @@ import { Constants } from '../../config/constants';
 import { PostService } from '../../services/api/post.service';
 import { ResRow } from '../../model/res_get_row';
 import { VoteService } from '../../services/api/vote.service';
-// import { AngularFireStorage } from '@angular/fire/storage';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-user',
@@ -26,23 +26,36 @@ export class UserComponent {
   Avatar : any;
   file? : File;
   load : any;
-// private storage: AngularFireStorage
-  constructor(private route: ActivatedRoute,private http : HttpClient,private constants: Constants,private userService : UserService,private postService : PostService,private voteService : VoteService){
+  show : any = false;
+  loadAvatar : any = false;
+  loaddelete : any = false;
+
+  constructor(private header:HeaderComponent,private router: Router,private route: ActivatedRoute,private http : HttpClient,private constants: Constants,private userService : UserService,private postService : PostService,private voteService : VoteService){
 		this.route.queryParams.subscribe(params =>{
 			this.id = params['user'];
 		});
 	}
 
   ngOnInit(): void {
+    if (!localStorage.getItem('user')) {
+      this.router.navigateByUrl('');
+    }
     this.loadDataAsync();
   }
 
   async loadDataAsync (){
+    if(localStorage.getItem('user') == this.id){
+      this.show = true;
+    } else {
+      this.show = false;
+    }
     this.user = await this.userService.getAllDataUser(this.id);
     this.image =  await this.postService.getPosts(this.id);
     this.Avatar = this.user[0].Avatar;
     // console.log(this.user);
     this.load = false;
+    this.loadAvatar = false;
+    this.loaddelete = false;
   }
   
   async onFileSelected(event: any): Promise<void> {
@@ -58,25 +71,47 @@ export class UserComponent {
     this.loadDataAsync();
   }
 
+  async onAvatar(event: any): Promise<void> {
+    this.loadAvatar = true;
+    this.file = event.target.files[0];
+    if (this.file) {
+      const formData = new FormData();
+      formData.append('file',this.file);
+      this.responseRow = await this.userService.UpdateAvatar(this.id,formData);
+    }
+    this.loadAvatar = true;
+    await this.delay(3000);
+    this.loadDataAsync();
+    this.header.loadDataUser();
+  }
+
   async delay(ms: number) {
     return await new Promise((resolve) => setTimeout(resolve, ms));
   }
 
-  DeletePost(Pid: any) {
-    console.log("Delete : "+Pid);
+  async DeletePost(Pid: any) {
+    if(this.loaddelete){
+      return;
+    } else {
+      this.loaddelete = true;
+      const response = await this.postService.DeletePosts(Pid);
+      console.log(response);
+      await this.delay(3000);
+      this.loadDataAsync();
+    }
   }
 
-  // deleteImage(imagePath: string): void {
-  //   // ใส่ path ของรูปที่ต้องการลบ
-  //   const storageRef = this.storage.ref(imagePath);
-
-  //   // ลบรูป
-  //   storageRef.delete().subscribe(() => {
-  //     console.log('Image deleted successfully');
-  //   }
-  //   ,(error) => {
-  //     console.error('Error deleting image:', error);
-  //   }
-  //   );
-  // }
+  async ChangeInformation(username: HTMLInputElement,email: HTMLInputElement){
+    const url = this.constants.API_ENDPOINT + `/user`;
+    if(username.value && email.value){
+      this.http.put(url + "/" + this.id, {
+          Username: username.value,
+          Email: email.value
+      }).subscribe((data:any)=>{
+        console.log(data);
+      })
+    }else{
+      console.log("Input is invalid");
+    }
+  }
 }

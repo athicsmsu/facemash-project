@@ -14,7 +14,13 @@ import { UserService } from '../../services/api/user.service';
 })
 export class LoginComponent{ 
 
-  constructor(private http:HttpClient,private constants : Constants, private router: Router,private header:HeaderComponent,private userService :UserService){}
+  constructor(private http:HttpClient,private constants : Constants, private router: Router,private header:HeaderComponent,private userService :UserService){
+    if (localStorage.getItem('user')) {
+      this.router.navigate(['/user'], {
+        queryParams: { user: localStorage.getItem('user') },
+      });
+    }
+  }
 
   login(email: HTMLInputElement,password: HTMLInputElement) {
     const url = this.constants.API_ENDPOINT + `/user`;

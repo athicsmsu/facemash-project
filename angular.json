@@ -96,6 +96,23 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "version": 2
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "facemash-project:build:production",
+              "serveTarget": "facemash-project:serve:production"
+            },
+            "development": {
+              "buildTarget": "facemash-project:build:development",
+              "serveTarget": "facemash-project:serve:development"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }

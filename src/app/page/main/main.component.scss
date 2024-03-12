@@ -14,8 +14,8 @@
   height: fit-content;
 }
 .image1 {
-  width: 400px;
-  height: 450px;
+  width: 25vw;
+  height: 70vh;
   border-radius: 1rem;
   transition: all .3s;
   z-index: 1;
@@ -24,8 +24,8 @@
   cursor: pointer;
 }
 .image2 {
-  width: 400px;
-  height: 450px;
+  width: 25vw;
+  height: 70vh;
   border-radius: 1rem;
   transition: all .3s;
   z-index: 1;
@@ -36,7 +36,9 @@
 .image1:hover,.image2:hover{
   scale: 0.9;
   transform: translateY(-15px);
+  object-fit: cover;
 }
+
 .Btn {
   width: 140px;
   height: 35px;
@@ -96,78 +98,19 @@
 
 ///**********************profile*************//
 .btn1 {
-  z-index: 2;
-  position: relative;
+  // z-index: 2;
+  // position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 4.5em;
   height: 4.5em;
   outline: none;
   border: none;
   border-radius: 50%;
   background-color: white;
-  transition: 0.4s all;
+  // transition: 0.4s all;
   cursor: pointer;
-}
-
-.btn1 .tooltiptext1 {
-  visibility: hidden;
-  width: 10em;
-  height: 8em;
-  background-color: whitesmoke;
-  color: black;
-  text-align: center;
-  border-radius: 10px;
-  padding: 1em;
-  position: absolute;
-  left: -1.5em;
-  top: -8em;
-  z-index: 1;
-  transition: 0.1s ease-in-out;
-  align-items: center;
-  align-content: center;
-  justify-content: center;
-}
-.btn1 .tooltiptext2 {
-  visibility: hidden;
-  width: 10em;
-  height: 8em;
-  background-color: whitesmoke;
-  color: black;
-  text-align: center;
-  border-radius: 10px;
-  padding: 1em;
-  position: absolute;
-  right: -1.5em;
-  top: -8em;
-  z-index: 1;
-  transition: 0.1s ease-in-out;
-  align-items: center;
-  align-content: center;
-  justify-content: center;
-}
-
-.btn1 .tooltiptext1 .card,
-.btn1 .tooltiptext2 .card {
-  width: 5em;
-  height: 5em;
-  background-color: white;
-}
-
-.btn1 .tooltiptext1 .account,
-.btn1 .tooltiptext2 .account {
-  margin-top: 1em;
-}
-
-.btn1 .tooltiptext1 .username,
-.btn1 .tooltiptext2 .username {
-  font-size: 0.7em;
-  margin-top: 1.6em;
-  font-weight: bold;
-}
-
-.btn1:hover .tooltiptext1,
-.btn1:hover .tooltiptext2 {
-  transform: translateY(-1em);
-  visibility: visible;
 }
 
 /***********title**********/
@@ -177,17 +120,17 @@
   --enhanced-glow-color: rgb(206, 255, 255);
   --btn-color: rgb(61, 127, 136);
   border: 0.05em solid var(--glow-color);
-  padding: 1em 2em;
+  padding: 1vw 1.25vw; /* ใช้ vw แทน em สำหรับ padding */
   color: var(--glow-color);
-  font-size: 20px;
+  font-size: 1.5vw; /* ใช้ vw แทน px สำหรับ font-size */
   font-weight: bold;
   background-color: var(--btn-color);
-  border-radius: 0.1em;
+  border-radius: 0.1vw; /* ใช้ vw แทน em สำหรับ border-radius */
   outline: none;
-  box-shadow: 0 0 0.5em 0.2em var(--glow-color),
-    0 0 4em 1em var(--glow-spread-color),
-    inset 0 0 0.5em 0.25em var(--glow-color);
-  text-shadow: 0 0 0.5em var(--glow-color);
+  box-shadow: 0 0 0.5vw 0.2vw var(--glow-color), /* ใช้ vw แทน em สำหรับ box-shadow */
+    0 0 4vw 1vw var(--glow-spread-color),
+    inset 0 0 0.5vw 0.25vw var(--glow-color);
+  text-shadow: 0 0 0.5vw var(--glow-color);
   position: relative;
   transition: all 0.3s;
 }
@@ -201,34 +144,41 @@
   height: 100%;
   width: 100%;
   background-color: var(--glow-spread-color);
-  filter: blur(2em);
+  filter: blur(2vw); /* ใช้ vw แทน em สำหรับ filter */
   opacity: 0.7;
-  transform: perspective(1.5em) rotateX(35deg) scale(1, 0.6);
+  transform: perspective(1.5vw) rotateX(35deg) scale(1, 0.6); /* ใช้ vw แทน em สำหรับ transform */
 }
 
 .glowbutton:hover {
   color: var(--btn-color);
   background-color: var(--glow-color);
-  box-shadow: 0 0 1em 0.25em var(--glow-color),
-    0 0 4em 2em var(--glow-spread-color),
-    inset 0 0 0.75em 0.25em var(--glow-color);
+  box-shadow: 0 0 1vw 0.25vw var(--glow-color), /* ใช้ vw แทน em สำหรับ box-shadow */
+    0 0 4vw 2vw var(--glow-spread-color),
+    inset 0 0 0.75vw 0.25vw var(--glow-color);
 }
 
 .glowbutton:active {
-  box-shadow: 0 0 0.6em 0.25em var(--glow-color),
-    0 0 2.5em 2em var(--glow-spread-color),
-    inset 0 0 0.5em 0.25em var(--glow-color);
+  box-shadow: 0 0 0.6vw 0.25vw var(--glow-color), /* ใช้ vw แทน em สำหรับ box-shadow */
+    0 0 2.5vw 2vw var(--glow-spread-color),
+    inset 0 0 0.5vw 0.25vw var(--glow-color);
 }
 
+
 /******** VS *************/
+body {
+  margin: 0;
+}
 
 .vs {
-  height: 50px;
-  width: 180px;
+  height: 7.25vh;
+  width: 12.5vw;
   background: linear-gradient(135deg, #14ffe9, #ffeb3b, #ff00e0);
-  border-radius: 25px;
+  border-radius: 2.5vw;
   animation: animate 1.5s linear infinite;
   border: none;
+  padding: 1.5vw;
+  margin-left: 7.5vw;
+  margin-right: 7.5vw;
 }
 
 .vs,
@@ -246,9 +196,7 @@
 }
 
 .vs:hover {
-  scale: 1.15;
   animation: animate 0.7s linear infinite;
-  transform: translateY(-15px);
 }
 
 .vs .display,
@@ -262,17 +210,17 @@
 .vs .display {
   z-index: 1;
   background-color: #1b1b1b;
-  height: 42.5px;
-  width: 172.5px;
-  border-radius: 20px;
+  height: 6.25vh;
+  width: 12vw;
+  border-radius: 2vw;
   text-align: center;
 }
 
 .vs .display #msg {
-  line-height: 42.5px;
-  font-size: 25px;
+  line-height: 6.25vh;
+  font-size: 1.8vw;
   font-weight: 800;
-  letter-spacing: 3px;
+  letter-spacing: 0.1vw;
   background: linear-gradient(135deg, #14ffe9, #ffeb3b, #ff00e0);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -288,15 +236,15 @@
   height: 100%;
   width: 100%;
   background: inherit;
-  border-radius: 25px;
+  border-radius: 2.5vw;
 }
 
 .vs span:first-child {
-  filter: blur(15px);
+  filter: blur(1.5vw);
 }
 
 .vs span:last-child {
-  filter: blur(15px);
+  filter: blur(1.5vw);
   transition: 0.3s;
 }
 
