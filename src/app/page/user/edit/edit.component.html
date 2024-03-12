@@ -1,6 +1,5 @@
 <div class="container">
     <div style="display: flex; align-items: center; justify-content: center;margin-top: 4%;">
-        
             <div class="form-box">
                 <div class="form">
                     <span class="title">Edit Password</span>
@@ -9,11 +8,8 @@
                         <input type="password" class="input" placeholder="New Password" #newPass>
                         <input type="password" class="input" placeholder="Confirm password" #cfPass>
                     </div>
-                    
-                    <button type="button" pButton pRipple (click)="show()" label="Show" class="p-button-success"></button>
                     <button (click)="edit(oldPass,newPass,cfPass)">Save</button>
                 </div>
-                
             </div>
         
     </div>
