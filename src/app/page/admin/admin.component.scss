@@ -1,0 +1,66 @@
+@import url("../../../../node_modules/bootstrap/dist/css/bootstrap-grid.css");
+
+.bg {
+    background-color: rgba(255, 255, 255, 0.25);
+    width: 100%;
+    height: fit-content;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    margin-top: 4%;
+  }
+
+  .for-bg {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: fit-content;
+    margin-bottom: 20px;
+  }
+
+  .data-bg {
+    // border-radius: 20px;
+    background-color: #e8e8e8;
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 5%;
+  }
+
+  .img-boder{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin: 20px;
+  }
+
+  .user-profile {
+    color: white;
+    border-radius: 20px;
+    background-color: rgb(113, 113, 113);
+    width: 100%;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+  }
+
+  .email-profile {
+    color: white;
+    border-radius: 20px;
+    background-color: rgb(113, 113, 113);
+    width: 80%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+  }

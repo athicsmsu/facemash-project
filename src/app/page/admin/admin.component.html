@@ -1,1 +1,21 @@
-<p>admin works!</p>
+<div class="container">
+    <div class="bg">
+        <div class="for-bg" *ngFor="let item of data">
+            <div *ngIf="item.Type == 'user'" class="data-bg">
+                <div style="display: flex; flex-direction: row;">
+                    <div (click)="IDuser(item.UserID)">
+                        <img class="img-boder" src="{{item.Avatar}}" alt="">
+                    </div>
+                </div>
+                <div style="display: flex; flex-direction: column;align-items: center;justify-content: center; width: 70%;">
+                    <div class="user-profile">
+                        {{item.Username}}
+                    </div>
+                    <div class="email-profile">
+                        {{item.Email}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
