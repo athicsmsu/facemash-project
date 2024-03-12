@@ -2,7 +2,8 @@
     <div style="display: flex; flex-direction: row; margin-top: 2%;">
         <div style="display: flex; flex-direction: column;">
             <div class="img-bg" *ngIf="image">
-                <img width="350px" height="450px" src="{{ image[0].ImageURL }}" style="border-radius: 10px;">     
+                <input type="file" #post style="display: none" (change)="onChangePost($event)">
+                <img (click)="post.click()" width="350px" height="450px" src="{{ image[0].ImageURL }}" style="border-radius: 10px;">     
             </div>
         </div>
         <div style="display: flex; flex-direction: column;">

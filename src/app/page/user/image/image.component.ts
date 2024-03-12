@@ -9,6 +9,7 @@ import { VoteService } from '../../../services/api/vote.service';
 import { ChartModule } from 'primeng/chart';
 import { DailystatsService } from '../../../services/api/dailystats.service';
 import { CommonModule } from '@angular/common';
+import { ResRow } from '../../../model/res_get_row';
 
 
 @Component({
@@ -19,13 +20,16 @@ import { CommonModule } from '@angular/common';
   styleUrl: './image.component.scss'
 })
 export class ImageComponent implements OnInit {
-
+  
+  responseRow : ResRow | any;
   pid : any;
   image : any;
   AllDataYesterday : any[] = [];
   data7day : any[] = [];
   NumNowRank : any[] = [];
-  
+  loadPost : any = false;
+  file? : File;
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -46,19 +50,30 @@ export class ImageComponent implements OnInit {
   }
   ngOnInit(): void {
     this.loadDataAsync();
-    
   }
 
   async loadDataAsync(){
     this.image = await this.postService.getPostsByPid(this.pid);
-    //console.log(this.image);
-    //this.AllDataYesterday.push(await this.dailyService.getAllDailystats(this.pid));
-    //console.log( this.AllDataYesterday);
     this.data7day = await this.dailyService.getAllDailystats7day(this.pid);
-    console.log( this.data7day);
     this.NumNowRank = this.data7day[0].rank;
-    //console.log(this.NumNowRank);
     this.loadGraph();
+  }
+  
+  async onChangePost(event: any): Promise<void> {
+    this.loadPost = true;
+    this.file = event.target.files[0];
+    if (this.file) {
+      const formData = new FormData();
+      formData.append('file',this.file);
+      this.responseRow = await this.userService.UpdateAvatar(this.pid,formData);
+    }
+    this.loadPost = true;
+    await this.delay(3000);
+    this.loadDataAsync();
+  }
+
+  async delay(ms: number) {
+    return await new Promise((resolve) => setTimeout(resolve, ms));
   }
 
   day: any;
