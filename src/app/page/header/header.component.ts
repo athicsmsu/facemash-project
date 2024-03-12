@@ -19,13 +19,26 @@ export class HeaderComponent {
     this.id = localStorage.getItem('user');
   }
   ngOnInit(): void {
-    if (localStorage.getItem('user')) {
-      this.router.navigate(['/user'], {
-        queryParams: { user: localStorage.getItem('user') },
-      });
-    } else {
-      this.router.navigateByUrl('');
-    }
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        const currentRoute = this.router.routerState.snapshot.url;
+        if (currentRoute.includes('/rank')) {
+          this.title= "RANK";
+        }
+        if (currentRoute.includes('/profile') || currentRoute.includes('/image')) {
+          this.title= "PROFILE";
+        }
+        if (currentRoute.includes('/user')) {
+          this.title= "VOTE";
+        }
+        if (currentRoute.includes('/login')) {
+          this.title= "LOGIN";
+        }
+        if (currentRoute == '/') {
+          this.title= "VOTE";
+        }
+      }
+    });
     this.loadDataUser();
   }
   async loadDataUser(){

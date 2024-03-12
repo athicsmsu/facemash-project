@@ -25,6 +25,18 @@ export class PostService {
     return response as ResPost[];
   }
 
+  public async getPostsByPid(options?:any){
+    let url = '';
+    if(options){
+      const id = options;
+      url = this.constants.API_ENDPOINT + '/posts/image/' + id;
+    }else{
+      url = this.constants.API_ENDPOINT + '/posts';
+    }
+    const response = await lastValueFrom(this.http.get(url));
+    return response as ResPost[];
+  }
+
   public async getScore(options?:any){
     let url = '';
     if(options){

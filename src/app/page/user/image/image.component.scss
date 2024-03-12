@@ -1,9 +1,9 @@
 @import url("../../../../../node_modules/bootstrap/dist/css/bootstrap-grid.css");
 
 .img-bg {
-  background-color: aqua;
+  background-color: rgba(255, 255, 255, 0.25);
   width: 500px;
-  height: 700px;
+  height: 580px;
   border-radius: 20px;
   border-top-right-radius: 0px;
   border-bottom-right-radius: 0px;
@@ -13,9 +13,9 @@
 }
 
 .data-bg {
-  background-color: yellow;
+  background-color: rgba(255, 255, 255, 0.25);
   width: 100%;
-  height: 700px;
+  height: 580px;
   border-radius: 20px;
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
@@ -23,15 +23,23 @@
 
 .data-rank {
   border-radius: 20px;
-  background-color: azure;
   width: 700px;
-  height: 150px;
+  height: 50px;
   display: flex;
   align-items: center;
-  justify-content: center;
   margin-top: 10px;
   margin-left: 50px;
   margin-right: 50px;
+  background-color: #ffffffa2;
+  border-radius: 20px;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 3%;
+}
+.in-data-rank{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .data-graph {

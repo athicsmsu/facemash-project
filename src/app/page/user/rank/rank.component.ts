@@ -15,8 +15,7 @@ export class RankComponent {
 
   image : any[] = [];
   BeforeRank : any[] = [];
-  NowRank : any[] = [];
-  num : any[] = [];
+  NumRank : any[] = [];
   constructor(private router: Router,private voteService : VoteService,private dailyService : DailystatsService){
     this.loadDataAsync();
   }
@@ -27,8 +26,8 @@ export class RankComponent {
       this.BeforeRank.push(await this.dailyService.getAllDailystats(this.image[i].Pid));
     }
     for(let i = 0;i<this.image.length;i++){
-      this.NowRank.push(this.BeforeRank[i][0].rank);
+      this.NumRank.push(this.BeforeRank[i][0].rank);
     }
-    console.log(this.NowRank);
+    console.log(this.NumRank);
   }
 }

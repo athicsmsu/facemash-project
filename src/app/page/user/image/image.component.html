@@ -1,17 +1,27 @@
 <div class="container">
     <div style="display: flex; flex-direction: row; margin-top: 2%;">
         <div style="display: flex; flex-direction: column;">
-            <div class="img-bg">
-                <img width="400px" height="400px" src="https://static.vecteezy.com/system/resources/previews/000/420/681/original/picture-icon-vector-illustration.jpg" alt="">     
+            <div class="img-bg" *ngIf="image">
+                <img width="350px" height="450px" src="{{ image[0].ImageURL }}" style="border-radius: 10px;">     
             </div>
         </div>
         <div style="display: flex; flex-direction: column;">
             <div class="data-bg">
-                <div style="display: flex; justify-content: flex-end;margin: 3%;">                   
-                    <button mat-raised-button style="background-color: aquamarine;">save</button>
-                </div>
                 <div style="display: flex; justify-content: center;margin-top: 2%;">
-                    <div class="data-rank"></div>
+                    <div class="data-rank">
+                        <div class="in-data-rank">
+                            <span>อันดับปัจจุบัน</span>
+                            <span>{{ this.NumNowRank[0] }}</span>
+                        </div>
+                        <div class="in-data-rank">
+                            <span>อันดับก่อนหน้า</span>
+                            <span>{{ this.NumNowRank[0] }}</span>
+                        </div>
+                        <div class="in-data-rank">
+                            <span>สรุปผล</span>
+                            <span>{{ this.NumNowRank[0] }}</span>
+                        </div>
+                    </div>
                 </div>
                 <div style="display: flex; justify-content: center;margin-top: 2%;">
                     <div class="data-graph"></div>
