@@ -42,7 +42,11 @@ export class ImageComponent implements OnInit {
     if (!localStorage.getItem('user')) {
       this.router.navigateByUrl('');
     }
+    
+  }
+  ngOnInit(): void {
     this.loadDataAsync();
+    
   }
 
   async loadDataAsync(){
@@ -54,14 +58,18 @@ export class ImageComponent implements OnInit {
     console.log( this.data7day);
     this.NumNowRank = this.data7day[0].rank;
     //console.log(this.NumNowRank);
+    this.loadGraph();
   }
 
   day: any;
   scroe: any;
 
-  ngOnInit() {
-    this.day = {
-      labels: ['day1', 'day2', 'day3', 'day4', 'day5', 'day6', 'day7'],
+  async loadGraph() {
+    const labels = this.data7day.map(day => day.date);
+    const data = this.data7day.map(day => day.score);
+
+    this.day = await {
+      labels: labels,
       datasets: [
         {
           label: 'Dataset',
@@ -72,7 +80,7 @@ export class ImageComponent implements OnInit {
       ]
     };
 
-    this.scroe = {
+    this.scroe = await {
       responsive: true,
       maintainAspectRatio: false,
       aspectRatio: 0.8,
