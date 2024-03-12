@@ -5,6 +5,6 @@ import { Injectable } from '@angular/core';
 })
 
 export class Constants {
-	//public readonly API_ENDPOINT: string = 'http://localhost:3000';
-	 public readonly API_ENDPOINT: string = 'https://facemash-api-jrd7.onrender.com';
+	public readonly API_ENDPOINT: string = 'http://localhost:3000';
+	//public readonly API_ENDPOINT: string = 'https://facemash-api-jrd7.onrender.com';
 }

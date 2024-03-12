@@ -65,7 +65,7 @@ export class ImageComponent implements OnInit {
   scroe: any;
 
   async loadGraph() {
-    const labels = this.data7day.map(day => day.date);
+    const labels = this.data7day.map(day => day.formatted_date);
     const data = this.data7day.map(day => day.score);
 
     this.day = await {
