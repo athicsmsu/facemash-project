@@ -21,4 +21,17 @@ export class DailystatsService {
     const response = await lastValueFrom(this.http.get(url));
     return response as any[];
   }
+
+  public async getAllDailystats7Day(options?:any){
+    let url = '';
+    if(options){
+      const id = options;
+      url = this.constants.API_ENDPOINT + '/dailystats/grahp/' + id;
+    }else{
+      url = this.constants.API_ENDPOINT + '/dailystats/grahp/';
+      console.log("ERR");
+    }
+    const response = await lastValueFrom(this.http.get(url));
+    return response as any[];
+  }
 }

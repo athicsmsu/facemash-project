@@ -19,18 +19,12 @@ import { CommonModule } from '@angular/common';
   styleUrl: './image.component.scss'
 })
 export class ImageComponent implements OnInit {
+
   pid : any;
   image : any;
   AllDataYesterday : any[] = [];
   NumNowRank : any[] = [];
-  async loadDataAsync(){
-    this.image = await this.postService.getPostsByPid(this.pid);
-    console.log(this.image);
-    this.AllDataYesterday.push(await this.dailyService.getAllDailystats(this.pid));
-    console.log( this.AllDataYesterday);
-    this.NumNowRank.push(this.AllDataYesterday[0][0].rank);
-    console.log(this.NumNowRank);
-  }
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -53,13 +47,23 @@ export class ImageComponent implements OnInit {
   day: any;
   scroe: any;
 
+  async loadDataAsync(){
+    this.image = await this.postService.getPostsByPid(this.pid);
+
+    this.AllDataYesterday = await this.dailyService.getAllDailystats7Day(this.pid);
+    console.log( this.AllDataYesterday);
+
+    this.NumNowRank.push(this.AllDataYesterday[0].date);
+    console.log(this.NumNowRank);
+  }
+
   ngOnInit() {
     this.day = {
       labels: ['day1', 'day2', 'day3', 'day4', 'day5', 'day6', 'day7'],
       datasets: [
         {
           label: 'Dataset',
-          data: [50, 40, 60, 50],
+          data: [50, 50, 50, 50],
           fill: false, //พื้นที่ใต้กราฟ
           borderColor: '#000000', //เส้นของข้อมูล
         },
@@ -70,6 +74,7 @@ export class ImageComponent implements OnInit {
       responsive: true,
       maintainAspectRatio: false,
       aspectRatio: 0.8,
+      width: 1000,
       scales: {
         x: {
           ticks: {
