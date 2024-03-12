@@ -73,7 +73,7 @@ export class ImageComponent implements OnInit {
       datasets: [
         {
           label: 'Dataset',
-          data: [50, 50, 50, 50],
+          data: data,
           fill: false, //พื้นที่ใต้กราฟ
           borderColor: '#000000', //เส้นของข้อมูล
         },
