@@ -7,6 +7,8 @@ import { ActivatedRoute, Router, RouterLink, RouterOutlet } from '@angular/route
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { ToastrService } from 'ngx-toastr';
+import { ResRe } from '../../../model/res_get';
+
 
 @Component({
   selector: 'app-edit',
@@ -18,21 +20,28 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class EditComponent {
   id:any;
-  x:any;
-  constructor(private messageService: MessageService, private route: ActivatedRoute, private http:HttpClient,private constants : Constants, private router: Router,private header:HeaderComponent,private userService :UserService,private toastr: ToastrService){
+  result : ResRe | any;
+  constructor(private toastr: ToastrService,private messageService: MessageService, private route: ActivatedRoute, private http:HttpClient,private constants : Constants, private router: Router,private header:HeaderComponent,private userService :UserService){
     this.id = localStorage.getItem('user');
     console.log(this.id);
   }
 
   async edit(oldPass: HTMLInputElement, newPass: HTMLInputElement, cfPass: HTMLInputElement) {
-    const x = await this.userService.UpdatePassword(this.id,oldPass.value,newPass.value,cfPass.value);
-    console.log(x);
+    this.result = await this.userService.UpdatePassword(this.id,oldPass.value,newPass.value,cfPass.value); 
+    console.log(this.result.result);
+    if(this.result.result.includes("Not_Password")){
+      this.toastr.error('The password is incorrect', 'Error');
+    }
+    else if(this.result.result.includes("Not_Math")){
+      this.toastr.warning('Passwords dont match', 'warning');
+    }
+    else if(this.result.result.includes("success")){
+      this.toastr.success('successfully', 'success');
+      const UserID = localStorage.getItem('user');
+      this.router.navigate(['/profile'],{
+      queryParams: { user : UserID}
+      });
+    }
   }
-  showSuccess() {
-    this.toastr.success('Hello world!', 'Toastr fun!');
-  }
-  show() {
-    this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Message Content' });
-}
 
 }

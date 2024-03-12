@@ -8,8 +8,6 @@
                     <input type="password" class="input" placeholder="New Password" #newPass>
                     <input type="password" class="input" placeholder="Confirm password" #cfPass>
                 </div>
-                <p-toast></p-toast>
-                <button type="button" pButton pRipple (click)="showSuccess()" label="Show" class="p-button-success"></button>
                 <button (click)="edit(oldPass,newPass,cfPass)">Save</button>
             </div>
         </div>

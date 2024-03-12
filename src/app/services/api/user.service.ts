@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { lastValueFrom } from 'rxjs';
 import { ResUser } from '../../model/res_get_user';
 import { ResRow } from '../../model/res_get_row';
+import { ResRe } from '../../model/res_get';
 
 @Injectable({
   providedIn: 'root'
@@ -48,6 +49,6 @@ export class UserService {
       newPass : newPass,
       cfPass : cfPass
     }));
-    return response as any[];
+    return response as ResRe[];
   }
 }
