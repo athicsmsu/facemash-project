@@ -19,13 +19,6 @@ export class HeaderComponent {
     this.id = localStorage.getItem('user');
   }
   ngOnInit(): void {
-    if (localStorage.getItem('user')) {
-      this.router.navigate(['/user'], {
-        queryParams: { user: localStorage.getItem('user') },
-      });
-    } else {
-      this.router.navigateByUrl('');
-    }
     this.loadDataUser();
   }
   async loadDataUser(){

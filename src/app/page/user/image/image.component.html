@@ -14,7 +14,9 @@
                     <div class="data-rank"></div>
                 </div>
                 <div style="display: flex; justify-content: center;margin-top: 2%;">
-                    <div class="data-graph"></div>
+                    <div class="data-graph">
+                        <p-chart type="line" [data]="day" [options]="scroe"></p-chart>
+                    </div>
                 </div>
             </div>
         </div>
