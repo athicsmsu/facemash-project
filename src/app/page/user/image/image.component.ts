@@ -65,7 +65,7 @@ export class ImageComponent implements OnInit {
   scroe: any;
 
   async loadGraph() {
-    const labels = this.data7day.map(day => day.date);
+    const labels = this.data7day.map(day => day.formatted_date);
     const data = this.data7day.map(day => day.score);
 
     this.day = await {
@@ -73,7 +73,7 @@ export class ImageComponent implements OnInit {
       datasets: [
         {
           label: 'Dataset',
-          data: [50, 50, 50, 50],
+          data: data,
           fill: false, //พื้นที่ใต้กราฟ
           borderColor: '#000000', //เส้นของข้อมูล
         },
