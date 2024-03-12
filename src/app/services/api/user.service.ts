@@ -13,6 +13,13 @@ export class UserService {
 
   constructor(private constants : Constants,private http:HttpClient) { }
 
+  public async getAllUser(){
+    let url = '';
+    url = this.constants.API_ENDPOINT + '/user/userAll';
+    const response = await lastValueFrom(this.http.get(url));
+    return response as any[];
+  }
+
   public async getAllDataUser(options?:any){
     let url = '';
     if(options){
