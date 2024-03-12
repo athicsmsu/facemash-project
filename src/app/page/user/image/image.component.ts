@@ -19,6 +19,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './image.component.scss'
 })
 export class ImageComponent implements OnInit {
+
   pid : any;
   image : any;
   AllDataYesterday : any[] = [];
@@ -41,7 +42,11 @@ export class ImageComponent implements OnInit {
     if (!localStorage.getItem('user')) {
       this.router.navigateByUrl('');
     }
+    
+  }
+  ngOnInit(): void {
     this.loadDataAsync();
+    
   }
 
   async loadDataAsync(){
@@ -53,28 +58,33 @@ export class ImageComponent implements OnInit {
     console.log( this.data7day);
     this.NumNowRank = this.data7day[0].rank;
     //console.log(this.NumNowRank);
+    this.loadGraph();
   }
 
   day: any;
   scroe: any;
 
-  ngOnInit() {
-    this.day = {
-      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+  async loadGraph() {
+    const labels = this.data7day.map(day => day.date);
+    const data = this.data7day.map(day => day.score);
+
+    this.day = await {
+      labels: labels,
       datasets: [
         {
           label: 'Dataset',
-          data: [50, 40, 60, 50],
+          data: [50, 50, 50, 50],
           fill: false, //พื้นที่ใต้กราฟ
           borderColor: '#000000', //เส้นของข้อมูล
         },
       ]
     };
 
-    this.scroe = {
+    this.scroe = await {
       responsive: true,
       maintainAspectRatio: false,
       aspectRatio: 0.8,
+      width: 1000,
       scales: {
         x: {
           ticks: {
