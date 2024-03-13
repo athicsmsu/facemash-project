@@ -9,6 +9,7 @@ import { PostService } from '../../services/api/post.service';
 import { ResRow } from '../../model/res_get_row';
 import { VoteService } from '../../services/api/vote.service';
 import { HeaderComponent } from '../header/header.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-user',
@@ -30,13 +31,11 @@ export class UserComponent {
   loadAvatar : any = false;
   loaddelete : any = false;
 
-  constructor(private header:HeaderComponent,private router: Router,private route: ActivatedRoute,private http : HttpClient,private constants: Constants,private userService : UserService,private postService : PostService,private voteService : VoteService)
+  constructor(private toastr: ToastrService,private header:HeaderComponent,private router: Router,private route: ActivatedRoute,private http : HttpClient,private constants: Constants,private userService : UserService,private postService : PostService,private voteService : VoteService)
   {
 		this.route.queryParams.subscribe(params =>{
 			this.id = params['user'];
 		});
-    console.log(this.id);
-    
 	}
 
   ngOnInit(): void {
@@ -71,6 +70,7 @@ export class UserComponent {
       this.responseRow = await this.voteService.NewPosts(this.responseRow.last_idx);
     }
     await this.delay(3000);
+    this.toastr.success('Upload Success');
     this.loadDataAsync();
   }
 
@@ -84,9 +84,10 @@ export class UserComponent {
     }
     this.loadAvatar = true;
     await this.delay(3000);
+    this.toastr.success('Change Avatar Success');
     this.loadDataAsync();
     this.header.loadDataUser();
-  }
+  } 
 
   async delay(ms: number) {
     return await new Promise((resolve) => setTimeout(resolve, ms));
@@ -94,12 +95,13 @@ export class UserComponent {
 
   async DeletePost(Pid: any) {
     if(this.loaddelete){
+      this.toastr.warning('Wait for Process...', 'warning')
       return;
     } else {
       this.loaddelete = true;
       const response = await this.postService.DeletePosts(Pid);
-      console.log(response);
       await this.delay(3000);
+      this.toastr.success('Delete Success');
       this.loadDataAsync();
     }
   }
@@ -111,10 +113,12 @@ export class UserComponent {
           Username: username.value,
           Email: email.value
       }).subscribe((data:any)=>{
-        console.log(data);
-      })
+        this.toastr.success('Save Success');
+      });
+      await this.delay(3000);
+      this.loadDataAsync();
     }else{
-      console.log("Input is invalid");
+      this.toastr.warning('Input is invalid', 'warning')
     }
   }
 }

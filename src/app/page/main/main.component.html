@@ -20,7 +20,7 @@
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12,12.5c-3.04,0-5.5,1.73-5.5,3.5s2.46,3.5,5.5,3.5,5.5-1.73,5.5-3.5-2.46-3.5-5.5-3.5Zm0-.5c1.66,0,3-1.34,3-3s-1.34-3-3-3-3,1.34-3,3,1.34,3,3,3Z"></path></svg>
                         </div>
                         <ng-template #avatar1>
-                            <img src="{{ user1[0].Avatar }}" style="width: 4.5em;height: 4.5em;border-radius: 50%;object-fit: cover;">
+                            <img src="{{ user1[0].Avatar }}" style="width: 4.5em;height: 4.5em;border-radius: 50%;object-fit: cover;aspect-ratio: 6/6;">
                         </ng-template>
                     </button>
                     <img src="{{ image1.ImageURL }}" class="image1" (click)="Vote(this.image1.Pid,this.image2.Pid,1)">
@@ -52,7 +52,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12,12.5c-3.04,0-5.5,1.73-5.5,3.5s2.46,3.5,5.5,3.5,5.5-1.73,5.5-3.5-2.46-3.5-5.5-3.5Zm0-.5c1.66,0,3-1.34,3-3s-1.34-3-3-3-3,1.34-3,3,1.34,3,3,3Z"></path></svg>
                     </ng-container>
                     <ng-template #avatar2>
-                        <img src="{{ user2[0].Avatar }}" style="width: 4.5em;height: 4.5em;border-radius: 50%;object-fit: cover;">
+                        <img src="{{ user2[0].Avatar }}" style="width: 4.5em;height: 4.5em;border-radius: 50%;object-fit: cover;aspect-ratio: 6/6;">
                     </ng-template>
                 </button>
                 </div>

@@ -17,11 +17,11 @@
                     <div class="close-button" (click)="closeForm()">x</div>
                     <div class="form-title">Sign Up</div>
                     <div class="input-group">
-                        <input type="text" id="name" (blur)="checkInput(usernameInput)" #usernameInput />
+                        <input type="text" id="name" (blur)="checkInput(usernameInput)" (keyup.enter)="register(usernameInput,emailInput,passwordInput)"  (keyup.enter)="closeForm()" #usernameInput />
                         <label for="name">Username</label>
                     </div>
                     <div class="input-group">
-                        <input type="email" id="email" (blur)="checkInput(emailInput)" #emailInput />
+                        <input type="email" id="email" (blur)="checkInput(emailInput)" (keyup.enter)="register(usernameInput,emailInput,passwordInput)"  (keyup.enter)="closeForm()"  #emailInput />
                         <label for="email">Email</label>
                     </div>
                     <div class="input-group">

@@ -33,11 +33,10 @@ export class LoginComponent{
           }
       }).subscribe((data:any)=>{
         if(data == null || (Array.isArray(data) && data.length === 0)){
-          this.toastr.error('Email Incorrect', 'Error');
+          this.toastr.error('Email Notfound', 'Error');
         } else {
             if(data[0].Password == password.value){
               if(data[0].Type.includes("user")){
-                // console.log(data[0].Type);
                 localStorage.setItem('user', data[0].UserID);
                 this.router.navigate(['/user'],{
                   queryParams: { user : data[0].UserID }
@@ -46,7 +45,6 @@ export class LoginComponent{
                 this.toastr.success('Login Success', 'User');
               }
               else if(data[0].Type.includes("admin")){
-                // console.log(data[0].Type);
                 this.router.navigate(['/admin']);
                 this.toastr.success('Login Success', 'Admin');
               }
@@ -78,7 +76,8 @@ export class LoginComponent{
           }).subscribe((data:any)=>{
             console.log(data);
             this.toastr.success('Sing up', 'Success');
-          })
+          });
+          this.toastr.success('Process...');
         } else {
           this.toastr.error('Email already registered.', 'Error');
         }

@@ -22,6 +22,7 @@
   transform: perspective(400em) rotateY(15deg) rotateX(6deg) skew(8deg, -4deg)
     translate3d(4%, -2%, 0) scale(0.86);
   cursor: pointer;
+  object-fit: cover;
 }
 .image2 {
   width: 25vw;
@@ -32,11 +33,11 @@
   transform: perspective(400em) rotateY(-15deg) rotateX(6deg) skew(-8deg, 4deg)
     translate3d(-4%, -2%, 0) scale(0.86);
   cursor: pointer;
+  object-fit: cover;
 }
 .image1:hover,.image2:hover{
   scale: 0.9;
   transform: translateY(-15px);
-  object-fit: cover;
 }
 
 .Btn {
@@ -99,7 +100,6 @@
 ///**********************profile*************//
 .btn1 {
   // z-index: 2;
-  // position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -109,7 +109,6 @@
   border: none;
   border-radius: 50%;
   background-color: white;
-  // transition: 0.4s all;
   cursor: pointer;
 }
 

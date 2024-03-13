@@ -29,7 +29,7 @@ export class EditComponent {
   async edit(oldPass: HTMLInputElement, newPass: HTMLInputElement, cfPass: HTMLInputElement) {
     if(newPass.value && cfPass.value){
       this.result = await this.userService.UpdatePassword(this.id,oldPass.value,newPass.value,cfPass.value);
-      console.log(this.result.result);
+      // console.log(this.result.result);
       if(this.result.result.includes("Not_Password")){
         this.toastr.error('The password is incorrect', 'Error');
       }
@@ -44,7 +44,7 @@ export class EditComponent {
         });
       }
     } else {
-      this.toastr.warning('Invalid Input', 'warning')
+      this.toastr.warning('Input is invalid', 'warning')
     }
   }
 

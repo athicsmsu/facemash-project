@@ -11,6 +11,7 @@ import { Constants } from '../../config/constants';
 import { HttpClient } from '@angular/common/http';
 import { UserService } from '../../services/api/user.service';
 import { HeaderComponent, setHeaderProfile } from '../header/header.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-main',
@@ -39,7 +40,8 @@ export class MainComponent {
     private route: ActivatedRoute,
     private constants: Constants,
     private http: HttpClient,
-    private header:HeaderComponent
+    private header:HeaderComponent,
+    private toastr: ToastrService
   ) {
     this.route.queryParams.subscribe((params) => {
       this.id = params['user'];
@@ -77,8 +79,10 @@ export class MainComponent {
   async Vote(WinPid: Number, LosePid: Number, check: Number) {
     
     if (!this.canVote) {
+      this.toastr.warning('Please Wait', 'warning')
       return; // ไม่สามารถกด Vote ได้อีก
     } else {
+      this.toastr.success('Vote Success');
       this.countnum = 5;
     }
     this.canVote = false;

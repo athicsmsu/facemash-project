@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router';
 import { UserService } from '../../services/api/user.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-header',
@@ -15,7 +16,7 @@ export class HeaderComponent {
   id:any;
   title:any = "VOTE";
   user : any;
-  constructor(private location: Location,private router: Router,private userService : UserService){
+  constructor(private location: Location,private router: Router,private userService : UserService,private toastr: ToastrService){
     this.id = localStorage.getItem('user');
   }
   ngOnInit(): void {
@@ -79,6 +80,7 @@ export class HeaderComponent {
     this.router.navigate(['/']);
     this.title= "VOTE";
     this.id = null;
+    this.toastr.success('Logout', 'Success');
   }
   isLoggedIn(): boolean {
     return localStorage.length > 0;

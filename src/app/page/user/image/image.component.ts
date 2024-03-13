@@ -56,9 +56,9 @@ export class ImageComponent implements OnInit {
 
   async loadDataAsync(){
     this.image = await this.postService.getPostsByPid(this.pid);
+    console.log(this.image);
     this.data7day = await this.dailyService.getAllDailystats7day(this.pid);
     console.log(this.data7day);
-    
     if(this.data7day.length>0){
      this.NumNowRank = this.data7day[this.data7day.length-1].rank; 
     }
