@@ -16,13 +16,17 @@ export class AdminComponent {
   data : any[] = [];
 
   constructor(private router: Router,private userService : UserService){
+    if (localStorage.getItem('admin')) {
+      this.router.navigateByUrl('/admin');
+    } else {
+      this.router.navigateByUrl('');
+    }
     this.loadDataAsync();
-    console.log("admin");
   }
 
   async loadDataAsync (){
     this.data = await this.userService.getAllUser();
-    console.log(this.data);
+    // console.log(this.data);
   }
   
   IDuser(UserID: any) {

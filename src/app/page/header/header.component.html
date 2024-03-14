@@ -24,7 +24,7 @@
             <span class="text">Vote</span>
             <span aria-hidden="" class="marquee">Vote</span>
         </button>
-        <button  *ngIf="this.title != 'ADMIN' && this.admin == true" class="btn-23" routerLink="admin" (click)="changAdmin()">
+        <button  *ngIf="this.admin == true" class="btn-23" routerLink="admin" (click)="changAdmin()">
             <span class="text">ADMIN</span>
             <span aria-hidden="" class="marquee">Admin</span>
         </button>

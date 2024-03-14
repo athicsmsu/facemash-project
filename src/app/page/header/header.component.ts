@@ -122,4 +122,5 @@ export function setHeaderProfile(header : HeaderComponent) {
 }
 export function setHeaderAdmin(header : HeaderComponent) {
   header.title = "ADMIN";
+  header.admin = true;
 }

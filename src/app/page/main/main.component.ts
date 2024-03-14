@@ -10,7 +10,7 @@ import {
 import { Constants } from '../../config/constants';
 import { HttpClient } from '@angular/common/http';
 import { UserService } from '../../services/api/user.service';
-import { HeaderComponent, setHeaderProfile } from '../header/header.component';
+import { HeaderComponent, setHeaderAdmin, setHeaderProfile } from '../header/header.component';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -54,6 +54,9 @@ export class MainComponent {
       this.router.navigate(['/user'], {
         queryParams: { user: localStorage.getItem('user') },
       });
+    } else if (localStorage.getItem('admin')) {
+      setHeaderAdmin(this.header);
+      this.router.navigate(['/admin']);
     } else {
       this.router.navigateByUrl('');
     }
