@@ -25,6 +25,7 @@ export class RankComponent {
     for(let i = 0;i<this.image.length;i++){
       this.BeforeRank.push(await this.dailyService.getAllDailystats(this.image[i].Pid));
     }
+    // console.log(this.BeforeRank);
     for(let i = 0;i<this.image.length;i++){
       this.NumRank.push(this.BeforeRank[i][0].rank);
     }

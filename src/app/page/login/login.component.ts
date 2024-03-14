@@ -42,7 +42,7 @@ export class LoginComponent{
                   queryParams: { user : data[0].UserID }
                 });
                 setHeaderID(this.header);
-                this.toastr.success('Login Success', 'User');
+                this.toastr.success('Login');
               }
               else if(data[0].Type.includes("admin")){
                 this.router.navigate(['/admin']);

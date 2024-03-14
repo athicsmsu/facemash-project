@@ -79,60 +79,61 @@ export class MainComponent {
   async Vote(WinPid: Number, LosePid: Number, check: Number) {
     
     if (!this.canVote) {
-      this.toastr.warning('Please Wait', 'warning')
+      this.toastr.warning('Please Wait...')
       return; // ไม่สามารถกด Vote ได้อีก
     } else {
+      this.canVote = false;
+      const url = this.constants.API_ENDPOINT + "/vote";
+      const K = 32;
+      const EA = 1 / (1 + 10 ** ((this.score2 - this.score1) / 400));
+      const EB = 1 / (1 + 10 ** ((this.score1 - this.score2) / 400));
       this.toastr.success('Vote Success');
+      if (check == 1) {
+        //กรณี A ชนะ
+        const RA = K * (1 - EA);
+        console.log(RA);
+        const RB = K * (0 - EB);
+        console.log(RB);
+        this.toastr.info('ภาพซ้าย +'+RA.toFixed(0).toString() + ' ภาพขวา '+RB.toFixed(0).toString());
+        this.http
+          .post(url + '/win', {
+            Pid: WinPid,  
+            score: RA,
+          })
+          .subscribe((data: any) => {
+            // console.log(data);
+          });
+        this.http
+          .post(url + '/lose', {
+            Pid: LosePid,
+            score: RB,
+          })
+          .subscribe((data: any) => {
+            // console.log(data);
+          });
+      } else if (check == 2) {
+        //กรณี ฺB ชนะ
+        const RA = K * (0 - EA);
+        console.log(RA);
+        const RB = K * (1 - EB);
+        this.toastr.info('ภาพซ้าย '+ RA.toFixed(0).toString() + ' ภาพขวา +'+ RB.toFixed(0).toString());
+        console.log(RB);
+        this.http.post(url + '/win', {
+            Pid: WinPid,
+            score: RB,
+          })
+          .subscribe((data: any) => {
+            // console.log(data);
+          });
+        this.http.post(url + '/lose', {
+            Pid: LosePid,
+            score: RA,
+          })
+          .subscribe((data: any) => {
+            // console.log(data);
+          });
+      }
       this.countnum = 5;
-    }
-    this.canVote = false;
-    const url = this.constants.API_ENDPOINT + "/vote";
-    const K = 32;
-    const EA = 1 / (1 + 10 ** ((this.score2 - this.score1) / 400));
-    const EB = 1 / (1 + 10 ** ((this.score1 - this.score2) / 400));
-
-    if (check == 1) {
-      //กรณี A ชนะ
-      const RA = K * (1 - EA);
-      console.log(RA);
-      const RB = K * (0 - EB);
-      console.log(RB);
-      this.http
-        .post(url + '/win', {
-          Pid: WinPid,
-          score: RA,
-        })
-        .subscribe((data: any) => {
-          // console.log(data);
-        });
-      this.http
-        .post(url + '/lose', {
-          Pid: LosePid,
-          score: RB,
-        })
-        .subscribe((data: any) => {
-          // console.log(data);
-        });
-    } else if (check == 2) {
-      //กรณี ฺB ชนะ
-      const RA = K * (0 - EA);
-      console.log(RA);
-      const RB = K * (1 - EB);
-      console.log(RB);
-      this.http.post(url + '/win', {
-          Pid: WinPid,
-          score: RB,
-        })
-        .subscribe((data: any) => {
-          // console.log(data);
-        });
-      this.http.post(url + '/lose', {
-          Pid: LosePid,
-          score: RA,
-        })
-        .subscribe((data: any) => {
-          // console.log(data);
-        });
     }
     // รอเวลา 5 วินาที
     await this.delay(1000);

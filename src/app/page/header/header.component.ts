@@ -80,7 +80,7 @@ export class HeaderComponent {
     this.router.navigate(['/']);
     this.title= "VOTE";
     this.id = null;
-    this.toastr.success('Logout', 'Success');
+    this.toastr.success('Logout');
   }
   isLoggedIn(): boolean {
     return localStorage.length > 0;

@@ -31,20 +31,20 @@ export class EditComponent {
       this.result = await this.userService.UpdatePassword(this.id,oldPass.value,newPass.value,cfPass.value);
       // console.log(this.result.result);
       if(this.result.result.includes("Not_Password")){
-        this.toastr.error('The password is incorrect', 'Error');
+        this.toastr.error('Old Password is incorrect');
       }
       else if(this.result.result.includes("Not_Math")){
-        this.toastr.warning('Passwords dont match', 'warning');
+        this.toastr.info('New Passwords Not Match');
       }
       else if(this.result.result.includes("success")){
-        this.toastr.success('successfully', 'success');
+        this.toastr.success('Successfully');
         const UserID = localStorage.getItem('user');
         this.router.navigate(['/profile'],{
           queryParams: { user : UserID}
         });
       }
     } else {
-      this.toastr.warning('Input is invalid', 'warning')
+      this.toastr.warning('Input is invalid')
     }
   }
 

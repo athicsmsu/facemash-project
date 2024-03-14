@@ -4,9 +4,9 @@
             <div class="form">
                 <span class="title">Edit Password</span>
                 <div class="form-container">
-                    <input type="password" class="input" placeholder="Old Password" #oldPass>
-                    <input type="password" class="input" placeholder="New Password" #newPass>
-                    <input type="password" class="input" placeholder="Confirm password" #cfPass>
+                    <input type="password" class="input" placeholder="Old Password" #oldPass (keyup.enter)="edit(oldPass,newPass,cfPass)">
+                    <input type="password" class="input" placeholder="New Password" #newPass (keyup.enter)="edit(oldPass,newPass,cfPass)">
+                    <input type="password" class="input" placeholder="Confirm password" #cfPass (keyup.enter)="edit(oldPass,newPass,cfPass)">
                 </div>
                 <button (click)="edit(oldPass,newPass,cfPass)">Save</button>
             </div>

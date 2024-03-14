@@ -10,6 +10,7 @@ import { ChartModule } from 'primeng/chart';
 import { DailystatsService } from '../../../services/api/dailystats.service';
 import { CommonModule } from '@angular/common';
 import { ResRow } from '../../../model/res_get_row';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -32,6 +33,7 @@ export class ImageComponent implements OnInit {
   file? : File;
    
   constructor(
+    private toastr: ToastrService,
     private router: Router,
     private route: ActivatedRoute,
     private http : HttpClient,
@@ -76,6 +78,7 @@ export class ImageComponent implements OnInit {
   }
   
   async onChangePost(event: any): Promise<void> {
+    this.toastr.info('Process...');
     this.file = event.target.files[0];
     if (this.file) {
       const formData = new FormData();
@@ -86,6 +89,7 @@ export class ImageComponent implements OnInit {
     this.router.navigate(['/profile'],{
       queryParams: { user : UserID}
     });
+    this.toastr.success('Change Success');
   }
 
   async delay(ms: number) {

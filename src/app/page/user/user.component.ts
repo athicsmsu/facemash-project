@@ -76,6 +76,7 @@ export class UserComponent {
 
   async onAvatar(event: any): Promise<void> {
     this.loadAvatar = true;
+    this.toastr.info('Process...');
     this.file = event.target.files[0];
     if (this.file) {
       const formData = new FormData();
@@ -95,9 +96,10 @@ export class UserComponent {
 
   async DeletePost(Pid: any) {
     if(this.loaddelete){
-      this.toastr.warning('Wait for Process...', 'warning')
+      this.toastr.warning('Please Wait...')
       return;
     } else {
+      this.toastr.info('Process...');
       this.loaddelete = true;
       const response = await this.postService.DeletePosts(Pid);
       await this.delay(3000);
