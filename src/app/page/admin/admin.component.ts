@@ -12,19 +12,20 @@ import { UserService } from '../../services/api/user.service';
 })
 export class AdminComponent {
 
-IDuser(UserID: any) {
-    console.log(UserID);
-}
+  
   data : any[] = [];
 
   constructor(private router: Router,private userService : UserService){
     this.loadDataAsync();
+    console.log("admin");
   }
 
   async loadDataAsync (){
     this.data = await this.userService.getAllUser();
     console.log(this.data);
-    
   }
-
+  
+  IDuser(UserID: any) {
+    console.log(UserID);
+  }
 }

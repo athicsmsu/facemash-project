@@ -16,6 +16,7 @@ export class HeaderComponent {
   id:any;
   title:any = "VOTE";
   user : any;
+  admin : any = false;
   constructor(private location: Location,private router: Router,private userService : UserService,private toastr: ToastrService){
     this.id = localStorage.getItem('user');
   }
@@ -40,6 +41,10 @@ export class HeaderComponent {
         }
         if (currentRoute == '/') {
           this.title= "VOTE";
+        }
+        if (currentRoute.includes('/admin')) {
+          this.title= "ADMIN";
+          this.admin = true;
         }
       }
     });
@@ -72,13 +77,19 @@ export class HeaderComponent {
         if (currentRoute == '/') {
           this.title= "VOTE";
         }
+        if (currentRoute.includes('/admin')) {
+          this.title= "ADMIN";
+          this.admin = true;
+        }
       }
     });
 	}
   logout(): void{
     localStorage.removeItem('user');
+    localStorage.removeItem('admin');
     this.router.navigate(['/']);
     this.title= "VOTE";
+    this.admin = false;
     this.id = null;
     this.toastr.success('Logout');
   }
@@ -97,6 +108,9 @@ export class HeaderComponent {
   changLogin(){
     this.title = "LOGIN";
   }
+  changAdmin(){
+    this.title = "ADMIN";
+  }
 }
 export function setHeaderID(header : HeaderComponent) {
   header.id = localStorage.getItem('user');
@@ -105,4 +119,7 @@ export function setHeaderID(header : HeaderComponent) {
 }
 export function setHeaderProfile(header : HeaderComponent) {
   header.title = "PROFILE";
+}
+export function setHeaderAdmin(header : HeaderComponent) {
+  header.title = "ADMIN";
 }

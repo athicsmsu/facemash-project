@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { HeaderComponent, setHeaderID } from '../header/header.component';
+import { HeaderComponent, setHeaderAdmin, setHeaderID } from '../header/header.component';
 import { HttpClient } from '@angular/common/http';
 import { Constants } from '../../config/constants';
 import { Router } from '@angular/router';
@@ -45,7 +45,9 @@ export class LoginComponent{
                 this.toastr.success('Login');
               }
               else if(data[0].Type.includes("admin")){
+                localStorage.setItem('admin', data[0].UserID);
                 this.router.navigate(['/admin']);
+                setHeaderAdmin(this.header);
                 this.toastr.success('Login Success', 'Admin');
               }
             } else{
