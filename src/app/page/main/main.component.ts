@@ -133,13 +133,8 @@ export class MainComponent {
             // console.log(data);
           });
       }
-      this.countnum = 5;
+      this.countnum = 3;
     }
-    // รอเวลา 5 วินาที
-    await this.delay(1000);
-    this.countnum = 4;
-    await this.delay(1000);
-    this.countnum = 3;
     await this.delay(1000);
     this.countnum = 2;
     await this.delay(1000);

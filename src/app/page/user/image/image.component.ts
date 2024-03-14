@@ -60,7 +60,7 @@ export class ImageComponent implements OnInit {
     this.image = await this.postService.getPostsByPid(this.pid);
     // console.log(this.image);
     this.data7day = await this.dailyService.getAllDailystats7day(this.pid);
-    console.log(this.data7day);
+    // console.log(this.data7day);
     if(this.data7day.length>0){
      this.NumNowRank = this.data7day[this.data7day.length-1].rank; 
     }
@@ -68,8 +68,7 @@ export class ImageComponent implements OnInit {
       this.NumNowRank = 0;
     }
     this.NowRank = await this.voteService.nowRank();
-    console.log(this.NowRank);
-    
+    // console.log(this.NowRank);
     for (let index = 0; index < this.NowRank.length; index++) {
       if(this.pid == this.NowRank[index].pid){  
         this.rank = this.NowRank[index].rank;
