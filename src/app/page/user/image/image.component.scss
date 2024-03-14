@@ -10,6 +10,15 @@
   align-items: center;
   justify-content: center;
   display: flex;
+  flex-direction: column;
+}
+
+.posts-img{
+  border-radius: 10px;
+  object-fit: cover;
+  cursor: pointer;
+  width: 350px;
+  height: 450px;
 }
 
 .data-bg {
@@ -54,4 +63,90 @@
   margin-right: 50px;
 }
 
+.comment-react {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  padding: 5px;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  scale: 1;
+  width: 100px;
+  margin-top: 20px;
+}
 
+.comment-react button {
+  width: 35px;
+  height: 35px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: 0;
+  outline: none;
+}
+
+.comment-react button:after {
+  content: "";
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  left: -3px;
+  top: -3px;
+  background-color: #f5356e;
+  border-radius: 50%;
+  z-index: 0;
+  transform: scale(0);
+}
+
+.comment-react button svg {
+  position: relative;
+  z-index: 9;
+}
+
+.comment-react button:hover:after {
+  animation: ripple 0.6s ease-in-out forwards;
+}
+
+.comment-react button svg {
+  fill: #f5356e;
+}
+
+.comment-react button svg path {
+  stroke: #f5356e;
+  fill: #f5356e;
+}
+
+.comment-react hr {
+  width: 80%;
+  height: 1px;
+  background-color: #dfe1e6;
+  margin: auto;
+  border: 0;
+}
+
+.comment-react span {
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  font-size: 20px;
+  font-weight: 600;
+  color: #707277;
+  padding-right: 10px;
+  text-align: center;
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 0.6;
+  }
+
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}

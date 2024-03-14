@@ -31,7 +31,8 @@ export class ImageComponent implements OnInit {
   NowRank : any[] = [];
   rank : number = 0;
   file? : File;
-   
+  score : any = 0;
+
   constructor(
     private toastr: ToastrService,
     private router: Router,
@@ -46,7 +47,6 @@ export class ImageComponent implements OnInit {
     this.route.queryParams.subscribe(params =>{
       this.pid = params['posts'];
     });
-    console.log(this.pid);
     if (!localStorage.getItem('user')) {
       this.router.navigateByUrl('');
     }
@@ -58,7 +58,7 @@ export class ImageComponent implements OnInit {
 
   async loadDataAsync(){
     this.image = await this.postService.getPostsByPid(this.pid);
-    console.log(this.image);
+    // console.log(this.image);
     this.data7day = await this.dailyService.getAllDailystats7day(this.pid);
     console.log(this.data7day);
     if(this.data7day.length>0){
@@ -68,10 +68,12 @@ export class ImageComponent implements OnInit {
       this.NumNowRank = 0;
     }
     this.NowRank = await this.voteService.nowRank();
-
+    console.log(this.NowRank);
+    
     for (let index = 0; index < this.NowRank.length; index++) {
       if(this.pid == this.NowRank[index].pid){  
         this.rank = this.NowRank[index].rank;
+        this.score = this.NowRank[index].total_score;
       }
     }
     this.loadGraph();
