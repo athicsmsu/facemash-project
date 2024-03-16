@@ -61,6 +61,8 @@ export class ImageComponent implements OnInit {
     // console.log(this.image);
     this.data7day = await this.dailyService.getAllDailystats7day(this.pid);
     // console.log(this.data7day);
+    this.data7day = this.data7day.slice().reverse(); // อาร์เรย์ใหม่ที่เรียงลำดับจาก index สูงสุดไปยังต่ำสุด
+    // console.log(this.data7day);
     if(this.data7day.length>0){
      this.NumNowRank = this.data7day[this.data7day.length-1].rank; 
     }

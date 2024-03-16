@@ -21,14 +21,15 @@ export class RankComponent {
   }
 
   async loadDataAsync (){
-    this.image = await this.voteService.getRank();
+    this.image = await this.voteService.getRank(); // /rank
     for(let i = 0;i<this.image.length;i++){
       this.BeforeRank.push(await this.dailyService.getAllDailystats(this.image[i].Pid));
     }
     // console.log(this.BeforeRank);
     for(let i = 0;i<this.image.length;i++){
+      //push index ที่ 0 ของแต่ละ Array ลงไปเพื่อให้มันเป็นวันล่าสุด
       this.NumRank.push(this.BeforeRank[i][0].rank);
     }
-    console.log(this.NumRank);
+    // console.log(this.NumRank);
   }
 }
