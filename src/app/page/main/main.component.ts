@@ -26,10 +26,6 @@ export class MainComponent {
   score: any[] = [];
   image1: any;
   image2: any;
-  user1: any;
-  user2: any;
-  score1: any;
-  score2: any;
   canVote = true;
   countnum = 0;
 
@@ -69,12 +65,6 @@ export class MainComponent {
     do {
       this.image2 = this.image[this.getRandomIndex(this.image)];
     } while (this.image2 === this.image1);
-    this.user1 = await this.userService.getAllDataUser(this.image1.UserID);
-    this.user2 = await this.userService.getAllDataUser(this.image2.UserID);
-    this.score = await this.postService.getScore(this.image1.Pid);
-    this.score1 = this.score[0].total_score;
-    this.score = await this.postService.getScore(this.image2.Pid);
-    this.score2 = this.score[0].total_score;
     // เปิดให้สามารถกด Vote ได้อีก
     this.canVote = true;
   }
@@ -88,8 +78,8 @@ export class MainComponent {
       this.canVote = false;
       const url = this.constants.API_ENDPOINT + "/vote";
       const K = 32;
-      const EA = 1 / (1 + 10 ** ((this.score2 - this.score1) / 400));
-      const EB = 1 / (1 + 10 ** ((this.score1 - this.score2) / 400));
+      const EA = 1 / (1 + 10 ** ((this.image2.total_score - this.image1.total_score) / 400));
+      const EB = 1 / (1 + 10 ** ((this.image1.total_score - this.image2.total_score) / 400));
       this.toastr.success('Vote Success');
       if (check == 1) {
         //กรณี A ชนะ
@@ -98,6 +88,7 @@ export class MainComponent {
         const RB = K * (0 - EB);
         console.log(RB);
         this.toastr.info('ภาพซ้าย +'+RA.toFixed(0).toString() + ' ภาพขวา '+RB.toFixed(0).toString());
+        console.log('ภาพซ้าย '+this.image2.Pid+ RA.toFixed(0).toString() + ' ภาพขวา '+this.image1.Pid+ RB.toFixed(0).toString());
         this.http
           .post(url + '/win', {
             Pid: WinPid,  
@@ -120,7 +111,7 @@ export class MainComponent {
         console.log(RA);
         const RB = K * (1 - EB);
         this.toastr.info('ภาพซ้าย '+ RA.toFixed(0).toString() + ' ภาพขวา +'+ RB.toFixed(0).toString());
-        console.log(RB);
+        console.log('ภาพซ้าย '+this.image1.Pid+ RA.toFixed(0).toString() + ' ภาพขวา '+this.image2.Pid+ RB.toFixed(0).toString());
         this.http.post(url + '/win', {
             Pid: WinPid,
             score: RB,
@@ -151,7 +142,6 @@ export class MainComponent {
   async delay(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
-
   ChangeHeader(){
     setHeaderProfile(this.header);
   }
