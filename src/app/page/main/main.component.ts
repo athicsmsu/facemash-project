@@ -88,7 +88,6 @@ export class MainComponent {
         const RB = K * (0 - EB);
         console.log(RB);
         this.toastr.info('ภาพซ้าย +'+RA.toFixed(0).toString() + ' ภาพขวา '+RB.toFixed(0).toString());
-        console.log('ภาพซ้าย '+this.image2.Pid+ RA.toFixed(0).toString() + ' ภาพขวา '+this.image1.Pid+ RB.toFixed(0).toString());
         this.http
           .post(url + '/win', {
             Pid: WinPid,  
@@ -111,7 +110,6 @@ export class MainComponent {
         console.log(RA);
         const RB = K * (1 - EB);
         this.toastr.info('ภาพซ้าย '+ RA.toFixed(0).toString() + ' ภาพขวา +'+ RB.toFixed(0).toString());
-        console.log('ภาพซ้าย '+this.image1.Pid+ RA.toFixed(0).toString() + ' ภาพขวา '+this.image2.Pid+ RB.toFixed(0).toString());
         this.http.post(url + '/win', {
             Pid: WinPid,
             score: RB,
