@@ -14,7 +14,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrl: './login.component.scss'
 })
 export class LoginComponent{ 
-
+  loading = false;
   constructor(private toastr: ToastrService,private http:HttpClient,private constants : Constants, private router: Router,private header:HeaderComponent,private userService :UserService){
     if (localStorage.getItem('user')) {
       this.router.navigate(['/user'], {
@@ -22,7 +22,6 @@ export class LoginComponent{
       });
     }
   }
-
   login(email: HTMLInputElement,password: HTMLInputElement) {
     const url = this.constants.API_ENDPOINT + `/user`;
 
@@ -61,31 +60,39 @@ export class LoginComponent{
   }
   
   register(username: HTMLInputElement,email: HTMLInputElement,password: HTMLInputElement) {
-
-    const url = this.constants.API_ENDPOINT + `/user`;
-
-    if(username.value && email.value && password.value){
-      this.http.get(url, {
-        params : {
-          Email: email.value,
-        }
-      }).subscribe((data:any)=>{
-        if(data == null || (Array.isArray(data) && data.length === 0)){
-          this.http.post(url, {
-              Username: username.value,
-              Email: email.value,
-              Password: password.value
-          }).subscribe((data:any)=>{
-            console.log(data);
-            this.toastr.success('Sing up', 'Success');
-          });
-          this.toastr.success('Process...');
-        } else {
-          this.toastr.error('Email already registered.', 'Error');
-        }
-      })
-    }else{
-      this.toastr.warning('Input is Invalid', 'Warning');
+    if(this.loading){
+      this.toastr.warning('Please Wait...', 'Warning');
+      return;
+    } else{
+      // this.toastr.info('Process...');
+      this.loading = true;
+      const url = this.constants.API_ENDPOINT + `/user`;
+      if(username.value && email.value && password.value){
+        this.http.get(url, {
+          params : {
+            Email: email.value,
+          }
+        }).subscribe((data:any)=>{
+          if(data == null || (Array.isArray(data) && data.length === 0)){
+            this.http.post(url, {
+                Username: username.value,
+                Email: email.value,
+                Password: password.value
+            }).subscribe((data:any)=>{
+              console.log(data);
+              this.toastr.success('Sing up', 'Success');
+              this.loading = false;
+            });
+            this.toastr.info('Process...');
+          } else {
+            this.toastr.error('Email already registered.', 'Error');
+            this.loading = false;
+          }
+        })
+      }else{
+        this.toastr.warning('Input is Invalid', 'Warning');
+        this.loading = false;
+      }
     }
   }
 
