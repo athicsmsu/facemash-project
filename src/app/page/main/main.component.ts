@@ -66,6 +66,8 @@ export class MainComponent {
       this.image2 = this.image[this.getRandomIndex(this.image)];
     } while (this.image2 === this.image1);
     // เปิดให้สามารถกด Vote ได้อีก
+    await this.delay(1000);
+    this.toastr.info('YOU CAN VOTE NOW!');
     this.canVote = true;
   }
 
@@ -80,14 +82,14 @@ export class MainComponent {
       const K = 32;
       const EA = 1 / (1 + 10 ** ((this.image2.total_score - this.image1.total_score) / 400));
       const EB = 1 / (1 + 10 ** ((this.image1.total_score - this.image2.total_score) / 400));
-      this.toastr.success('Vote Success');
+      // this.toastr.success('Vote Success');
       if (check == 1) {
         //กรณี A ชนะ
         const RA = K * (1 - EA);
         console.log(RA);
         const RB = K * (0 - EB);
         console.log(RB);
-        this.toastr.info('ภาพซ้าย +'+RA.toFixed(0).toString() + ' ภาพขวา '+RB.toFixed(0).toString());
+        this.toastr.show('ภาพซ้าย +'+RA.toFixed(0).toString() + ' ภาพขวา '+RB.toFixed(0).toString());
         this.http
           .post(url + '/win', {
             Pid: WinPid,  
@@ -109,7 +111,7 @@ export class MainComponent {
         const RA = K * (0 - EA);
         console.log(RA);
         const RB = K * (1 - EB);
-        this.toastr.info('ภาพซ้าย '+ RA.toFixed(0).toString() + ' ภาพขวา +'+ RB.toFixed(0).toString());
+        this.toastr.show('ภาพซ้าย '+ RA.toFixed(0).toString() + ' ภาพขวา +'+ RB.toFixed(0).toString());
         this.http.post(url + '/win', {
             Pid: WinPid,
             score: RB,
