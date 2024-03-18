@@ -26,9 +26,11 @@
                 </div>
             </div>
             <button class="vs">
-                <ng-container *ngIf="canVote; else count">V S
+                <ng-container *ngIf="canVote; else count">
+                    V S
                   </ng-container>
-                  <ng-template #count>0 {{ this.countnum }}
+                  <ng-template #count>
+                    0 {{ this.countnum }}
                   </ng-template>
                 <div class="star-1">
                   <svg
