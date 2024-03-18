@@ -10,7 +10,7 @@ export class DailystatsService {
 
   constructor(private constants : Constants,private http:HttpClient) { }
 
-  public async getAllDailystats(options?:any){
+  public async getYesterdayDailystats(options?:any){
     let url = '';
     if(options){
       const id = options;
