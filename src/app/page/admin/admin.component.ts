@@ -31,5 +31,7 @@ export class AdminComponent {
   
   IDuser(UserID: any) {
     console.log(UserID);
+
+    
   }
 }
