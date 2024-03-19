@@ -78,7 +78,7 @@
                   <div *ngIf="this.show == true else other">
                     <div *ngIf="this.loadAvatar == false else LoaderAvartar">
                       <input type="file" #avartar style="display: none" (change)="onAvatar($event)">
-                      <img (click)="avartar.click()" *ngIf="this.Avatar == null" class="img-profile" src="https://www.366icons.com/media/01/profile-avatar-account-icon-16699.png" style="cursor: pointer;">
+                      <img (click)="avartar.click()" *ngIf="this.Avatar == null" class="img-profile" src="../../../assets/icon-256x256.png" style="cursor: pointer;">
                       <img (click)="avartar.click()" *ngIf="this.Avatar != null " class="img-profile" src="{{ this.user[0].Avatar }}" style="cursor: pointer;">
                     </div>
                     <ng-template #LoaderAvartar>
@@ -86,7 +86,7 @@
                     </ng-template>
                   </div>
                   <ng-template #other>
-                    <img *ngIf="this.Avatar == null" class="img-profile" src="https://www.366icons.com/media/01/profile-avatar-account-icon-16699.png">
+                    <img *ngIf="this.Avatar == null" class="img-profile" src="../../../assets/icon-256x256.png">
                     <img *ngIf="this.Avatar != null " class="img-profile" src="{{ this.user[0].Avatar }}" >
                   </ng-template>
                 </div>

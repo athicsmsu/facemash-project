@@ -4,7 +4,8 @@
             <div *ngIf="user.Type == 'user'" class="data-bg" routerLink="/profiles" [queryParams]="{user: user.UserID}">
                 <div style="display: flex; flex-direction: row;">
                     <div (click)="IDuser(user.UserID)">
-                        <img class="img-boder" src="{{user.Avatar}}">
+                        <img class="img-boder" *ngIf="user.Avatar != null" src="{{user.Avatar}}">
+                        <img class="img-boder" *ngIf="user.Avatar == null" src="../../../assets/icon-256x256.png">
                     </div>
                 </div>
                 <div style="display: flex; flex-direction: column;align-items: center;justify-content: center; width: 70%;">
