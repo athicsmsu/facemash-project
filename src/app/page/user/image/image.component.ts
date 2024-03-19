@@ -47,12 +47,14 @@ export class ImageComponent implements OnInit {
     this.route.queryParams.subscribe(params =>{
       this.pid = params['posts'];
     });
-    if (!localStorage.getItem('user')) {
-      this.router.navigateByUrl('');
-    }
-    
   }
   ngOnInit(): void {
+    if(localStorage.getItem('admin')){
+      this.loadDataAsync();
+      return;
+    } else if (!localStorage.getItem('user')) {
+      this.router.navigateByUrl('');
+    }
     this.loadDataAsync();
   }
 

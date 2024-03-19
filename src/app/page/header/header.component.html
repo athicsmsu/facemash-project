@@ -2,7 +2,7 @@
     &nbsp;&nbsp;
     <div style="display: flex;flex-direction: row;width: 100%;align-items: center;justify-content: flex-start;">
         <!-- back -->
-        <button *ngIf="this.title != 'VOTE' && this.admin == false" class="button" (click)="goBack()" style="justify-content: flex-start;display: flex;">
+        <button *ngIf="this.title != 'VOTE' && this.title != 'ADMIN'" class="button" (click)="goBack()" style="justify-content: flex-start;display: flex;">
             <div class="button-box">
             <span class="button-elem">
                 <svg viewBox="0 0 46 40" xmlns="http://www.w3.org/2000/svg">

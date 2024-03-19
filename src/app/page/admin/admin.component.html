@@ -1,18 +1,18 @@
 <div class="container">
     <div *ngIf="data else loading" class="bg">
-        <div class="for-bg" *ngFor="let item of data">
-            <div *ngIf="item.Type == 'user'" class="data-bg">
+        <div class="for-bg" *ngFor="let user of data">
+            <div *ngIf="user.Type == 'user'" class="data-bg" routerLink="/profiles" [queryParams]="{user: user.UserID}">
                 <div style="display: flex; flex-direction: row;">
-                    <div (click)="IDuser(item.UserID)">
-                        <img class="img-boder" src="{{item.Avatar}}">
+                    <div (click)="IDuser(user.UserID)">
+                        <img class="img-boder" src="{{user.Avatar}}">
                     </div>
                 </div>
                 <div style="display: flex; flex-direction: column;align-items: center;justify-content: center; width: 70%;">
                     <div class="user-profile">
-                        {{item.Username}}
+                        {{user.Username}}
                     </div>
                     <div class="email-profile">
-                        {{item.Email}}
+                        {{user.Email}}
                     </div>
                 </div>
             </div>

@@ -31,22 +31,24 @@ export class UserComponent {
   loadAvatar : any = false;
   loaddelete : any = false;
 
-  constructor(private toastr: ToastrService,private header:HeaderComponent,private router: Router,private route: ActivatedRoute,private http : HttpClient,private constants: Constants,private userService : UserService,private postService : PostService,private voteService : VoteService)
-  {
+  constructor(private toastr: ToastrService,private header:HeaderComponent,private router: Router,private route: ActivatedRoute,private http : HttpClient,private constants: Constants,private userService : UserService,private postService : PostService,private voteService : VoteService){
 		this.route.queryParams.subscribe(params =>{
 			this.id = params['user'];
 		});
 	}
 
   ngOnInit(): void {
-    if (!localStorage.getItem('user')) {
+    if(localStorage.getItem('admin')){
+      this.loadDataAsync();
+      return;
+    } else if (!localStorage.getItem('user')) {
       this.router.navigateByUrl('');
     }
     this.loadDataAsync();
   }
 
   async loadDataAsync (){
-    if(localStorage.getItem('user') == this.id){
+    if(localStorage.getItem('user') == this.id || localStorage.getItem('admin')){
       this.show = true;
     } else {
       this.show = false;
