@@ -28,6 +28,7 @@ export class UserComponent {
   file? : File;
   load : any;
   show : any = false;
+  admin : any = false;
   loadAvatar : any = false;
   loaddelete : any = false;
 
@@ -48,8 +49,11 @@ export class UserComponent {
   }
 
   async loadDataAsync (){
-    if(localStorage.getItem('user') == this.id || localStorage.getItem('admin')){
+    if(localStorage.getItem('user') == this.id){
       this.show = true;
+    } else if(localStorage.getItem('admin')){
+      this.show = true;
+      this.admin = true;
     } else {
       this.show = false;
     }

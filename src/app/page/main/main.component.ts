@@ -67,7 +67,7 @@ export class MainComponent {
     } while (this.image2 === this.image1);
     // เปิดให้สามารถกด Vote ได้อีก
     await this.delay(1000);
-    this.toastr.info('YOU CAN VOTE NOW!');
+    // this.toastr.info('YOU CAN VOTE NOW!');
     this.canVote = true;
   }
 

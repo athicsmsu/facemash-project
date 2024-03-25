@@ -32,6 +32,7 @@ export class ImageComponent implements OnInit {
   rank : number = 0;
   file? : File;
   score : any = 0;
+  admin : any = false;
 
   constructor(
     private toastr: ToastrService,
@@ -50,6 +51,7 @@ export class ImageComponent implements OnInit {
   }
   ngOnInit(): void {
     if(localStorage.getItem('admin')){
+      this.admin = true;
       this.loadDataAsync();
       return;
     } else if (!localStorage.getItem('user')) {

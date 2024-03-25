@@ -3,8 +3,13 @@
         <div style="display: flex; flex-direction: column;">
             <div class="img-bg" *ngIf="this.image">
                 <input type="file" #post style="display: none" (change)="onChangePost($event)">
-                <img class="posts-img" (click)="post.click()" src="{{ image[0].ImageURL }}">
+                <ng-container *ngIf="this.admin != true else adminshow">
+                    <img class="posts-img" (click)="post.click()" src="{{ image[0].ImageURL }}">
                 <span style="margin-top: 10px;color: white;">( เปลี่ยนรูปภาพคลิกที่ภาพ )</span>
+                </ng-container>
+                <ng-template #adminshow>
+                    <img class="posts-img" src="{{ image[0].ImageURL }}" style="cursor: default;">
+                </ng-template>
                 <div class="comment-react">
                     <button>
                       <svg
