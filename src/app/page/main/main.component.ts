@@ -89,7 +89,9 @@ export class MainComponent {
         console.log(RA);
         const RB = K * (0 - EB);
         console.log(RB);
-        this.toastr.show('ภาพซ้าย +'+RA.toFixed(0).toString() + ' ภาพขวา '+RB.toFixed(0).toString());
+        // สูตร : 1/(1+10**(${this.image2.total_score}-${this.image1.total_score}/400))
+        // สูตร : 1/(1+10**(${this.image1.total_score}-${this.image2.total_score}/400))
+        this.toastr.show(`คะแนนคาดหวังภาพซ้าย : ${EA.toFixed(4)} คะแนนคาดหวังภาพขวา : ${EB.toFixed(4)} ภาพซ้าย : +${RA.toFixed(0).toString()} ภาพขวา : ${RB.toFixed(0).toString()}`, `K Factor = 32`);
         this.http
           .post(url + '/win', {
             Pid: WinPid,  
@@ -111,7 +113,7 @@ export class MainComponent {
         const RA = K * (0 - EA);
         console.log(RA);
         const RB = K * (1 - EB);
-        this.toastr.show('ภาพซ้าย '+ RA.toFixed(0).toString() + ' ภาพขวา +'+ RB.toFixed(0).toString());
+        this.toastr.show(`คะแนนคาดหวังภาพซ้าย : ${EA.toFixed(4)}  คะแนนคาดหวังภาพขวา : ${EB.toFixed(4)} ภาพซ้าย : ${RA.toFixed(0).toString()} ภาพขวา : +${RB.toFixed(0).toString()}`, `K Factor = 32`);
         this.http.post(url + '/win', {
             Pid: WinPid,
             score: RB,
